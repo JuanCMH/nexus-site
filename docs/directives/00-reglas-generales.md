@@ -1,0 +1,144 @@
+# 00 · Reglas Generales
+
+> **La carpeta `docs/directives/` es la ley única y completa de `nexus-site`.**
+> Si una regla no está aquí, no es una regla del proyecto. Un documento que no
+> coincide con el código es peor que no tener documento: se corrige en el
+> mismo cambio que lo desmiente.
+
+## 1. Los seis documentos
+
+| Documento | Gobierna | Léelo antes de… |
+|---|---|---|
+| `00-reglas-generales.md` (este) | Qué es este repo, los tres repos de Nexus, stack, nombres, idioma, decisiones abiertas. | Cualquier tarea. |
+| `01-marca.md` | El manual de marca: nombre, promesa, personalidad, logo, color, tipografía, voz. | Escribir un texto o tocar algo que se ve. |
+| `02-producto.md` | Qué es Nexus hoy y qué se puede afirmar de él. | Escribir cualquier frase sobre el producto. |
+| `03-reglas-sitio.md` | Arquitectura del sitio: carpetas, páginas, SEO, cabeceras, integración con la app. | Tocar `app/`, `lib/` o `next.config.ts`. |
+| `04-reglas-interfaz.md` | Todo lo visible: tokens, superficies, escala, color, iconos, movimiento, accesibilidad. | Cualquier cambio de UI. |
+| `05-reglas-calidad.md` | Diseño previo, gate, verificación en pantalla, commits. | Empezar una página y antes de cada commit. |
+
+Orden de autoridad ante conflicto: el documento más específico → `00` → el
+código existente → la petición explícita del usuario (que gana, pero si
+contradice una directriz, se dice antes de seguir).
+
+`docs/referencia/` guarda investigación fechada (mercado, monetización). Es
+contexto, **no regla**: cada archivo lleva su fecha en el nombre y puede
+estar superado.
+
+## 2. Qué es este repositorio
+
+`nexus-site` es el **sitio público de Nexus**: la landing, el manual para
+personas, la página de descarga y lo que haga falta de marketing y legal.
+
+No es la aplicación. No tiene sesión, ni backend, ni datos de ninguna
+agencia. Su trabajo es explicar con verdad qué es Nexus y llevar a quien lo
+lee a descargarlo o a entrar.
+
+## 3. Los tres repositorios de Nexus
+
+| Repo | Qué es | Dónde se publica |
+|---|---|---|
+| `nexus-app` | El producto entero: app de escritorio (Electron), app web (la misma interfaz compilada para navegador) y el backend en Convex, que incluye el conector del agente (MCP). | Instaladores en GitHub · web en `app.<dominio>` · backend en Convex |
+| `nexus-site` (este) | Landing, manual, descarga. | `<dominio>` y `www`, en Vercel |
+| `nexus-app-releases` | Solo los instaladores publicados; lo leen las apps instaladas para actualizarse. | GitHub (público) |
+
+En disco viven juntos en `~/work/nexus/`.
+
+> **Nombres en transición (2026-10-11).** `nexus-app` todavía se llama
+> `nexus-desktop` (en `~/work/nexus-desktop`) y `nexus-app-releases` todavía
+> es `JuanCMH/nexus-desktop-releases`. Por eso el repositorio de instaladores
+> se lee de la variable `NEXUS_RELEASES_REPO` (`lib/site.ts`) y no se escribe
+> a mano. Al terminar el renombrado, se borra esta nota y se cambia el valor
+> por defecto.
+
+`nexus-seguros` fue la generación anterior (una app web en Next.js con IA de
+extracción propia). Está archivada en GitHub y **no es fuente de nada**: ni
+de textos, ni de componentes, ni de reglas. Lo que valía de ella ya está aquí.
+
+### 3.1 Cómo se reparten el dominio
+
+| Dirección | Sirve | Sale de |
+|---|---|---|
+| `<dominio>` y `www` | Este sitio | `nexus-site` |
+| `app.<dominio>` | La app web | `nexus-app` |
+| `api.<dominio>` (o el nombre que se elija) | El conector del agente, su autorización y los enlaces de archivos | El Convex de `nexus-app` |
+
+La app va en un **subdominio y no en una ruta** del sitio. La app guarda la
+sesión en el almacenamiento del navegador, que se comparte por origen: en el
+mismo origen, cualquier script del sitio podría leerla. Separados, cada uno
+tiene su propia política de seguridad y se publica sin tocar al otro.
+
+Lo que el sitio sabe de la app es, y solo es: la dirección de «Entrar»
+(`APP_URL`), el repositorio de instaladores (`RELEASES_REPO`) y lo que
+`02-producto.md` dice del producto.
+
+## 4. Stack oficial
+
+| Capa | Tecnología | Notas |
+|---|---|---|
+| Framework | **Next.js 16** (App Router) | Todo estático o regenerado; sin rutas con sesión. Lee `AGENTS.md`: esta versión cambió respecto a lo que se suele recordar. |
+| Interfaz | **React 19** | Componentes de servidor por defecto; `"use client"` solo donde hay interacción. |
+| Estilos | **Tailwind CSS 4** | Tokens en `app/globals.css`. |
+| Iconos | **@remixicon/react** | Única librería. Nada de lucide. |
+| Fuentes | **@fontsource** (Outfit, JetBrains Mono, Cormorant Garamond) | Empaquetadas; sin CDN. Las mismas de la app. |
+| Calidad | **TypeScript** estricto, **Biome** | Gate en `bun run check`. |
+| Gestor | **Bun** | |
+| Despliegue | **Vercel** | |
+
+Lo que este sitio **no** lleva: Convex ni ningún backend propio, capa de
+traducción (i18n), sistema de estado global, analítica de terceros.
+
+**No se añade ninguna dependencia sin actualizar esta tabla en el mismo
+cambio**, con el motivo. Una librería por propósito: si ya hay una para
+animar, no entra una segunda. Las decisiones previsibles que aún no se han
+tomado (componentes de shadcn/ui, animación, formato del manual) están en §7.
+
+## 5. Convención de nombres
+
+| Contexto | Convención | Ejemplo |
+|---|---|---|
+| Archivos y carpetas | kebab-case | `download-button.tsx` |
+| Rutas | kebab-case, en español | `app/descargar/page.tsx` |
+| Componentes React | PascalCase | `DownloadButton` |
+| Hooks | `use` + PascalCase, en `use-*.ts` | `useLatestRelease` |
+| Constantes | UPPER_SNAKE_CASE | `SITE_URL` |
+
+Sin barrels (`index.ts`). Imports por el alias `@/`. Un componente por
+archivo.
+
+## 6. Idioma
+
+Código, identificadores y archivos en **inglés**. Las **rutas** y todo lo que
+ve una persona, en **español** de Colombia, con acentuación correcta,
+incluido lo que no se ve (`aria-label`, `alt`, metadatos). El texto se
+escribe directamente en el código: no hay capa de traducción.
+
+Cómo se escribe está en `01-marca.md` §6.
+
+## 7. Decisiones abiertas
+
+Son del dueño del producto. Nadie las resuelve por su cuenta; se preguntan.
+
+| Decisión | Estado | Qué bloquea |
+|---|---|---|
+| Dominio definitivo y dónde está su DNS | Sin decidir (candidatos vistos: `nexus.com.co`, `n3xus.cloud`) | Publicar; `NEXT_PUBLIC_SITE_URL` |
+| Qué ofrece la landing durante la beta cerrada: «Entrar» y «Descargar», o solo «Solicitar acceso» | Sin decidir | El llamado a la acción del hero |
+| Precios | Sin definir (`02-producto.md` §6) | La página de precios: no se publica una con cifras inventadas |
+| Tema oscuro en el sitio: conmutador, seguir al sistema, o solo claro | Sin decidir; los tokens de los dos temas ya están | El diseño de la landing |
+| Relato del nombre | Propuesto en `01-marca.md` §1, por confirmar | La sección «Sobre Nexus», si la hay |
+| Librería de animación y componentes de shadcn/ui | Se decide al diseñar la landing | — |
+| Formato del manual (TSX o MDX) | Se decide al construirlo (`03-reglas-sitio.md` §3.2) | — |
+
+Cuando una se cierra, se borra de esta tabla y la regla entra en su
+documento.
+
+## 8. Checklist de cada sesión
+
+```
+□ ¿Leí la petición completa?
+□ ¿Escribo sobre el producto?   → 02 (y verifica contra nexus-app si dudas)
+□ ¿Escribo cualquier texto?     → 01 §6
+□ ¿Toca algo visible?           → 01 y 04
+□ ¿Página nueva?                → 05 §1 (diseño previo) y 03 §4 (sitemap, metadatos)
+□ ¿Dependencia u origen nuevo?  → §4 de este documento y 03 §6
+□ ¿Antes de commit?             → bun run check (05 §2)
+```
