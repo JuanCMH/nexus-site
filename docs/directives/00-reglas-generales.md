@@ -31,24 +31,22 @@ personas, la página de descarga y lo que haga falta de marketing y legal.
 
 No es la aplicación. No tiene sesión, ni backend, ni datos de ninguna
 agencia. Su trabajo es explicar con verdad qué es Nexus y llevar a quien lo
-lee a descargarlo o a entrar.
+lee a solicitar acceso o a iniciar sesión.
 
 ## 3. Los tres repositorios de Nexus
 
 | Repo | Qué es | Dónde se publica |
 |---|---|---|
-| `nexus-app` | El producto entero: app de escritorio (Electron), app web (la misma interfaz compilada para navegador) y el backend en Convex, que incluye el conector del agente (MCP). | Instaladores en GitHub · web en `app.<dominio>` · backend en Convex |
-| `nexus-site` (este) | Landing, manual, descarga. | `<dominio>` y `www`, en Vercel |
+| `nexus-app` | El producto entero: app de escritorio (Electron), app web (la misma interfaz compilada para navegador) y el backend en Convex, que incluye el conector del agente (MCP). | Instaladores en GitHub · web en `app.n3xus.cloud` · backend en Convex |
+| `nexus-site` (este) | Landing, manual, descarga. | `n3xus.cloud` y `www`, en Vercel |
 | `nexus-app-releases` | Solo los instaladores publicados; lo leen las apps instaladas para actualizarse. | GitHub (público) |
 
 En disco viven juntos en `~/work/nexus/`.
 
-> **Nombres en transición (2026-10-11).** `nexus-app` todavía se llama
-> `nexus-desktop` (en `~/work/nexus-desktop`) y `nexus-app-releases` todavía
-> es `JuanCMH/nexus-desktop-releases`. Por eso el repositorio de instaladores
-> se lee de la variable `NEXUS_RELEASES_REPO` (`lib/site.ts`) y no se escribe
-> a mano. Al terminar el renombrado, se borra esta nota y se cambia el valor
-> por defecto.
+> Hasta el 2026-10-11 `nexus-app` se llamó `nexus-desktop`, y su repositorio
+> de instaladores, `nexus-desktop-releases`. Los instaladores anteriores a la
+> 0.18.1 llevan ese nombre en el archivo. El repositorio de instaladores se
+> lee de `NEXUS_RELEASES_REPO` (`lib/site.ts`) y no se escribe a mano.
 
 `nexus-seguros` fue la generación anterior (una app web en Next.js con IA de
 extracción propia). Está archivada en GitHub y **no es fuente de nada**: ni
@@ -58,17 +56,19 @@ de textos, ni de componentes, ni de reglas. Lo que valía de ella ya está aquí
 
 | Dirección | Sirve | Sale de |
 |---|---|---|
-| `<dominio>` y `www` | Este sitio | `nexus-site` |
-| `app.<dominio>` | La app web | `nexus-app` |
-| `api.<dominio>` (o el nombre que se elija) | El conector del agente, su autorización y los enlaces de archivos | El Convex de `nexus-app` |
+| `n3xus.cloud` y `www` | Este sitio | `nexus-site` |
+| `app.n3xus.cloud` | La app web | `nexus-app` |
+| `api.n3xus.cloud` (o el nombre que se elija) | El conector del agente, su autorización, los enlaces de archivos y las solicitudes de acceso | El Convex de `nexus-app` |
 
-La app va en un **subdominio y no en una ruta** del sitio. La app guarda la
+El dominio es **`n3xus.cloud`** (decidido el 2026-10-11). La app va en un
+**subdominio y no en una ruta** del sitio. La app guarda la
 sesión en el almacenamiento del navegador, que se comparte por origen: en el
 mismo origen, cualquier script del sitio podría leerla. Separados, cada uno
 tiene su propia política de seguridad y se publica sin tocar al otro.
 
-Lo que el sitio sabe de la app es, y solo es: la dirección de «Entrar»
-(`APP_URL`), el repositorio de instaladores (`RELEASES_REPO`) y lo que
+Lo que el sitio sabe de la app es, y solo es: la dirección de «Iniciar
+sesión» (`APP_URL`), la del backend que recibe las solicitudes de acceso
+(`API_URL`), el repositorio de instaladores (`RELEASES_REPO`) y lo que
 `02-producto.md` dice del producto.
 
 ## 4. Stack oficial
@@ -78,6 +78,9 @@ Lo que el sitio sabe de la app es, y solo es: la dirección de «Entrar»
 | Framework | **Next.js 16** (App Router) | Todo estático o regenerado; sin rutas con sesión. Lee `AGENTS.md`: esta versión cambió respecto a lo que se suele recordar. |
 | Interfaz | **React 19** | Componentes de servidor por defecto; `"use client"` solo donde hay interacción. |
 | Estilos | **Tailwind CSS 4** | Tokens en `app/globals.css`. |
+| Primitivos | **radix-ui**, **class-variance-authority**, **clsx**, **tailwind-merge** | Los de shadcn/ui, copiados de `nexus-app` para que sean idénticos. Solo entran los que se usan: hoy botón, campo y etiqueta. |
+| Tema | **next-themes** | Claro y oscuro: sigue al sistema y deja elegir. La misma de la app. |
+| Animación | **motion** | Única librería de animación. La misma de la app. |
 | Iconos | **@remixicon/react** | Única librería. Nada de lucide. |
 | Fuentes | **@fontsource** (Outfit, JetBrains Mono, Cormorant Garamond) | Empaquetadas; sin CDN. Las mismas de la app. |
 | Calidad | **TypeScript** estricto, **Biome** | Gate en `bun run check`. |
@@ -87,10 +90,16 @@ Lo que el sitio sabe de la app es, y solo es: la dirección de «Entrar»
 Lo que este sitio **no** lleva: Convex ni ningún backend propio, capa de
 traducción (i18n), sistema de estado global, analítica de terceros.
 
-**No se añade ninguna dependencia sin actualizar esta tabla en el mismo
-cambio**, con el motivo. Una librería por propósito: si ya hay una para
-animar, no entra una segunda. Las decisiones previsibles que aún no se han
-tomado (componentes de shadcn/ui, animación, formato del manual) están en §7.
+**Una dependencia entra cuando una página demuestra que hace falta**, no
+antes, y esta tabla se actualiza en el mismo cambio con el motivo. Una
+librería por propósito: si ya hay una para animar, no entra una segunda.
+
+Lo que se evaluó el 2026-10-11 y quedó fuera, con su motivo: GSAP (sería
+una segunda librería de animación; entra solo si una escena no sale con
+`motion`), scroll suave tipo Lenis (sustituye el scroll del navegador),
+three.js o WebGL (peso sin relación con el producto), librerías de
+formularios (el único formulario tiene dos campos) y captcha de terceros
+(abre la política de seguridad).
 
 ## 5. Convención de nombres
 
@@ -120,12 +129,11 @@ Son del dueño del producto. Nadie las resuelve por su cuenta; se preguntan.
 
 | Decisión | Estado | Qué bloquea |
 |---|---|---|
-| Dominio definitivo y dónde está su DNS | Sin decidir (candidatos vistos: `nexus.com.co`, `n3xus.cloud`) | Publicar; `NEXT_PUBLIC_SITE_URL` |
-| Qué ofrece la landing durante la beta cerrada: «Entrar» y «Descargar», o solo «Solicitar acceso» | Sin decidir | El llamado a la acción del hero |
-| Precios | Sin definir (`02-producto.md` §6) | La página de precios: no se publica una con cifras inventadas |
-| Tema oscuro en el sitio: conmutador, seguir al sistema, o solo claro | Sin decidir; los tokens de los dos temas ya están | El diseño de la landing |
-| Relato del nombre | Propuesto en `01-marca.md` §1, por confirmar | La sección «Sobre Nexus», si la hay |
-| Librería de animación y componentes de shadcn/ui | Se decide al diseñar la landing | — |
+| Precios | Sin definir (`02-producto.md` §6) | La página de precios: no se construye. |
+| Texto de `/privacidad` y `/terminos` | Sin escribir; lo aprueba el dueño | Abrir las solicitudes de acceso: recoger correos exige la autorización de tratamiento de datos. El sitio se publica antes, con el formulario cerrado (`03` §8). |
+| Qué más pide el formulario de acceso | Hoy correo y nombre de la agencia | Nada: se amplía después. |
+| Relato del nombre | Propuesto en `01-marca.md` §1, por confirmar | La sección «Sobre Nexus», si la hay. |
+| GSAP como segunda librería de animación | Fuera mientras `motion` baste (§4) | — |
 | Formato del manual (TSX o MDX) | Se decide al construirlo (`03-reglas-sitio.md` §3.2) | — |
 
 Cuando una se cierra, se borra de esta tabla y la regla entra en su

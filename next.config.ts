@@ -8,8 +8,14 @@ const isProd = process.env.NODE_ENV === "production";
 // (docs/directives/03-reglas-sitio.md §6).
 //
 // `script-src` conserva `'unsafe-inline'` porque Next inyecta su arranque en
-// línea; `'unsafe-eval'` solo existe en desarrollo, donde lo pide la recarga
+// línea y el tema se aplica con un script en línea antes del primer pintado; `'unsafe-eval'` solo existe en desarrollo, donde lo pide la recarga
 // en caliente.
+// El único origen externo: el backend de `nexus-app`, al que el formulario de
+// «Solicitar acceso» envía la solicitud. Sin la variable, no se abre nada.
+const apiOrigin = process.env.NEXT_PUBLIC_API_URL
+  ? ` ${new URL(process.env.NEXT_PUBLIC_API_URL).origin}`
+  : "";
+
 const cspDirectives = [
   "default-src 'self'",
   "base-uri 'self'",
@@ -20,7 +26,7 @@ const cspDirectives = [
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   "font-src 'self' data:",
-  `connect-src 'self'${isProd ? "" : " ws:"}`,
+  `connect-src 'self'${apiOrigin}${isProd ? "" : " ws:"}`,
   "manifest-src 'self'",
   // Solo en producción: en http://localhost rompería el arranque.
   ...(isProd ? ["upgrade-insecure-requests"] : []),

@@ -10,14 +10,23 @@
 
 ## 0. La idea
 
-**El sitio es de la misma familia que la app, con otro ritmo.** Quien ve la
-landing y luego abre Nexus debe reconocerlo: los mismos colores, las mismas
-esquinas, la misma letra, las mismas palabras. Lo que cambia es la
-densidad: la app aprieta porque se trabaja en ella ocho horas; el sitio
-respira porque se lee una vez.
+**El sitio es de la misma familia que la app, con otro ritmo y con otra
+ambición.** Quien ve la landing y luego abre Nexus debe reconocerlo: los
+mismos colores, la misma letra, las mismas palabras. Lo que cambia es que la
+app se opera ocho horas y el sitio se mira una vez: tiene que sentirse como
+el lanzamiento de un producto serio.
 
-Referencias de espíritu: Linear (claridad estructural), Stripe (explicar un
-producto técnico con calma). Sobrio, preciso, sin espectáculo.
+Dos planos, y no se mezclan:
+
+- **El escenario** es del sitio: el fondo, la luz, la tipografía a gran
+  escala, el movimiento. Aquí el sitio tiene libertad (§2.2, §9).
+- **La pantalla** es de la app: lo que se enseña de Nexus es Nexus, tal
+  cual (§7).
+
+Referencias: Linear (producto reproducido en código, oscuro, luz medida),
+Stripe y Vercel (explicar algo técnico con rigor), las páginas de producto
+de Apple (una escena que avanza con el scroll). El sitio puede ir por
+delante de la app en lo visual; lo que cambie se anota en `01` §8.
 
 ## 1. Tokens
 
@@ -32,9 +41,11 @@ Viven en `app/globals.css`, en tres niveles:
 - **Los componentes consumen el nivel semántico.** Prohibida la escala cruda
   de Tailwind (`bg-blue-600`, `text-gray-500`) y los colores a mano
   (`bg-[#1e5fd8]`).
-- Los tokens son los de la app. **No se inventa un color ni un radio para
-  el sitio**; si de verdad hace falta uno, se discute como cambio de marca
-  (`01`).
+- Los tokens parten de los de la app. Uno nuevo o distinto para el sitio
+  es un cambio de marca: se decide con el dueño y se anota en `01` §8 para
+  llevarlo después a la app.
+- **Dentro de `.app-replica` valen los tokens de la app**, sin los ajustes
+  del sitio (§7).
 
 ## 2. Superficies
 
@@ -52,17 +63,26 @@ Viven en `app/globals.css`, en tres niveles:
 **`rounded-2xl`, `rounded-3xl` y `rounded-full` en superficies no se usan.**
 Ni tarjetas de 24px de radio ni botones píldora.
 
-### 2.2 Sin cristal, sin sombras grandes
+### 2.2 El escenario
 
-- Una superficie **no se desenfoca ni se tiñe**: `bg-card`, nunca
-  `bg-card/80 backdrop-blur`. La cabecera pegajosa es opaca
-  (`bg-background`) con su borde inferior.
-- **La profundidad se logra con bordes**, no con sombras: `border`, y
-  `divide-y divide-border/60` entre filas. Nada de `shadow-lg`/`shadow-xl`.
-  Una captura de la app puede llevar una sombra suave para despegarse del
-  fondo; es la única excepción.
-- **Sin degradados decorativos**, sin mallas de color, sin brillos, sin
-  ruido, sin rejillas de puntos de fondo.
+Lo que rodea a una pantalla de Nexus, y el fondo de un hero o de un cierre,
+puede llevar luz:
+
+| Utilidad | Qué hace | Dónde |
+|---|---|---|
+| `stage-glow` | Brillo de zafiro y cyan que cae desde arriba. | Fondo de hero, cierre, sección de medianoche. |
+| `stage-grid` | Rejilla tenue que se desvanece. | Fondo de hero y cierre. |
+| `stage-edge` | Borde luminoso y halo de zafiro. | El marco de una réplica y las tarjetas del escenario. |
+
+- **Superficies translúcidas** (`bg-card/80 backdrop-blur-xl`) se permiten
+  en la cabecera y en las tarjetas del escenario. Nunca en una réplica.
+- La luz es de la marca (`01` §4.1): medianoche, zafiro y cyan. Nada
+  morado; esmeralda y ámbar no iluminan.
+- Un degradado no se escribe a mano en un componente: se usa una utilidad
+  de la tabla o se añade una, aquí y en `app/globals.css`.
+- Fuera del escenario, la profundidad sigue siendo de bordes: `border`, y
+  `divide-y divide-border/60` entre filas. Nada de `shadow-lg` en una
+  tarjeta de contenido.
 
 ### 2.3 Cuándo una caja se gana su sitio
 
@@ -108,7 +128,7 @@ recursos, usados con medida:
 
 | Tipo | Clases base | Uso |
 |---|---|---|
-| **Principal** | `bg-primary text-primary-foreground` | La acción de la página. **Una por pantalla visible.** Es el mismo botón oscuro de la app. |
+| **Principal** | `bg-primary text-primary-foreground` | La acción de la página. **Una por pantalla visible**, sin contar la de la cabecera, que repite la misma. Es el mismo botón de la app. |
 | **Principal sobre medianoche** | `bg-white text-nexus-midnight` | La misma acción en una sección de marca. |
 | **Secundario** | `border bg-background` | La alternativa («Ver el manual»). |
 | **Enlace** | `text-nexus-sapphire-text underline-offset-4 hover:underline` | Dentro del texto. |
@@ -123,7 +143,7 @@ Las fuentes y su papel están en `01` §5. La escala del sitio:
 
 | Rol | Clases |
 |---|---|
-| Titular de la landing (`h1`) | `text-4xl md:text-6xl font-medium tracking-tight text-balance` |
+| Titular de la landing (`h1`) | `text-5xl md:text-7xl font-medium tracking-tight text-balance` |
 | Título de página interior (`h1`) | `text-3xl md:text-4xl font-medium tracking-tight` |
 | Título de sección (`h2`) | `text-2xl md:text-4xl font-medium tracking-tight text-balance` |
 | Título de bloque (`h3`) | `text-lg md:text-xl font-medium tracking-tight` |
@@ -131,14 +151,15 @@ Las fuentes y su papel están en `01` §5. La escala del sitio:
 | Cuerpo | `text-base leading-relaxed` |
 | Auxiliar | `text-sm text-muted-foreground` |
 | Antetítulo | `text-sm font-medium text-nexus-sapphire-text` |
-| Declaración de marca | `font-[family-name:var(--font-cormorant)] italic` (una por página) |
+| Declaración de marca | `font-[family-name:var(--font-cormorant)] italic`, hasta `text-4xl md:text-6xl` (una por página) |
 | Identificador | `font-mono text-sm` |
 
 - **Un texto que se lee no pasa de ~70 caracteres por línea**: `max-w-2xl`
   para párrafos, `max-w-3xl` para un titular.
 - **Sin `uppercase`** en titulares, antetítulos ni botones.
 - **Sin tamaños a mano** (`text-[15px]`). Sin pesos por encima de
-  `font-semibold`.
+  `font-semibold`. `text-ui` (13px) existe solo para las réplicas: es el
+  tamaño de interfaz de la app.
 - Cifras, fechas y versiones llevan `tabular-nums`.
 - Ningún título de sección va solo: si merece un encabezado, merece la
   línea que explica qué hay debajo.
@@ -156,7 +177,7 @@ Retícula estricta de **4px**; solo la escala de Tailwind.
 | Interior de una tarjeta | `p-6` |
 | Título ↔ párrafo | `mt-3` / `mt-4` |
 | Icono ↔ texto, botones contiguos | `gap-2` / `gap-3` |
-| Cabecera del sitio | `h-14`, opaca, con `border-b` |
+| Cabecera del sitio | `h-14`, translúcida (`bg-background/75 backdrop-blur-xl`), con `border-b` |
 
 Rejillas de 12 columnas implícitas: una, dos o tres columnas según el ancho.
 Lo que se alinea, se alinea a la misma columna de arriba abajo.
@@ -181,6 +202,12 @@ Cuando el sitio enseña Nexus, lo enseña **como es**.
 - **Preferencia: capturas reales** de la versión publicada, en los dos
   temas si el sitio los tiene, a doble densidad, con `alt` que describe lo
   que se ve.
+- Una réplica vive en `components/app-replica/`, lleva la clase
+  `.app-replica` (que le devuelve los tokens de la app, también en oscuro)
+  y anota en su comentario la versión de `nexus-app` y los archivos de los
+  que se copió. Lo que recorta por ancho, lo dice ahí.
+- Una réplica es una imagen: va con `aria-hidden` y el texto de la página
+  cuenta lo mismo que ella enseña.
 - Si una pantalla se **reproduce en código** (para animarla o para que se
   adapte al ancho), es fiel al canon de la app:
   - mismas superficies (marco `sidebar` < panel `background` < bloque `card`);
@@ -207,21 +234,26 @@ prop que recibe un icono es `React.ComponentType<{ className?: string }>`.
 
 ## 9. Movimiento
 
-- **El movimiento explica, no adorna.** Vale para mostrar cómo una
-  propuesta del agente pasa a confirmada; no para que las cosas entren
-  flotando.
-- Transiciones de **150 a 300 ms**, con curva de salida suave. Nada que
-  rebote.
+- **El movimiento cuenta algo.** Vale para mostrar cómo una propuesta del
+  agente pasa a confirmada; no para que cada sección entre flotando.
+- **Una escena puede quedar fija y avanzar con el scroll** (variante
+  `stage:` de `app/globals.css`): solo en pantallas anchas y altas, sobre
+  el scroll **nativo** del navegador. Toda escena tiene su versión apilada,
+  que es la que se ve en celular, en pantallas bajas y con movimiento
+  reducido; se diseñan a la vez.
+- **Una entrada orquestada por página**, al cargar (`rise`). No se repite
+  en cada sección.
+- Transiciones de interfaz de 150 a 300 ms; una secuencia orquestada puede
+  llegar a 700 ms, con curva de salida suave. Nada que rebote.
 - Se anima `opacity` y `transform`; nunca el tamaño o la posición por
   propiedades de maquetación.
 - **`prefers-reduced-motion` se respeta siempre**: con movimiento reducido
   todo el contenido es visible y estático desde el principio.
-- Prohibido: paralaje, partículas, cursores personalizados, texto que se
-  escribe solo, secuestrar el desplazamiento, videos de fondo con
+- Prohibido: sustituir o suavizar el scroll del navegador, partículas,
+  cursores personalizados, texto que se escribe solo, videos de fondo con
   reproducción automática.
-- No hay librería de animación instalada. Lo que se resuelve con CSS se
-  resuelve con CSS; si una página necesita más, se decide en su diseño
-  (`00` §4 y §7).
+- La librería es `motion` (`00` §4). Lo que se resuelve con CSS se resuelve
+  con CSS.
 
 ## 10. Accesibilidad
 
@@ -240,10 +272,14 @@ No es una fase: es condición de entrega.
 
 ## 11. Tema
 
-Los tokens de claro y oscuro están los dos en `app/globals.css`; el oscuro
-se activa con la clase `.dark`. **El sitio se publica en claro** mientras no
-se decida otra cosa (`00` §7). Aun así, ningún componente fija un color que
-rompa el oscuro: se usan los semánticos.
+El sitio tiene **claro y oscuro**: sigue al sistema y deja elegir con el
+conmutador de la cabecera (`next-themes`, clase `.dark` en `<html>`).
+
+- El oscuro del sitio es medianoche llevada casi a negro (`01` §4.2).
+- Todo se diseña y se verifica en los dos temas. Ningún componente fija un
+  color que rompa uno de ellos: se usan los semánticos.
+- Lo que cambia con el tema se resuelve con CSS (`dark:`), no esperando a
+  que el navegador hidrate.
 
 ## 12. Rendimiento
 
@@ -257,30 +293,33 @@ rompa el oscuro: se usan los semánticos.
 
 Lo que nunca debe salir publicado:
 
-- Cristal, degradados morados, mallas de color, brillos.
+- Degradados morados, arcoíris, partículas.
+- Luz o cristal **dentro** de una réplica de la app.
 - Tarjetas de esquinas muy redondas o botones píldora.
-- Un color de estado usado como adorno.
+- Un color de estado usado como adorno o como brillo.
 - Tres tarjetas con icono, título y dos líneas como única idea de una
   sección.
+- Una entrada animada en cada sección.
 - Titulares en mayúsculas o en negrita pesada.
 - Una pantalla de «la app» que no es la app.
 - Fotos de banco, ilustraciones de personajes, emojis.
 - Texto de relleno, cifras inventadas, logos de clientes que no existen.
-- Un botón «Empezar gratis» que no lleva a algo que exista.
-- Animaciones que retrasan la lectura.
+- Un botón que no lleva a algo que exista.
+- Una escena fija sin versión apilada.
 - Un origen externo añadido sin pasar por `03` §6.
 
 ## 14. Checklist de pre-entrega (UI)
 
 ```
 □ ¿Solo tokens semánticos y de marca? (sin escala cruda ni colores a mano)
-□ ¿Radios de la tabla de §2.1? ¿Sin cristal ni sombras grandes?
+□ ¿Radios de la tabla de §2.1? ¿La luz y el cristal solo en el escenario?
 □ ¿Cada color de estado significa lo que significa?
 □ ¿Escala tipográfica de §4, sin tamaños a mano ni mayúsculas?
 □ ¿Una sola acción principal por pantalla?
-□ ¿Se ve bien a 360, 768 y 1280 px, sin desplazamiento horizontal?
+□ ¿Se ve bien a 360, 768 y 1280 px, en claro y en oscuro, sin
+  desplazamiento horizontal?
 □ ¿Contraste medido, foco visible, teclado, un solo h1, alt en imágenes?
-□ ¿Con movimiento reducido se ve todo?
+□ ¿Con movimiento reducido se ve todo? ¿Cada escena tiene su versión apilada?
 □ ¿Lo que se enseña de la app es fiel a la app?
 □ ¿Los textos cumplen 01 §6 y cada afirmación está en 02?
 ```

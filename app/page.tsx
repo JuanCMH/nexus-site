@@ -1,17 +1,20 @@
-import { NexusWordmark } from "@/components/brand/nexus-logo";
+import { ClosingSection } from "@/components/home/closing-section";
+import { FlowsVaultSection } from "@/components/home/flows-vault-section";
+import { HeroSection } from "@/components/home/hero-section";
+import { ModulesSection } from "@/components/home/modules-section";
+import { SolvesSection } from "@/components/home/solves-section";
+import { WorkScene } from "@/components/home/work-scene";
 
-// Página provisional del commit inicial: comprueba que la marca, las fuentes
-// y los tokens cargan. La landing se diseña siguiendo
-// docs/directives/05-reglas-calidad.md §1 y la reemplaza entera.
+// El diseño y los textos: docs/plans/2026-10-11-landing-design.md.
 export default function HomePage() {
   return (
-    <main className="flex min-h-dvh flex-col items-center justify-center gap-6 bg-nexus-midnight px-6 text-center text-white">
-      <h1 className="sr-only">Nexus</h1>
-      <NexusWordmark className="h-8 w-auto" />
-      <p className="max-w-md font-[family-name:var(--font-cormorant)] text-2xl italic text-white/80">
-        Control, claridad y calma
-      </p>
-      <p className="text-sm text-white/60">Sitio en construcción</p>
-    </main>
+    <>
+      <HeroSection />
+      <WorkScene />
+      <SolvesSection />
+      <ModulesSection />
+      <FlowsVaultSection />
+      <ClosingSection />
+    </>
   );
 }

@@ -6,16 +6,17 @@
 ## 1. Principio: un sitio estático
 
 Todo lo que este sitio sirve se puede generar en el build. No hay sesión, no
-hay base de datos, no hay formularios que guarden nada aquí.
+hay base de datos, y el único formulario no guarda nada aquí: lo envía al
+backend de `nexus-app` (§8).
 
 - Una página es un **componente de servidor** y se prerenderiza. `"use
   client"` entra solo en el componente que de verdad reacciona a la persona
   (un menú, un buscador, una pestaña), nunca en la página entera.
 - Lo único que viene de fuera es la última versión publicada (§5), y se lee
   **en el servidor**, con caché.
-- Si algún día hace falta recibir datos de un visitante (una lista de
-  espera, un contacto), eso lo recibe el backend de `nexus-app`, no una base
-  nueva aquí. Se decide con el dueño antes de construirlo.
+- Lo único que sale es la solicitud de acceso (§8). Cualquier otro dato de
+  un visitante lo recibe también el backend de `nexus-app`, no una base
+  nueva aquí, y se decide con el dueño antes de construirlo.
 
 ## 2. Estructura de carpetas
 
@@ -25,12 +26,14 @@ app/                    rutas, metadatos, robots, sitemap, icono
   layout.tsx            html, fuentes, metadatos base
 components/
   brand/                el logo. Nada más vive aquí
-  ui/                   primitivos (botón, enlace…), cuando existan
-  site/                 lo que se repite entre páginas: cabecera, pie, sección
-  <página>/             las piezas de una sola página (home/, descargar/)
+  ui/                   primitivos de shadcn, copiados de nexus-app
+  site/                 lo que se repite entre páginas: cabecera, pie, tema
+  app-replica/          pantallas de Nexus reproducidas con fidelidad (04 §7)
+  <página>/             las piezas de una sola página (home/, solicitar-acceso/)
 content/                el manual, cuando exista (§3.2)
 lib/
   site.ts               direcciones y nombre del sitio; única fuente
+  utils.ts              `cn` (clsx + tailwind-merge)
 public/brand/           logo e icono como archivos
 docs/directives/        la ley
 docs/plans/             diseño previo de cada página (05 §1)
@@ -39,6 +42,9 @@ docs/referencia/        investigación fechada; contexto, no regla
 
 - **Una pieza usada por una sola página vive con esa página.** Sube a
   `components/site/` cuando la usa una segunda, no antes.
+- **`components/app-replica/` va aparte del escenario**: ahí solo hay lo que
+  reproduce la app, para poder revisar su fidelidad carpeta por carpeta.
+  Cada réplica anota la versión de `nexus-app` de la que se copió.
 - **`lib/` es puro**: sin React, sin acceso al DOM.
 - Sin barrels. Imports por `@/`.
 
@@ -50,7 +56,8 @@ queda qué existe y para qué.
 
 | Ruta | Para qué | Notas |
 |---|---|---|
-| `/` | La landing: qué es Nexus, para quién, cómo trabaja con el agente, y el llamado a la acción. | El llamado a la acción depende de una decisión abierta (`00` §7). |
+| `/` | La landing: qué es Nexus, para quién, cómo trabaja con el agente, y los llamados a la acción. | Dos llamados: **«Solicitar acceso»** (principal) e **«Iniciar sesión»** (a `APP_URL`, en la cabecera, en el hero y en el cierre), para quien ya tiene una agencia. |
+| `/solicitar-acceso` | El formulario de la beta cerrada y su confirmación. | §8. |
 | `/descargar` | Bajar el instalador de la última versión. | §5. |
 | `/manual` y `/manual/<categoría>/<artículo>` | El manual para personas. | §3.2. |
 | `/agente` | Cómo se conecta Claude a Nexus y qué hace. | Puede empezar como sección de la landing. |
@@ -65,7 +72,8 @@ queda qué existe y para qué.
 - Tiene **un solo `<h1>`** y sus regiones (`header`, `main`, `footer`).
 - Entra en `app/sitemap.ts` en el mismo cambio que la crea.
 - Enlaza a la app y a los instaladores solo con `APP_URL` y `RELEASES_REPO`
-  de `lib/site.ts`. Si `APP_URL` está vacía, «Entrar» no se enseña.
+  de `lib/site.ts`. Si `APP_URL` está vacía, «Iniciar sesión» no se
+  enseña.
 
 ### 3.2 El manual
 
@@ -126,7 +134,9 @@ abrirlo. La página lo dice y explica cómo continuar, en vez de callarlo.
 Las cabeceras están en `next.config.ts` y valen para todas las rutas:
 
 - **Política de contenido cerrada a `'self'`.** Sin scripts, fuentes,
-  imágenes ni conexiones de terceros.
+  imágenes ni conexiones de terceros, con una sola excepción: `connect-src`
+  admite el origen de `NEXT_PUBLIC_API_URL`, el backend de `nexus-app`, para
+  enviar la solicitud de acceso (§8). Sin la variable, no se abre.
 - `frame-ancestors 'none'` y `X-Frame-Options: DENY`: el sitio no se
   incrusta en otro.
 - `nosniff`, `Referrer-Policy`, `Permissions-Policy` sin cámara, micrófono
@@ -148,7 +158,8 @@ definición.
 | Variable | Dónde se lee | Qué es |
 |---|---|---|
 | `NEXT_PUBLIC_SITE_URL` | build y servidor | La dirección pública del sitio. |
-| `NEXT_PUBLIC_APP_URL` | build y servidor | La dirección de la app web. Vacía = sin «Entrar». |
+| `NEXT_PUBLIC_APP_URL` | build y servidor | La dirección de la app web. Por defecto `https://app.n3xus.cloud` (publicada desde `nexus-app` 0.22.0). Definida vacía = sin «Iniciar sesión». |
+| `NEXT_PUBLIC_API_URL` | build y servidor | El backend de `nexus-app`. Vacía = el formulario avisa que las solicitudes no están abiertas. |
 | `NEXUS_RELEASES_REPO` | servidor | `propietario/repo` de los instaladores. |
 
 - El molde está en `.env.example`. En local no hace falta ninguna.
@@ -157,3 +168,33 @@ definición.
   `NEXT_PUBLIC_*` se hornean al compilar, así que cambiarlas exige volver a
   desplegar.
 - `main` es lo publicado.
+
+## 8. Solicitar acceso
+
+Nexus está en beta cerrada (`02` §5). Quien quiere entrar deja su correo y
+el nombre de su agencia en `/solicitar-acceso`.
+
+**El contrato con `nexus-app`** (el endpoint se construye allá, con sus
+reglas; a 2026-10-11 aún no existe):
+
+- `POST <API_URL>/access-requests`, con cuerpo JSON `{ email, agencyName,
+  website }`. `website` es el campo trampa: si llega con contenido, la
+  solicitud se descarta sin avisar.
+- Responde con un 2xx tanto a una solicitud nueva como a una repetida: no
+  revela si un correo ya estaba. `429` cuando se pasa el límite de
+  frecuencia. CORS solo para el origen del sitio.
+
+**En el sitio:**
+
+- El formulario es nativo, sin librería, y enseña cuatro estados: enviando,
+  recibida, error y demasiados intentos.
+- Sin `API_URL` **no finge**: el botón queda desactivado y un aviso dice
+  que las solicitudes aún no están abiertas. La regla era no publicar así;
+  el dueño decidió el 2026-10-12 publicar la primera versión con las
+  solicitudes cerradas y abrirlas después, cuando existan el endpoint y
+  `/privacidad`. Mientras tanto la página no recoge ningún dato.
+- El texto de confirmación dice lo que pasa: se revisa la solicitud y, si
+  hay cupo, llega un código de activación. Sin plazos.
+- **Antes de publicar** hace falta `/privacidad` y la casilla de
+  autorización de tratamiento de datos; el texto lo aprueba el dueño
+  (`00` §7).

@@ -1,9 +1,12 @@
 # 01 · Marca
 
-> El manual de marca de Nexus. Lo que aquí se fija vale para el sitio y es lo
-> mismo que usa la app: la marca es una sola. Los valores (colores, trazos,
-> fuentes) se copiaron de `nexus-app` el 2026-10-11; si allá cambian, aquí
-> se actualizan en el mismo día.
+> El manual de marca de Nexus. La marca es una sola para el sitio y la app.
+> Los valores (colores, trazos, fuentes) se copiaron de `nexus-app` el
+> 2026-10-11.
+>
+> **El sitio puede ir por delante.** Una regla visual se puede ajustar aquí
+> primero; el dueño la lleva después a la app si aplica. Lo que el sitio
+> cambia respecto a la app se anota en §8 para que ese traslado sea posible.
 
 ## 1. El nombre
 
@@ -61,7 +64,8 @@ toma decisiones serias sobre patrimonios, contratos y garantías.
 
 - Nunca un generador genérico de PDF con un Excel al lado.
 - Nunca gradientes morados, partículas, ilustraciones de personajes ni
-  imágenes «tecnológicas» de banco de fotos.
+  imágenes «tecnológicas» de banco de fotos. Los brillos y degradados que
+  el sitio usa son los de §4.1, en los colores de la marca.
 - Nunca un producto que promete magia. La IA aquí propone y una persona
   confirma; se dice así.
 - Nunca un sitio que afirma algo que la app no hace.
@@ -119,9 +123,29 @@ claro), grafito `#111827` y acero `#4b5563` (texto sobre ellos).
 sitio, también en una ilustración de una pantalla. Un titular no se pinta de
 ámbar porque quede bonito.
 
-El 90% de cualquier página es blanco, negro y gris (los tokens `background`,
-`foreground`, `muted`, `border`). La marca se nota por el medianoche y el
-zafiro usados con medida, no por la cantidad de color.
+La mayor parte de cualquier página son los neutros (los tokens
+`background`, `foreground`, `muted`, `border`). La marca se nota por el
+medianoche y el zafiro, no por la cantidad de color.
+
+### 4.1 Luz de marca
+
+El sitio puede iluminar el **escenario** (lo que rodea a una pantalla de
+Nexus, el fondo de un hero o de un cierre) con brillos, degradados y
+rejillas tenues. Tres límites:
+
+- **Solo medianoche, zafiro y cyan.** Nunca morado, nunca un arcoíris.
+- **Esmeralda y ámbar no iluminan nada**: siguen significando estado.
+- **Nunca sobre el logo** ni dentro de una réplica de la app.
+
+Las utilidades (`stage-glow`, `stage-grid`, `stage-edge`) están en
+`app/globals.css`; no se escribe un degradado a mano en un componente.
+
+### 4.2 El oscuro del sitio
+
+En tema oscuro el fondo del sitio es **medianoche llevada casi a negro**
+(los neutros tintados hacia el azul de la marca), no el gris neutro de la
+app. Dentro de una réplica de la app valen los tokens de la app
+(`04-reglas-interfaz.md` §7).
 
 **Como texto, la variante `-text`.** Zafiro, esmeralda, ámbar y cyan están
 calibrados para superficies e iconos. Puestos como texto pequeño sobre su
@@ -214,3 +238,15 @@ mismas palabras.
 - **Sin fotos de banco** de gente sonriendo frente a un portátil, sin
   ilustraciones de personajes, sin iconos 3D.
 - Diagramas, cuando hagan falta, de línea fina en los colores de la marca.
+
+## 8. Cambios pendientes de llevar a la app
+
+Lo que el sitio ha cambiado respecto a `nexus-app`. Una línea sale de aquí
+cuando la app la adopta o cuando se decide que es solo del sitio.
+
+| Fecha | Cambio en el sitio | En la app hoy | Estado |
+|---|---|---|---|
+| 2026-10-11 | Tema oscuro tintado de medianoche (`.dark` en `app/globals.css`). | Oscuro en gris neutro. | Por decidir. |
+| 2026-10-11 | `nexus-sapphire-text` en oscuro pasa a `#7ea6f2`, para llegar a contraste AA sobre el fondo de medianoche. | `#5082e1`. | Va con la anterior. |
+| 2026-10-11 | Luz de marca (§4.1) y superficies translúcidas en el escenario y la cabecera. | Sin brillos ni cristal. | Por decidir; puede ser solo del sitio. |
+| 2026-10-11 | Movimiento atado al scroll y secuencias orquestadas (`04` §9). | Transiciones de 150 a 300 ms. | Solo del sitio, salvo que se decida otra cosa. |

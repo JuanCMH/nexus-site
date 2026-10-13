@@ -5,7 +5,7 @@
 > escribir una frase, y para que ninguna frase prometa algo que la app no
 > hace.
 >
-> **Corte: `nexus-app` 0.19.0, 2026-10-11.** El producto cambia cada semana.
+> **Corte: `nexus-app` 0.22.0, 2026-10-12.** El producto cambia cada semana.
 > Antes de publicar una afirmación concreta (una función, un requisito, una
 > cifra), se comprueba contra la versión publicada de la app; si ya no es
 > cierta, se corrige aquí primero y luego en la página.
@@ -15,6 +15,12 @@
 Nexus es el sistema de registro de una agencia de seguros —clientes,
 pólizas, documentos y tareas—, hecho para que lo operen **dos tipos de
 usuario: las personas del equipo y el agente de IA de la agencia**.
+
+**Hacia dónde va:** que toda la agencia esté en un solo lugar. No solo la
+cartera: también el trabajo de cada día, cómo se hace cada cosa (los
+flujos), con qué claves se entra a cada portal (la bóveda) y quién puede
+qué. El sitio lo dice así y enseña todos los módulos que existen; lo que
+aún no existe sigue en §7.
 
 ## 2. La idea que lo distingue
 
@@ -45,13 +51,18 @@ Es el menú de la app, con los nombres que la persona ve.
 | Área | Qué hace |
 |---|---|
 | **Inicio** | «Mi día»: lo que tiene pendiente quien entra. «Agencia»: la cartera y el equipo, para quien dirige (con su permiso). |
-| **Tareas** | Una tarea es un compromiso con un resultado que Nexus comprueba: se cierra automáticamente cuando el resultado aparece en el registro (la póliza renovada, el documento guardado). Tienen tipo de trámite, responsable y fecha límite; su historial no se edita ni se borra. Las reglas de quién lleva qué se escriben en frases. |
+| **Tareas** | Una tarea es un compromiso con un resultado que Nexus comprueba: se cierra automáticamente cuando el resultado aparece en el registro (la póliza renovada, el documento guardado). Tienen tipo de trámite, responsable y fecha límite. Cada madrugada Nexus crea una tarea por cada aviso que la plantilla tiene en una fecha con seguimiento; en el fin de vigencia de una póliza es la **tarea de renovación** (comprobado el 2026-10-12 en el `CLAUDE.md` de `nexus-app` 0.22.0). Nexus no envía correo por su cuenta; su historial no se edita ni se borra. Las reglas de quién lleva qué se escriben en frases. |
 | **Clientes** | La ficha de cada cliente, con sus pólizas, documentos y tareas. Los campos los define cada agencia en su plantilla. |
 | **Pólizas** | Cada póliza con su aseguradora, ramo y vigencia. El estado (por iniciar, vigente, vencida) no se escribe: sale de las fechas. Toda póliza de un ramo que se renueva debe terminar renovada, reemplazada o con la nota de por qué no. |
-| **Cotizaciones de cumplimiento** | Cotiza pólizas de cumplimiento y de seriedad de la oferta: un contrato y sus amparos, con PDF y Excel. **Solo eso**: Nexus no cotiza otros ramos ni compara aseguradoras. |
+| **Cumplimiento** (la pantalla se llama «Cotizaciones de cumplimiento») | La exportación lleva el logo, el color y los datos de la agencia. Cotiza pólizas de cumplimiento y de seriedad de la oferta: un contrato y sus amparos, con PDF y Excel. **Solo eso**: Nexus no cotiza otros ramos ni compara aseguradoras. |
 | **Documentos** | Los archivos de la agencia, ligados a su cliente o póliza. En la app de escritorio, además, una copia en una carpeta del computador que Nexus vigila y repara. |
-| **Accesos** (la bóveda) | Las contraseñas de portales y aseguradoras, compartidas persona por persona. Se cifran en el computador de quien las guarda: al servidor solo sube texto cifrado y el agente no tiene acceso. Solo abre en computadores aprobados. |
-| **Configuración** | Agencia, catálogos (aseguradoras y ramos), plantillas, equipo (roles y permisos), agente (conexión, correos vinculados, criterios, envíos) y bitácora. |
+| **Flujos** | Cómo hace cada trabajo el agente, paso a paso y por escrito. Nexus trae los suyos (leer correos, registrar un documento, atender tareas, cotizar cumplimiento, entre otros); cada agencia tiene su copia y la adapta, o escribe los propios. Un cambio queda en borrador hasta que una persona lo publica; cada flujo guarda sus versiones, sus ejecuciones y quién tiene acceso, y se puede comparar con el de Nexus. Las categorías del listado son de la agencia. Los criterios (reglas en una frase que el agente sigue) viven aquí. Nexus no dispara los flujos ni los ata a un horario: el agente los usa cuando se lo piden. |
+| **Accesos** (la bóveda) | Las contraseñas de portales y aseguradoras, compartidas persona por persona. Se cifran en el computador de quien las guarda: al servidor solo sube texto cifrado y el agente no tiene acceso. Solo abre en un computador o un navegador aprobado como de confianza. Usar un acceso se anota en la bitácora, que nombra la cuenta y nunca la clave. Al copiar una clave, el portapapeles se borra a los 30 segundos. Tiene copia de emergencia, que no depende de internet. |
+| **Configuración** | Agencia (datos, logo y color), catálogos (aseguradoras y ramos), plantillas, equipo (roles, permisos e invitaciones de un solo uso, con rol y caducidad), agente (conexión, correos vinculados, envíos) y bitácora. |
+
+**Importar desde Excel.** Clientes y pólizas se cargan desde un Excel, con
+plantilla descargable, validación por fila y carga por lotes. Lo que carga
+una persona nace confirmado; lo que propone el agente, «Por confirmar».
 
 ### 3.1 Las plantillas
 
@@ -86,13 +97,19 @@ propuesta, abrir la bóveda, borrar registros. Eso es de personas.
 - **Procedencia**: una póliza propuesta desde un correo dice de qué correo
   salió.
 - **Segundo factor** opcional para entrar.
+- **Evidencia por dato**: lo que el agente registra puede llevar su cita,
+  su página y su documento, y la ficha lo enseña. Nexus no coteja la cita:
+  la muestra como llegó.
+- **Cambios por revisar**: si el agente corrige un registro ya confirmado,
+  queda marcado hasta que una persona lo da por revisado, y la bitácora
+  guarda qué dato cambió y qué decía antes.
 
 ## 4. Dónde se usa
 
 | Superficie | Estado en este corte |
 |---|---|
 | **Windows** (instalador, se actualiza automáticamente) | Publicado. |
-| **Web** (`app.<dominio>`) | En construcción. No se anuncia como disponible hasta que lo esté. |
+| **Web** (`app.n3xus.cloud`) | Publicada (0.22.0). La misma aplicación, sin instalar nada. No tiene lo que es del computador: la carpeta de documentos, las notificaciones del sistema ni el arranque con el equipo. |
 | **macOS** | Planeado, sin fecha. No se anuncia. |
 | **Móvil** | No existe. La app está pensada para pantalla de escritorio. |
 
@@ -130,8 +147,9 @@ que **hoy es falso**.
 | «IA incluida», «sin configurar nada» | La agencia conecta su propio Claude y lo paga aparte. |
 | «Cotizador», «compara aseguradoras» | Solo cotizaciones de cumplimiento. |
 | «Te avisamos por correo», «recordatorios automáticos» | Nexus no envía avisos: crea tareas. Los correos los redacta el agente y los envía una persona. |
-| «Importa tu Excel» | No hay importación masiva en este corte. El agente puede leer un Excel y proponer los registros. |
-| «Disponible para Mac», «en tu celular», «entra desde el navegador» | Ver §4. |
+| «Disponible para Mac», «en tu celular» | Ver §4. |
+| «Comisiones», «cartera y cobranza», «siniestros», «WhatsApp», «portal de clientes», «conexión con las aseguradoras» | No existen. «Toda tu agencia en un solo lugar» se sostiene con los módulos de §3, sin dar a entender ninguno de estos. |
+| «Flujos automáticos», «automatizaciones» | Un flujo es un texto que sigue el agente. Nexus no lo dispara ni tiene motor de ejecución. |
 | «Usado por N agencias», testimonios, logos de clientes | No hay nada de eso que sea cierto y publicable. No se inventa prueba social. |
 | «Seguridad de nivel bancario», sellos, certificaciones | No hay certificación alguna. Se describe el mecanismo real (§3, Accesos). |
 | «El agente trabaja solo» | El agente propone; una persona confirma y envía. |
@@ -148,6 +166,7 @@ que **hoy es falso**.
 | **Correo vinculado** | Una cuenta de correo de la agencia que el agente puede leer. |
 | **Correo por enviar** | Un correo redactado que espera a que una persona lo envíe. |
 | **Criterio** | Una regla de la agencia que el agente sigue («las pólizas de cumplimiento no se renuevan»). |
+| **Flujo** | Los pasos, por escrito, de un trabajo del agente. De Nexus (no se edita) o de la agencia (sí). |
 | **Plantilla** | El formulario de clientes o de pólizas de una agencia. |
 | **Ramo** | La línea de seguro: autos, vida, cumplimiento. |
 | **Bóveda** (en el menú, «Accesos») | Las contraseñas de la agencia, cifradas. |
@@ -157,7 +176,7 @@ que **hoy es falso**.
 
 ## 9. Dónde comprobar
 
-En `nexus-app` (hoy `~/work/nexus-desktop`), solo para leer:
+En `nexus-app` (`~/work/nexus/nexus-app`), solo para leer:
 
 - `docs/directives/00-reglas-generales.md` §2 y §3: qué es Nexus y su modelo.
 - `CLAUDE.md`: el resumen operativo, con cada función y su documento de diseño.

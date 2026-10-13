@@ -1,7 +1,7 @@
 /**
- * Las direcciones que el sitio enlaza. Todas salen del entorno: el dominio
- * definitivo aún no está decidido (docs/directives/00-reglas-generales.md §7)
- * y ninguna se escribe a mano en un componente.
+ * Las direcciones que el sitio enlaza. Todas salen del entorno y ninguna se
+ * escribe a mano en un componente. El dominio es `n3xus.cloud`
+ * (docs/directives/00-reglas-generales.md §3.1).
  */
 
 const stripTrailingSlash = (url: string) => url.replace(/\/+$/, "");
@@ -11,9 +11,21 @@ export const SITE_URL = stripTrailingSlash(
   process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
 );
 
-/** La app web (`app.<dominio>`). Vacía mientras no esté publicada. */
+/**
+ * La app web, publicada desde `nexus-app` 0.22.0: a ella lleva «Iniciar
+ * sesión». Definida vacía, el sitio no enseña ese enlace.
+ */
 export const APP_URL = stripTrailingSlash(
-  process.env.NEXT_PUBLIC_APP_URL ?? "",
+  process.env.NEXT_PUBLIC_APP_URL ?? "https://app.n3xus.cloud",
+);
+
+/**
+ * El backend de `nexus-app`, que recibe las solicitudes de acceso
+ * (docs/directives/03-reglas-sitio.md §8). Vacía mientras el endpoint no
+ * exista: el formulario lo dice en vez de fingir que envía.
+ */
+export const API_URL = stripTrailingSlash(
+  process.env.NEXT_PUBLIC_API_URL ?? "",
 );
 
 /**
@@ -22,7 +34,7 @@ export const APP_URL = stripTrailingSlash(
  * (docs/directives/03-reglas-sitio.md §5).
  */
 export const RELEASES_REPO =
-  process.env.NEXUS_RELEASES_REPO ?? "JuanCMH/nexus-desktop-releases";
+  process.env.NEXUS_RELEASES_REPO ?? "JuanCMH/nexus-app-releases";
 
 export const SITE_NAME = "Nexus";
 

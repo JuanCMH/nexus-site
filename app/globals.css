@@ -5,6 +5,17 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Cuándo una escena puede quedar fija y avanzar con el scroll: pantalla
+ * ancha, alta y sin movimiento reducido. En cualquier otro caso se pinta su
+ * versión apilada (docs/directives/04-reglas-interfaz.md §9). */
+@custom-variant stage {
+  @media (min-width: 80rem) and (min-height: 50rem) and (
+      prefers-reduced-motion: no-preference
+    ) {
+    @slot;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -36,6 +47,11 @@ html {
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent: var(--sidebar-accent);
+  /* El tamaño de interfaz de la app (13px). En el sitio solo lo usa una
+   * réplica. */
+  --text-ui: 0.8125rem;
+  --text-ui--line-height: 1.25rem;
 
   --font-sans: "Outfit Variable", ui-sans-serif, system-ui, sans-serif;
   --font-cormorant: "Cormorant Garamond", Georgia, serif;
@@ -91,6 +107,7 @@ html {
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-border: oklch(0.922 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
 
   --nexus-ice: #f4f6fb;
   --nexus-slate: #eef1f8;
@@ -104,7 +121,71 @@ html {
   --destructive-text: #d0000a;
 }
 
+/* Tema oscuro DEL SITIO: medianoche llevada casi a negro, no el gris neutro
+ * de la app. Es un cambio que el sitio estrena y la app aún no tiene
+ * (docs/directives/01-marca.md §8). */
 .dark {
+  --background: oklch(0.145 0.024 262);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.185 0.028 262);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.185 0.028 262);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.97 0 0);
+  --primary-foreground: oklch(0.18 0.03 262);
+  --secondary: oklch(0.24 0.03 262);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.24 0.03 262);
+  --muted-foreground: oklch(0.74 0.02 262);
+  --accent: oklch(0.24 0.03 262);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.62 0.06 262);
+  --sidebar: oklch(0.12 0.02 262);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-accent: oklch(0.24 0.03 262);
+
+  --nexus-ice: oklch(0.185 0.028 262);
+  --nexus-slate: oklch(0.24 0.03 262);
+  --nexus-graphite: oklch(0.985 0 0);
+  --nexus-steel: oklch(0.74 0.02 262);
+
+  --nexus-emerald-text: #10b981;
+  --nexus-amber-text: #f59e0b;
+  --nexus-cyan-text: #0fb8c9;
+  --nexus-sapphire-text: #7ea6f2;
+  --destructive-text: #ee4d54;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  /* Dentro de una réplica el texto toma el `foreground` de la app. */
+  .app-replica {
+    color: var(--foreground);
+  }
+  /* Lo que se puede pulsar, se ve que se puede pulsar: el preflight de
+   * Tailwind 4 devuelve `cursor: default` a los botones. */
+  button:not(:disabled):not([aria-disabled="true"]),
+  [role="button"]:not([aria-disabled="true"]),
+  label[for],
+  summary,
+  a[href] {
+    cursor: pointer;
+  }
+}
+
+/* La pantalla es de la app: dentro de una réplica valen los tokens de
+ * `nexus-app` tal cual (`src/renderer/src/styles/globals.css`), no los del
+ * escenario del sitio. En claro coinciden con `:root`; en oscuro, no. */
+.dark .app-replica {
   /* El marco se hunde y el contenido se levanta: marco < panel < bloque. */
   --background: oklch(0.19 0 0);
   --foreground: oklch(0.985 0 0);
@@ -120,42 +201,14 @@ html {
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
   --sidebar: oklch(0.12 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 8%);
-
-  --nexus-ice: oklch(0.225 0 0);
-  --nexus-slate: oklch(0.269 0 0);
-  --nexus-graphite: oklch(0.985 0 0);
-  --nexus-steel: oklch(0.708 0 0);
-
-  --nexus-emerald-text: #10b981;
-  --nexus-amber-text: #f59e0b;
-  --nexus-cyan-text: #0fb8c9;
+  --sidebar-accent: oklch(0.24 0 0);
   --nexus-sapphire-text: #5082e1;
-  --destructive-text: #ee4d54;
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-  /* Lo que se puede pulsar, se ve que se puede pulsar: el preflight de
-   * Tailwind 4 devuelve `cursor: default` a los botones. */
-  button:not(:disabled):not([aria-disabled="true"]),
-  [role="button"]:not([aria-disabled="true"]),
-  label[for],
-  summary,
-  a[href] {
-    cursor: pointer;
-  }
 }
 
 ::selection {
@@ -165,5 +218,53 @@ html {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+}
+
+/* El escenario: lo que rodea a una pantalla de Nexus. Brillos y rejilla solo
+ * en la familia de la marca (docs/directives/04-reglas-interfaz.md §2.2). */
+@utility stage-glow {
+  background-image:
+    radial-gradient(
+      60% 55% at 50% 0%,
+      color-mix(in oklab, var(--color-nexus-sapphire) 26%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      40% 40% at 82% 12%,
+      color-mix(in oklab, var(--color-nexus-cyan) 12%, transparent),
+      transparent 70%
+    );
+}
+
+@utility stage-grid {
+  background-image:
+    linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(70% 60% at 50% 0%, black, transparent 75%);
+}
+
+/* Borde luminoso de una superficie del escenario. */
+@utility stage-edge {
+  box-shadow:
+    inset 0 1px 0 0 oklch(1 0 0 / 8%),
+    0 0 0 1px var(--border),
+    0 40px 80px -40px
+    color-mix(in oklab, var(--color-nexus-sapphire) 45%, transparent);
+}
+
+/* La entrada del hero: una sola secuencia al cargar. Con movimiento
+ * reducido, todo está visible desde el principio. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+@utility rise {
+  @media (prefers-reduced-motion: no-preference) {
+    animation: rise 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 }
