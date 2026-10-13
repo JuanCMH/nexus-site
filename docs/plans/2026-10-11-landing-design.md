@@ -125,12 +125,14 @@ dos pantallas no se han copiado. Queda como mejora (ver «Pendiente»).
 - Cuatro pasos: solicitas acceso, recibes un código de activación, creas
   tu agencia (Windows o navegador), traes tu cartera (Excel y catálogo de
   Colombia).
-- Botón «Solicitar acceso» y la línea «Inicia sesión».
+- Botón «Solicitar acceso», botón secundario «Descargar para Windows» con
+  la última versión (`2026-10-13-descargar-design.md`) y la línea «Inicia
+  sesión».
 
 ### Navegación · `components/site/nav-links.ts`
 
-«Cómo trabaja» · «Qué resuelve» · «Qué incluye» · «Empezar».
-Con cuatro enlaces e «Iniciar sesión», la cabecera completa aparece desde
+«Cómo trabaja» · «Qué resuelve» · «Qué incluye» · «Empezar» ·
+«Descargar» (a `/descargar`). Con cinco enlaces e «Iniciar sesión», la cabecera completa aparece desde
 `lg`; por debajo, el menú desplegable.
 
 ## `/solicitar-acceso`

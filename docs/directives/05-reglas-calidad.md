@@ -43,8 +43,9 @@ diseño, cambia el diseño.
 bun run check
 ```
 
-Corre, en orden: `typecheck` (tipos de rutas y `tsc`), `lint` (Biome) y
-`build` (`next build`). Los tres en verde antes de cada commit. El mismo
+Corre, en orden: `typecheck` (tipos de rutas y `tsc`), `lint` (Biome),
+`test` (`bun test`) y `build` (`next build`). Los cuatro en verde antes de
+cada commit. El mismo
 comando corre en GitHub (`.github/workflows/ci.yml`) en cada push a `main`
 y en cada pull request.
 
@@ -53,10 +54,12 @@ y en cada pull request.
   que la página esté bien. Lo que acepta una página es §3.
 - Una regla de Biome no se apaga para pasar: se arregla el código, o se
   discute la regla y se anota aquí por qué se apagó.
-- Pruebas automáticas: hoy no hay porque no hay lógica que probar. El día
-  que entre lógica pura a `lib/` (elegir el instalador de una publicación,
-  el registro del manual, la búsqueda), entra con sus pruebas (Vitest) y se
-  suma al gate.
+- Pruebas automáticas: la lógica pura de `lib/` entra con sus pruebas, en
+  un `*.test.ts` junto al archivo. Hoy es elegir el instalador de una
+  publicación (`lib/releases.test.ts`); mañana, el registro del manual y la
+  búsqueda. Corren con `bun test`, el ejecutor que ya trae Bun: se previó
+  Vitest, y no entró porque habría sido una dependencia para lo mismo
+  (`00` §4).
 
 ## 3. Verificar en pantalla
 

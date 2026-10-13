@@ -83,7 +83,7 @@ sesión» (`APP_URL`), la del backend que recibe las solicitudes de acceso
 | Animación | **motion** | Única librería de animación. La misma de la app. |
 | Iconos | **@remixicon/react** | Única librería. Nada de lucide. |
 | Fuentes | **@fontsource** (Outfit, JetBrains Mono, Cormorant Garamond) | Empaquetadas; sin CDN. Las mismas de la app. |
-| Calidad | **TypeScript** estricto, **Biome** | Gate en `bun run check`. |
+| Calidad | **TypeScript** estricto, **Biome**, **`bun test`** | Gate en `bun run check`. Las pruebas usan el ejecutor de Bun; `@types/bun` entró el 2026-10-13 solo por sus tipos. |
 | Gestor | **Bun** | |
 | Despliegue | **Vercel** | |
 

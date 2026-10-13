@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { formatReleaseDate, getLatestRelease } from "@/lib/releases";
 import { APP_URL } from "@/lib/site";
 
 // Es una secuencia de verdad, por eso va numerada. Los tres primeros pasos
@@ -26,7 +27,11 @@ const STEPS = [
   },
 ] as const;
 
-export function ClosingSection() {
+export async function ClosingSection() {
+  // Sin respuesta de GitHub, el botón lleva a /descargar, que tiene su
+  // propia salida (docs/directives/03-reglas-sitio.md §5).
+  const release = await getLatestRelease();
+
   return (
     <section
       id="empezar"
@@ -69,10 +74,31 @@ export function ClosingSection() {
             </li>
           ))}
         </ol>
-        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
+        <div className="mt-8 flex flex-wrap items-center gap-3">
           <Button asChild size="lg" className="h-11">
             <Link href="/solicitar-acceso">Solicitar acceso</Link>
           </Button>
+          <Button asChild size="lg" variant="outline" className="h-11">
+            {release ? (
+              <a href={release.installerUrl}>Descargar para Windows</a>
+            ) : (
+              <Link href="/descargar">Descargar para Windows</Link>
+            )}
+          </Button>
+        </div>
+        <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+          {release ? (
+            <p className="text-sm text-muted-foreground tabular-nums">
+              Versión {release.version}, publicada el{" "}
+              {formatReleaseDate(release.publishedAt)}.{" "}
+              <Link
+                href="/descargar"
+                className="rounded-sm text-nexus-sapphire-text underline-offset-4 outline-none hover:underline focus-visible:ring-[3px] focus-visible:ring-ring/50"
+              >
+                Cómo instalarla
+              </Link>
+            </p>
+          ) : null}
           {APP_URL ? (
             <p className="text-sm text-muted-foreground">
               ¿Tu agencia ya está en Nexus?{" "}

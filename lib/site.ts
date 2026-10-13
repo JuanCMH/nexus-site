@@ -36,6 +36,12 @@ export const API_URL = stripTrailingSlash(
 export const RELEASES_REPO =
   process.env.NEXUS_RELEASES_REPO ?? "JuanCMH/nexus-app-releases";
 
+/** Las versiones publicadas, para quien las quiere ver en GitHub. */
+export const RELEASES_URL = `https://github.com/${RELEASES_REPO}/releases`;
+
+/** La última publicación, tal como la entrega la API de GitHub. */
+export const RELEASES_API_URL = `https://api.github.com/repos/${RELEASES_REPO}/releases/latest`;
+
 export const SITE_NAME = "Nexus";
 
 export const SITE_DESCRIPTION =
