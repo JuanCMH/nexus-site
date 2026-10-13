@@ -12,10 +12,13 @@ sabiendo qué hacer con el aviso de Windows.
 
 ## De dónde sale la versión
 
-`lib/releases.ts` lee la última publicación de `RELEASES_REPO` en el
-servidor, con una hora de caché (`03` §5). De ella toma la versión, la
-fecha y el archivo `*-setup.exe`, y solo acepta un instalador que se
-descarga de ese repositorio. Publicar una versión nueva en
+`lib/releases.ts` lee en el servidor, con una hora de caché, el
+`latest.yml` de la última publicación de `RELEASES_REPO` (`03` §5): el
+archivo que la app instalada usa para actualizarse. De él toma la versión,
+la fecha, el nombre del instalador `*-setup.exe` y su tamaño, y arma el
+enlace directo de descarga. La primera versión leía la API de GitHub y en
+producción falló por su límite por dirección: la página caía siempre al
+enlace del repositorio. Publicar una versión nueva en
 `nexus-app-releases` basta: el sitio la enseña en la siguiente hora, sin
 desplegar.
 

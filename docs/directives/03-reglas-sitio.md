@@ -115,11 +115,13 @@ planeada.
 Los instaladores se publican en un repositorio público de GitHub
 (`RELEASES_REPO`). La página de descarga:
 
-- Lee la última versión de
-  `https://api.github.com/repos/<RELEASES_REPO>/releases/latest` **en el
-  servidor**, con revalidación (una hora basta). Nunca desde el navegador:
-  no abre la política de seguridad ni expone al visitante a los límites de
-  la API.
+- Lee la última versión de `latest.yml`, el archivo que electron-builder
+  publica con cada versión y que la app instalada usa para actualizarse
+  (`RELEASES_MANIFEST_URL`), **en el servidor**, con revalidación (una hora
+  basta). Nunca desde el navegador: no abre la política de seguridad. **No
+  usa la API de GitHub**: su límite sin credenciales es por dirección, y en
+  los servidores compartidos de Vercel se agota (pasó en la primera
+  publicación, el 2026-10-13).
 - Enseña la versión, la fecha y el enlace al instalador de Windows (el
   archivo `*-setup.exe` de la publicación).
 - Si GitHub no responde, cae al enlace de la página de publicaciones. Nunca

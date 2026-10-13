@@ -39,8 +39,12 @@ export const RELEASES_REPO =
 /** Las versiones publicadas, para quien las quiere ver en GitHub. */
 export const RELEASES_URL = `https://github.com/${RELEASES_REPO}/releases`;
 
-/** La última publicación, tal como la entrega la API de GitHub. */
-export const RELEASES_API_URL = `https://api.github.com/repos/${RELEASES_REPO}/releases/latest`;
+/**
+ * El archivo que describe la última publicación. Es el mismo que lee la app
+ * instalada para actualizarse, y no pasa por la API de GitHub, cuyo límite
+ * por dirección se agota en los servidores compartidos de Vercel.
+ */
+export const RELEASES_MANIFEST_URL = `${RELEASES_URL}/latest/download/latest.yml`;
 
 export const SITE_NAME = "Nexus";
 

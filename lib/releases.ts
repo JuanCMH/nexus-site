@@ -1,4 +1,4 @@
-import { RELEASES_API_URL, RELEASES_URL } from "@/lib/site";
+import { RELEASES_MANIFEST_URL, RELEASES_URL } from "@/lib/site";
 
 /** La última versión publicada de Nexus para Windows. */
 export type LatestRelease = {
@@ -10,42 +10,39 @@ export type LatestRelease = {
   installerBytes: number;
 };
 
-const isRecord = (value: unknown): value is Record<string, unknown> =>
-  typeof value === "object" && value !== null;
+/** El valor de una clave de primer nivel de `latest.yml`, sin comillas. */
+function topLevelValue(manifest: string, key: string): string | null {
+  const match = manifest.match(new RegExp(`^${key}:[ \\t]*(.+)$`, "m"));
+  return match ? match[1].trim().replace(/^['"]|['"]$/g, "") : null;
+}
 
 /**
- * Saca de la respuesta de GitHub lo que la página enseña. El instalador es
- * el archivo `*-setup.exe` de la publicación, y solo vale si se descarga del
- * repositorio de publicaciones: cualquier otra forma devuelve `null` y la
- * página cae al enlace de las versiones publicadas.
+ * Saca de `latest.yml` lo que la página enseña. El archivo lo escribe
+ * electron-builder al publicar: `version`, `path` (el instalador),
+ * `releaseDate` y el tamaño del instalador en `files`. Solo vale un
+ * instalador `*-setup.exe` sin rutas; cualquier otra forma devuelve `null` y
+ * la página cae al enlace de las versiones publicadas.
  */
-export function parseLatestRelease(data: unknown): LatestRelease | null {
-  if (!isRecord(data) || data.draft === true || data.prerelease === true) {
-    return null;
-  }
-  const { tag_name: tag, published_at: publishedAt, assets } = data;
-  if (typeof tag !== "string" || typeof publishedAt !== "string") return null;
-  if (Number.isNaN(Date.parse(publishedAt)) || !Array.isArray(assets)) {
-    return null;
-  }
+export function parseLatestRelease(manifest: unknown): LatestRelease | null {
+  if (typeof manifest !== "string") return null;
 
-  const version = tag.replace(/^v/, "");
+  const version = topLevelValue(manifest, "version");
+  const file = topLevelValue(manifest, "path");
+  const publishedAt = topLevelValue(manifest, "releaseDate");
+  if (!version || !file || !publishedAt) return null;
   if (!/^\d+\.\d+\.\d+$/.test(version)) return null;
+  if (!/^[\w.-]+-setup\.exe$/.test(file)) return null;
+  if (Number.isNaN(Date.parse(publishedAt))) return null;
 
-  for (const asset of assets) {
-    if (!isRecord(asset)) continue;
-    const { name, browser_download_url: url, size } = asset;
-    if (
-      typeof name === "string" &&
-      name.endsWith("-setup.exe") &&
-      typeof url === "string" &&
-      url.startsWith(`${RELEASES_URL}/download/`) &&
-      typeof size === "number"
-    ) {
-      return { version, publishedAt, installerUrl: url, installerBytes: size };
-    }
-  }
-  return null;
+  const size = manifest.match(/^\s+size:[ \t]*(\d+)[ \t]*$/m);
+  if (!size) return null;
+
+  return {
+    version,
+    publishedAt,
+    installerUrl: `${RELEASES_URL}/download/v${version}/${file}`,
+    installerBytes: Number(size[1]),
+  };
 }
 
 /**
@@ -55,12 +52,11 @@ export function parseLatestRelease(data: unknown): LatestRelease | null {
  */
 export async function getLatestRelease(): Promise<LatestRelease | null> {
   try {
-    const response = await fetch(RELEASES_API_URL, {
-      headers: { Accept: "application/vnd.github+json" },
+    const response = await fetch(RELEASES_MANIFEST_URL, {
       next: { revalidate: 3600 },
     });
     if (!response.ok) return null;
-    return parseLatestRelease(await response.json());
+    return parseLatestRelease(await response.text());
   } catch {
     return null;
   }
