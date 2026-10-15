@@ -12,8 +12,8 @@ backend de `nexus-app` (§8).
 - Una página es un **componente de servidor** y se prerenderiza. `"use
   client"` entra solo en el componente que de verdad reacciona a la persona
   (un menú, un buscador, una pestaña), nunca en la página entera.
-- Lo único que viene de fuera es la última versión publicada (§5), y se lee
-  **en el servidor**, con caché.
+- Lo único que viene de fuera es la última versión publicada (§5) y la TRM
+  del día (§5.1), y se leen **en el servidor**, con caché.
 - Lo único que sale es la solicitud de acceso (§8). Cualquier otro dato de
   un visitante lo recibe también el backend de `nexus-app`, no una base
   nueva aquí, y se decide con el dueño antes de construirlo.
@@ -33,6 +33,8 @@ components/
 content/                el manual, cuando exista (§3.2)
 lib/
   site.ts               direcciones y nombre del sitio; única fuente
+  pricing.ts            los planes y sus precios; única fuente (02 §6)
+  trm.ts                la TRM del día, para dar los precios en pesos
   utils.ts              `cn` (clsx + tailwind-merge)
 public/brand/           logo e icono como archivos
 docs/directives/        la ley
@@ -62,7 +64,7 @@ queda qué existe y para qué.
 | `/manual` y `/manual/<categoría>/<artículo>` | El manual para personas. | §3.2. |
 | `/agente` | Cómo se conecta Claude a Nexus y qué hace. | Puede empezar como sección de la landing. |
 | `/seguridad` | Cómo se guardan los datos, la bóveda, permisos y bitácora, descrito con el mecanismo real. | Sin sellos ni adjetivos (`02` §7). |
-| `/precios` | — | **No se construye** hasta que haya precios (`00` §7). |
+| `/precios` | Los planes, la implementación acompañada y las preguntas frecuentes. | Cifras de `lib/pricing.ts` (`02` §6). |
 | `/privacidad`, `/terminos` | Legal. | El texto lo aprueba el dueño; no se inventa. |
 
 ### 3.1 Cada página
@@ -127,6 +129,21 @@ Los instaladores se publican en un repositorio público de GitHub
 - Si GitHub no responde, cae al enlace de la página de publicaciones. Nunca
   enseña un botón que no lleva a nada.
 - No copia los instaladores a este repo ni a Vercel.
+
+### 5.1 La TRM
+
+`/precios` da cada precio en dólares y, al lado, su valor en pesos a la TRM
+del día (`lib/trm.ts`):
+
+- **Fuente:** la TRM oficial en datos abiertos (`TRM_URL`, conjunto
+  `32sa-8pi3` de `datos.gov.co`), sin credenciales.
+- Se lee **en el servidor**, con revalidación cada 6 horas. Se toma la que
+  rige hoy en hora de Colombia: la del día siguiente se publica por
+  adelantado y no vale todavía.
+- Los pesos van redondeados a miles, con «≈», y la página dice la fecha y
+  el valor de la TRM que usó.
+- Si no responde, la página enseña solo dólares. Nunca una TRM escrita a
+  mano.
 
 El instalador de Windows hoy **no está firmado**: Windows enseña un aviso al
 abrirlo. La página lo dice y explica cómo continuar, en vez de callarlo.

@@ -5,7 +5,7 @@
 > escribir una frase, y para que ninguna frase prometa algo que la app no
 > hace.
 >
-> **Corte: `nexus-app` 0.22.0, 2026-10-12.** El producto cambia cada semana.
+> **Corte: `nexus-app` 0.22.0, 2026-10-12; precios, 2026-10-14.** El producto cambia cada semana.
 > Antes de publicar una afirmación concreta (una función, un requisito, una
 > cifra), se comprueba contra la versión publicada de la app; si ya no es
 > cierta, se corrige aquí primero y luego en la página.
@@ -128,13 +128,82 @@ activación de un solo uso. A 2026-10-11 hay una agencia usando Nexus.
 
 ## 6. Precios
 
-**Sin definir.** No hay precio publicado ni decidido para esta generación.
-`docs/referencia/2026-07-23-plan-monetizacion.md` es investigación del
-modelo anterior (cuando Nexus pagaba la IA); sirve de contexto sobre
-pasarelas y facturación en Colombia, no como lista de precios.
+Aprobados por el dueño el 2026-10-14. Las cifras viven en `lib/pricing.ts`
+y solo ahí; la página es `/precios` (`docs/plans/2026-10-14-precios-design.md`).
 
-Lo que sí se puede decir: la IA la paga la agencia en su suscripción de
-Claude, no a Nexus.
+**Un plan para cada tipo de agencia.** Todos los planes traen todas las
+funciones; lo que cambia es el tamaño. Precios en dólares; el sitio enseña
+al lado su valor en pesos a la TRM del día, como referencia.
+
+**Sin promesas de gratuidad.** Nexus está en beta y los planes se pueden
+ajustar. El sitio no hace bandera de lo que no se cobra («ilimitado», «sin
+cupos», «gratis para siempre»): describe lo que trae cada plan (dueño,
+2026-10-14).
+
+| Plan | Mensual | Anual, al mes | Usuarios incluidos / máximo | Usuario adicional (mes · anual) | Correos vinculados | Almacenamiento |
+|---|---|---|---|---|---|---|
+| Independiente | 39 | 32 (384 al año) | 1 / 1 | — | 2 | 15 GB |
+| Agencia | 129 | 107 (1.284 al año) | 5 / 10 | 19 · 16 | 7 | 100 GB |
+| Agencia+ | 279 | 232 (2.784 al año) | 15 / 25 | 15 · 12 | 17 | 300 GB |
+| Corredora | A convenir | — | desde 26 | desde 14 | a medida | a medida |
+
+- **Agencia es el plan recomendado** y la página lo destaca. No se dice «el
+  más popular»: no hay datos que lo sostengan (§7).
+- **Claude recomendado:** Pro para Independiente, Max 5x para Agencia, Max
+  20x para Agencia+ y Corredora. Es una recomendación, no un requisito; se
+  nombra el plan y se enlaza a Anthropic, sin copiar su precio. Nombres
+  comprobados en claude.com/pricing el 2026-10-14.
+
+- Anual: 2 meses gratis. Mensual: sin permanencia.
+- Correos vinculados: uno por usuario incluido más 2 de la agencia
+  (Independiente, 2). Un usuario adicional trae un correo vinculado más y
+  no cambia el almacenamiento. Correo extra y
+  bloque de 50 GB: 5 al mes cada uno, 4 pagando el año.
+- 1 GB ≈ 1.000 documentos (medido el 2026-10-14 en una agencia real).
+- El agente no cuenta como usuario.
+- **Implementación acompañada**, opcional y de un solo pago: 150
+  (Independiente), 500 (Agencia), 1.000 (Agencia+), a convenir
+  (Corredora). Sin ella, la agencia se implementa por su cuenta.
+- **Reglas de cobro:** al llegar a un límite nunca se bloquea lo que existe;
+  solo no se puede sumar otro usuario u otro correo, o seguir subiendo
+  archivos, hasta ajustar el plan. Subir de plan se aplica de inmediato y se
+  cobra la diferencia; bajar, en la renovación. El mensual se cancela cuando
+  se quiera; el anual no se devuelve, salvo en los primeros 14 días. Al
+  cancelar, los datos se conservan al menos 90 días.
+- **Uso y plan** (comprobado en `nexus-app` 0.24.0, en `main` y sin
+  publicar, el 2026-10-15): Configuración → Agencia → «Uso y plan», para el
+  propietario y los administradores (permiso «Ver el plan y su uso»).
+  Enseña el plan, la forma de pago, el valor del mes, el próximo corte y el
+  uso de usuarios, correos vinculados y almacenamiento. Avisa en ámbar
+  desde el 80 % de los correos vinculados o del almacenamiento, y en rojo
+  al llegar al límite; de los usuarios, solo si la agencia queda por encima
+  de su plan.
+- **Exportar los datos:** el propietario, en «Uso y plan». Un Excel con una
+  hoja por registro (clientes y pólizas con sus campos, tareas, documentos,
+  aseguradoras y ramos) que se descarga durante 7 días. Los archivos no van
+  en el Excel.
+- **Datos de una agencia cancelada:** se conservan al menos 90 días. El
+  borrado a los 90 días no está automatizado; no se promete un borrado.
+- **Estados de cuenta:** uno por corte, en PDF, en dólares y en pesos a la
+  TRM oficial del día. Se dicen «estado de cuenta», no factura. En la beta
+  no se emiten.
+- **Soporte** (comprobado en `nexus-app`, commits b58db52 y c23059e, el
+  2026-10-15): cambiar, ampliar o cancelar el plan, los extras, la
+  implementación acompañada y el plan Corredora se piden a soporte, en el
+  correo `SUPPORT_EMAIL` de `lib/site.ts` (provisional, el mismo de la
+  app). «Uso y plan», el aviso de límite y el pie del estado de cuenta
+  remiten a ese correo. **Nexus no es una persona** (§7).
+- **Quién emite el estado de cuenta:** MAIN Modulos Aplicaciones e
+  Innovación SAS (NIT 901.510.461-9). Si el sitio dice quién cobra, es esa
+  empresa; el documento sigue siendo un estado de cuenta, no una factura
+  electrónica.
+- **Antes de publicar `/precios`:** que la 0.24.0 esté publicada.
+- Hoy no hay pago en línea: la beta sigue cerrada y cada plan empieza con
+  una solicitud de acceso.
+
+La IA la paga la agencia en su suscripción de Claude, no a Nexus.
+`docs/referencia/2026-07-23-plan-monetizacion.md` es investigación del
+modelo anterior; contexto, no lista de precios.
 
 ## 7. Lo que no se afirma
 
@@ -153,6 +222,11 @@ que **hoy es falso**.
 | «Usado por N agencias», testimonios, logos de clientes | No hay nada de eso que sea cierto y publicable. No se inventa prueba social. |
 | «Seguridad de nivel bancario», sellos, certificaciones | No hay certificación alguna. Se describe el mecanismo real (§3, Accesos). |
 | «El agente trabaja solo» | El agente propone; una persona confirma y envía. |
+| «Prueba gratis», «precio de fundador» | No están decididos (2026-10-14). |
+| «Ilimitado», «sin cupos», «gratis para siempre» como promesa | Los planes pueden ajustarse durante la beta (§6). |
+| «El plan más popular» | Hay una agencia usando Nexus; se dice «Recomendado». |
+| «Habla con Nexus», «escríbele a Nexus», «Nexus te contacta» | Nexus no es una persona (pedido del dueño, 2026-10-15): quien atiende es soporte (§6). |
+| Comparaciones de precio con otros productos | La página de precios dice lo que Nexus no cobra, no lo que cobran los demás. |
 | Requisitos exactos del plan de Claude | Los define Anthropic y cambian. Se enlaza a su documentación en vez de copiarla. |
 
 ## 8. Glosario

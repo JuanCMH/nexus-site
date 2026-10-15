@@ -46,7 +46,31 @@ export const RELEASES_URL = `https://github.com/${RELEASES_REPO}/releases`;
  */
 export const RELEASES_MANIFEST_URL = `${RELEASES_URL}/latest/download/latest.yml`;
 
+/**
+ * La TRM oficial, que la Superintendencia Financiera publica en datos
+ * abiertos. Se lee en el servidor para dar los precios también en pesos
+ * (docs/directives/03-reglas-sitio.md §5.1). Llegan las tres más recientes
+ * porque la del día siguiente se publica por adelantado.
+ */
+export const TRM_URL =
+  "https://www.datos.gov.co/resource/32sa-8pi3.json?$order=vigenciadesde%20DESC&$limit=3";
+
+/**
+ * Los planes de Claude, que paga la agencia aparte. Se enlazan en vez de
+ * copiar su precio (docs/directives/02-producto.md §7).
+ */
+export const CLAUDE_PLANS_URL = "https://claude.com/pricing";
+
 export const SITE_NAME = "Nexus";
 
 export const SITE_DESCRIPTION =
   "El sistema de registro de una agencia de seguros: clientes, pólizas, documentos y tareas en un solo lugar, operado por tu equipo y por tu agente de IA.";
+
+/**
+ * Soporte, a quien se pide cambiar, ampliar o cancelar un plan, los extras,
+ * la implementación acompañada y el plan Corredora. Es el mismo correo que
+ * enseña la app (`SUPPORT_EMAIL` en `nexus-app`). Provisional: se cambia aquí.
+ * Nexus no es una persona: los textos remiten a soporte, nunca a «Nexus».
+ */
+export const SUPPORT_EMAIL =
+  process.env.NEXT_PUBLIC_SUPPORT_EMAIL ?? "proyectomainapp@gmail.com";

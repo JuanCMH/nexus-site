@@ -129,7 +129,6 @@ Son del dueño del producto. Nadie las resuelve por su cuenta; se preguntan.
 
 | Decisión | Estado | Qué bloquea |
 |---|---|---|
-| Precios | Sin definir (`02-producto.md` §6) | La página de precios: no se construye. |
 | Texto de `/privacidad` y `/terminos` | Sin escribir; lo aprueba el dueño | Abrir las solicitudes de acceso: recoger correos exige la autorización de tratamiento de datos. El sitio se publica antes, con el formulario cerrado (`03` §8). |
 | Qué más pide el formulario de acceso | Hoy correo y nombre de la agencia | Nada: se amplía después. |
 | Relato del nombre | Propuesto en `01-marca.md` §1, por confirmar | La sección «Sobre Nexus», si la hay. |
