@@ -1,3 +1,4 @@
+import { BenefitsSection } from "@/components/home/benefits-section";
 import { ClosingSection } from "@/components/home/closing-section";
 import { FlowsVaultSection } from "@/components/home/flows-vault-section";
 import { HeroSection } from "@/components/home/hero-section";
@@ -10,6 +11,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <BenefitsSection />
       <WorkScene />
       <SolvesSection />
       <ModulesSection />

@@ -80,6 +80,12 @@ componente de cada sección; aquí va lo que define a cada una.
 - Botones: «Solicitar acceso» · «Ver cómo trabaja»
 - Línea: «¿Tu agencia ya está en Nexus? Inicia sesión» → `APP_URL`
 
+### 1b. Beneficios · `components/home/benefits-section.tsx`
+
+Añadida el 2026-10-14: «Lo que gana tu agencia», seis beneficios con la
+función que los sostiene. Diseño y textos en
+`2026-10-14-landing-beneficios-design.md`.
+
 ### 2. La escena · `components/home/work-scene.tsx`
 
 Sin cambios respecto a la segunda versión: «Una póliza llega por correo y
