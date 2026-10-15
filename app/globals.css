@@ -53,7 +53,7 @@ html {
   --text-ui: 0.8125rem;
   --text-ui--line-height: 1.25rem;
 
-  --font-sans: "Outfit Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
   --font-cormorant: "Cormorant Garamond", Georgia, serif;
   --font-mono:
     "JetBrains Mono Variable", ui-monospace, SFMono-Regular, monospace;
@@ -266,5 +266,20 @@ html {
 @utility rise {
   @media (prefers-reduced-motion: no-preference) {
     animation: rise 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+/* Para el titular y su párrafo, que suelen ser el LCP: solo suben, sin
+ * empezar transparentes. Con `opacity: 0` el navegador no los cuenta como
+ * pintados hasta que JS hidrata, y en celular eso retrasaba el LCP. */
+@keyframes rise-move {
+  from {
+    transform: translateY(12px);
+  }
+}
+
+@utility rise-move {
+  @media (prefers-reduced-motion: no-preference) {
+    animation: rise-move 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 }

@@ -18,7 +18,7 @@ const QUESTIONS: readonly { question: string; answer: ReactNode }[] = [
   {
     question: "¿Qué es un correo vinculado?",
     answer:
-      "Una cuenta de correo de tu agencia que el agente puede leer para proponer lo que encuentre. Agencia y Agencia+ traen uno por usuario incluido, más 2 para la agencia, como siniestros@ o renovaciones@; Independiente trae 2. Cada usuario adicional trae el suyo.",
+      "Una cuenta de correo de tu agencia que el agente puede leer para proponer lo que encuentre. Agencia y Agencia+ traen uno por usuario incluido, más 2 para la agencia, como renovaciones@ o cumplimiento@; Independiente trae 2. Cada usuario adicional trae el suyo.",
   },
   {
     question: "¿Necesito una suscripción de Claude?",

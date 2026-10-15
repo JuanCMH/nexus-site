@@ -177,7 +177,10 @@ export function PoliciesScreen({ stage }: { stage: PoliciesStage }) {
       </div>
 
       <div className="flex-1 space-y-4 overflow-x-clip p-2">
-        <div className="flex min-h-9 flex-wrap items-center gap-2">
+        {/* En la app esta barra salta de línea al seleccionar; en la réplica,
+            más estrecha, la búsqueda se encoge para que la tabla no se mueva
+            con el scroll (CLS). */}
+        <div className="flex min-h-9 items-center gap-2">
           <div className="relative hidden w-72 min-w-0 max-w-72 grow basis-60 @2xl/window:block">
             <RiSearchLine className="pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2 text-muted-foreground" />
             <span className="flex h-9 w-full min-w-0 items-center rounded-md border border-input bg-transparent py-1 pr-3 pl-8 text-muted-foreground text-sm shadow-xs dark:bg-input/30">
@@ -186,11 +189,11 @@ export function PoliciesScreen({ stage }: { stage: PoliciesStage }) {
           </div>
           {selected ? (
             <div className="ml-auto flex items-center gap-2">
-              <span className="text-muted-foreground text-ui tabular-nums">
+              <span className="whitespace-nowrap text-muted-foreground text-ui tabular-nums">
                 1 póliza seleccionada
               </span>
               <span className="hidden h-8 items-center rounded-md px-3 font-medium text-sm @lg/window:inline-flex">
-                Quitar selección
+                Cancelar
               </span>
               <span className="inline-flex h-8 items-center gap-1.5 rounded-md bg-primary px-2.5 font-medium text-primary-foreground text-sm">
                 <RiCheckDoubleLine className="size-4" />

@@ -103,14 +103,25 @@ planeada.
 
 ## 4. SEO
 
-- `metadataBase`, plantilla de título y Open Graph base están en
-  `app/layout.tsx`. El idioma es `es` y la región `es_CO`.
+- `metadataBase` y la plantilla de título están en `app/layout.tsx`. El
+  idioma es `es` y la región `es_CO`.
+- Cada página exporta `pageMetadata("/<ruta>")` (`lib/metadata.ts`): su
+  canónica, su `og:url` y la imagen. El layout no declara canónica, para
+  que ninguna ruta, la 404 incluida, herede la de la home.
+- `SITE_URL` tiene que ser el dominio que sirve, no uno que redirige: si
+  no, la canónica, el sitemap y robots apuntan a un 308.
 - `app/robots.ts` permite todo: aquí no hay nada privado.
 - `app/sitemap.ts` lista cada página pública.
 - Una URL canónica por página; sin contenido duplicado entre rutas.
-- La imagen de Open Graph se genera con los recursos de `public/brand/`.
-- Datos estructurados (`SoftwareApplication`, `Organization`) cuando la
-  landing esté: con lo que es verdad, sin valoraciones ni precios inventados.
+- La imagen de Open Graph es `app/opengraph-image.tsx`: el logotipo en
+  blanco sobre medianoche y el titular en Cormorant (woff: Satori no lee
+  woff2).
+- Datos estructurados en `lib/structured-data.ts`, con `JsonLd`
+  (`components/seo/json-ld.tsx`): `Organization` y `WebSite` en el layout,
+  `SoftwareApplication` en `/` y `/descargar`. Con lo que es verdad, sin
+  valoraciones ni reseñas; `offers` entra cuando se abra el pago. Sin
+  `FAQPage`: Google ya no lo muestra para un sitio como este.
+- `app/manifest.ts` y `app/apple-icon.png` salen del icono de la app.
 
 ## 5. Descarga
 

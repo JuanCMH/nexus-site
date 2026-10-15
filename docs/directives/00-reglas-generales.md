@@ -82,7 +82,7 @@ sesión» (`APP_URL`), la del backend que recibe las solicitudes de acceso
 | Tema | **next-themes** | Claro y oscuro: sigue al sistema y deja elegir. La misma de la app. |
 | Animación | **motion** | Única librería de animación. La misma de la app. |
 | Iconos | **@remixicon/react** | Única librería. Nada de lucide. |
-| Fuentes | **@fontsource** (Outfit, JetBrains Mono, Cormorant Garamond) | Empaquetadas; sin CDN. Las mismas de la app. |
+| Fuentes | **@fontsource** (Outfit, JetBrains Mono, Cormorant Garamond) | Empaquetadas; sin CDN. Las mismas de la app. Outfit se carga con `next/font/local` desde el archivo de @fontsource, para precargarla. |
 | Calidad | **TypeScript** estricto, **Biome**, **`bun test`** | Gate en `bun run check`. Las pruebas usan el ejecutor de Bun; `@types/bun` entró el 2026-10-13 solo por sus tipos. |
 | Gestor | **Bun** | |
 | Despliegue | **Vercel** | |

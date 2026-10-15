@@ -33,7 +33,7 @@ const STEPS: readonly {
   {
     title: "El agente propone la póliza",
     detail:
-      "Lee la carátula y registra la póliza y su cliente, sin que nadie digite. Queda «Por confirmar», y su ficha dice de qué correo salió.",
+      "Lee la carátula y propone la póliza y su cliente, sin que nadie digite. Queda «Por confirmar», y su ficha dice de qué correo salió.",
     stage: "proposed",
   },
   {
@@ -176,8 +176,8 @@ function PinnedScene() {
 
   return (
     <div ref={ref} className="relative hidden h-[360vh] stage:block">
-      <div className="sticky top-14 flex h-[calc(100dvh-3.5rem)] items-center overflow-hidden">
-        <div className="mx-auto grid w-full max-w-7xl grid-cols-12 items-center gap-10 px-6">
+      <div className="sticky top-14 flex h-[calc(100dvh-3.5rem)] items-start overflow-hidden pt-[12vh]">
+        <div className="mx-auto grid w-full max-w-7xl grid-cols-12 items-start gap-10 px-6">
           <div className="col-span-4">
             <Heading />
             <div className="relative mt-10">
@@ -217,8 +217,14 @@ function PinnedScene() {
                     <p className="mt-1 pl-6 text-sm leading-relaxed text-muted-foreground">
                       {step.detail}
                     </p>
-                    {index === 1 && active === 1 ? (
-                      <div className="pl-6">
+                    {index === 1 ? (
+                      <div
+                        aria-hidden={active !== 1}
+                        className={cn(
+                          "pl-6 transition-opacity duration-500",
+                          active === 1 ? "opacity-100" : "invisible opacity-0",
+                        )}
+                      >
                         <SourceLine />
                       </div>
                     ) : null}
@@ -232,7 +238,7 @@ function PinnedScene() {
             <div className="stage-edge rounded-xl">
               <PoliciesScreen stage={STEPS[active].stage} />
             </div>
-            <AnimatePresence>
+            <AnimatePresence initial={false}>
               {active === 0 ? (
                 <motion.div
                   key="mail"

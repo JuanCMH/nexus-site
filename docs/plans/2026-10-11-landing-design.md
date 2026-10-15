@@ -71,7 +71,7 @@ componente de cada sección; aquí va lo que define a cada una.
 
 ### 1. Hero · `components/home/hero-section.tsx`
 
-- Nota: «En beta cerrada, para Windows y en la web» (§4, §5)
+- Nota: «En beta cerrada, para agencias y corredores de seguros en Colombia» (§5; cambiada el 2026-10-15, ver `2026-10-15-seo-design.md`)
 - `h1`: «Toda tu agencia de seguros en un solo lugar» (§1)
 - Entradilla: «Clientes, pólizas, renovaciones, tareas, documentos,
   cotizaciones de cumplimiento y las claves de tus portales. Tu equipo y tu

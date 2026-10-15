@@ -15,15 +15,15 @@ export function HeroSection() {
       />
       <div className="relative mx-auto w-full max-w-6xl px-6 pt-20 pb-20 md:pt-32 md:pb-28">
         <p className="rise text-sm text-muted-foreground">
-          En beta cerrada, para Windows y en la web
+          En beta cerrada, para agencias y corredores de seguros en Colombia
         </p>
         <h1
           id="hero-titulo"
-          className="rise mt-6 max-w-5xl text-5xl font-medium tracking-tight text-balance [animation-delay:80ms] md:text-7xl"
+          className="rise-move mt-6 max-w-5xl text-5xl font-medium tracking-tight text-balance [animation-delay:80ms] md:text-7xl"
         >
           Toda tu agencia de seguros en un solo lugar
         </h1>
-        <p className="rise mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground [animation-delay:160ms] md:text-xl">
+        <p className="rise-move mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground [animation-delay:160ms] md:text-xl">
           Clientes, pólizas, renovaciones, tareas, documentos, cotizaciones de
           cumplimiento y las claves de tus portales. Tu equipo y tu agente
           trabajan sobre el mismo registro, y cada póliza por vencer tiene una

@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { AccessRequestForm } from "@/components/solicitar-acceso/access-request-form";
+import { pageMetadata } from "@/lib/metadata";
 import { API_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Solicitar acceso",
+  title: "Solicitar acceso a la beta",
   description:
-    "Nexus está en beta cerrada. Deja tu correo y el nombre de tu agencia para solicitar un código de activación.",
-  alternates: { canonical: "/solicitar-acceso" },
+    "Nexus está en beta cerrada para agencias y corredores de seguros en Colombia. Deja tu correo y el nombre de tu agencia para solicitar un código de activación.",
+  ...pageMetadata("/solicitar-acceso"),
 };
 
 const NEXT_STEPS = [

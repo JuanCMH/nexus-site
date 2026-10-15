@@ -29,11 +29,11 @@ export function PlansSection({ trm }: { trm: Trm | null }) {
         </p>
         <h1
           id="precios-titulo"
-          className="rise mt-3 max-w-3xl text-3xl font-medium tracking-tight text-balance [animation-delay:80ms] md:text-4xl"
+          className="rise-move mt-3 max-w-3xl text-3xl font-medium tracking-tight text-balance [animation-delay:80ms] md:text-4xl"
         >
           Un plan para cada tipo de agencia
         </h1>
-        <p className="rise mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground [animation-delay:160ms] md:text-xl">
+        <p className="rise-move mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground [animation-delay:160ms] md:text-xl">
           Desde quien trabaja solo hasta la corredora con áreas y decenas de
           usuarios. Todos los planes traen todas las funciones de Nexus; lo que
           cambia es el tamaño.

@@ -1,19 +1,22 @@
 import { RiDownload2Line } from "@remixicon/react";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { JsonLd } from "@/components/seo/json-ld";
 import { Button } from "@/components/ui/button";
+import { pageMetadata } from "@/lib/metadata";
 import {
   formatInstallerSize,
   formatReleaseDate,
   getLatestRelease,
 } from "@/lib/releases";
 import { APP_URL, RELEASES_URL } from "@/lib/site";
+import { softwareApplication } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Descargar",
+  title: "Descargar para Windows",
   description:
     "Descarga el instalador de la última versión de Nexus para Windows. Una vez instalado, se actualiza automáticamente.",
-  alternates: { canonical: "/descargar" },
+  ...pageMetadata("/descargar"),
 };
 
 const linkClassName =
@@ -25,6 +28,7 @@ export default async function DownloadPage() {
 
   return (
     <div className="relative overflow-hidden">
+      <JsonLd data={softwareApplication(release)} />
       <div
         aria-hidden="true"
         className="stage-glow pointer-events-none absolute inset-x-0 top-0 h-96"

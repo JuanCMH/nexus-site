@@ -6,13 +6,14 @@ import { OnboardingSection } from "@/components/precios/onboarding-section";
 import { PlansSection } from "@/components/precios/plans-section";
 import { PricingClosing } from "@/components/precios/pricing-closing";
 import { WhySection } from "@/components/precios/why-section";
+import { pageMetadata } from "@/lib/metadata";
+import { formatUsd, PRICED_PLANS } from "@/lib/pricing";
 import { getTrm } from "@/lib/trm";
 
 export const metadata: Metadata = {
-  title: "Precios",
-  description:
-    "Los planes de Nexus, en dólares y con su valor en pesos: un plan para cada tipo de agencia, desde quien trabaja solo hasta la corredora. Todos traen todas las funciones.",
-  alternates: { canonical: "/precios" },
+  title: "Precios para agencias de seguros",
+  description: `Cuatro planes según el tamaño de tu agencia, desde ${formatUsd(PRICED_PLANS[0].base.monthly)} al mes, con su valor en pesos a la TRM del día. Todos traen todas las funciones.`,
+  ...pageMetadata("/precios"),
 };
 
 // El diseño y los textos: docs/plans/2026-10-14-precios-design.md.
