@@ -4,7 +4,6 @@ import {
   RiAlarmLine,
   RiCheckDoubleLine,
   RiCheckLine,
-  RiEyeLine,
   RiLayoutLeftLine,
   RiSearchLine,
   RiShieldLine,
@@ -18,6 +17,7 @@ import {
   type PolicyStatus,
   PROPOSED_POLICY,
 } from "@/components/app-replica/policies-data";
+import { ReviewBadge } from "@/components/app-replica/review-badge";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
@@ -55,18 +55,6 @@ const CLIENT_COLUMN = "hidden @lg/list:table-cell";
 const END_COLUMN = "hidden @md/list:table-cell";
 const PREMIUM_COLUMN = "hidden @4xl/list:table-cell";
 const REVIEW_COLUMN = "hidden @4xl/list:table-cell";
-
-function ReviewBadge() {
-  return (
-    <Badge
-      variant="outline"
-      className="gap-1 border-nexus-amber/20 bg-nexus-amber/10 text-nexus-amber-text"
-    >
-      <RiEyeLine className="size-3" />
-      Por confirmar
-    </Badge>
-  );
-}
 
 function Checkbox({ checked }: { checked: boolean }) {
   return (

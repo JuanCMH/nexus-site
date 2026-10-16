@@ -283,3 +283,25 @@ html {
     animation: rise-move 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 }
+
+/* Beneficios de la landing: un pulso recorre el camino de cada correo
+ * vinculado a la lista «Por confirmar». Con movimiento reducido no se pinta. */
+@keyframes mail-pulse {
+  from {
+    stroke-dashoffset: 210;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@utility mail-pulse {
+  stroke-dasharray: 10 200;
+  stroke-dashoffset: 210;
+  @media (prefers-reduced-motion: no-preference) {
+    animation: mail-pulse 3.2s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    display: none;
+  }
+}

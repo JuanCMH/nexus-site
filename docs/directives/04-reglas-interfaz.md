@@ -70,8 +70,8 @@ puede llevar luz:
 
 | Utilidad | Qué hace | Dónde |
 |---|---|---|
-| `stage-glow` | Brillo de zafiro y cyan que cae desde arriba. | Fondo de hero, cierre, sección de medianoche. |
-| `stage-grid` | Rejilla tenue que se desvanece. | Fondo de hero y cierre. |
+| `stage-glow` | Brillo de zafiro y cyan que cae desde arriba. | Fondo de hero, beneficios de la landing, cierre, sección de medianoche. |
+| `stage-grid` | Rejilla tenue que se desvanece. | Fondo de hero, beneficios de la landing y cierre. |
 | `stage-edge` | Borde luminoso y halo de zafiro. | El marco de una réplica y las tarjetas del escenario. |
 
 - **Superficies translúcidas** (`bg-card/80 backdrop-blur-xl`) se permiten

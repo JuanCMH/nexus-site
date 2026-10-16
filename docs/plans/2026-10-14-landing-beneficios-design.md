@@ -1,6 +1,7 @@
 # Landing: beneficios
 
-> **Estado: implementado** · 2026-10-14, a petición del dueño, que lo
+> **Estado: reemplazado** por `2026-10-16-landing-beneficios-escenario-design.md`.
+> Antes: implementado · 2026-10-14, a petición del dueño, que lo
 > aprobó el mismo día: las funciones explican Nexus técnicamente; lo que
 > vende es lo que la agencia gana con ellas. Una sección nueva después del
 > hero.

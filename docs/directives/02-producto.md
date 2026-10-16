@@ -50,7 +50,7 @@ Es el menú de la app, con los nombres que la persona ve.
 
 | Área | Qué hace |
 |---|---|
-| **Inicio** | «Mi día»: lo que tiene pendiente quien entra. «Agencia»: la cartera y el equipo, para quien dirige (con su permiso). |
+| **Inicio** | «Mi día»: lo que tiene pendiente quien entra. «Agencia»: la cartera y el equipo, para quien dirige (con su permiso), con la prima vigente mes a mes y la tasa de renovación de los últimos 90 días frente a los 90 anteriores (comprobado en `nexus-app` 0.25.0, publicada, el 2026-10-16). |
 | **Tareas** | Una tarea es un compromiso con un resultado que Nexus comprueba: se cierra automáticamente cuando el resultado aparece en el registro (la póliza renovada, el documento guardado). Tienen tipo de trámite, responsable y fecha límite. Cada madrugada Nexus crea una tarea por cada aviso que la plantilla tiene en una fecha con seguimiento; en el fin de vigencia de una póliza es la **tarea de renovación** (comprobado el 2026-10-12 en el `CLAUDE.md` de `nexus-app` 0.22.0). Nexus no envía correo por su cuenta; su historial no se edita ni se borra. Las reglas de quién lleva qué se escriben en frases. |
 | **Clientes** | La ficha de cada cliente, con sus pólizas, documentos y tareas. Los campos los define cada agencia en su plantilla. |
 | **Pólizas** | Cada póliza con su aseguradora, ramo y vigencia. El estado (por iniciar, vigente, vencida) no se escribe: sale de las fechas. Toda póliza de un ramo que se renueva debe terminar renovada, reemplazada o con la nota de por qué no. |
