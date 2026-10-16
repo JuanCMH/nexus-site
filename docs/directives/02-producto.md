@@ -157,8 +157,8 @@ cupos», «gratis para siempre»): describe lo que trae cada plan (dueño,
 - Anual: 2 meses gratis. Mensual: sin permanencia.
 - Correos vinculados: uno por usuario incluido más 2 de la agencia
   (Independiente, 2). Un usuario adicional trae un correo vinculado más y
-  no cambia el almacenamiento. Correo extra y
-  bloque de 50 GB: 5 al mes cada uno, 4 pagando el año.
+  no cambia el almacenamiento. No se ofrecen correos ni almacenamiento
+  extra sueltos: no están acordados.
 - 1 GB ≈ 1.000 documentos (medido el 2026-10-14 en una agencia real).
 - El agente no cuenta como usuario.
 - **Implementación acompañada**, opcional y de un solo pago: 150

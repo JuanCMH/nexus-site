@@ -110,15 +110,6 @@ export const CUSTOM_PLAN = {
   claudePlan: "Max 20x" satisfies ClaudePlan,
 } as const;
 
-/** Correo vinculado extra, en cualquier plan. */
-export const EXTRA_MAILBOX: ByBilling = { monthly: 5, annual: 4 };
-
-/** Bloque de almacenamiento extra, en cualquier plan. */
-export const STORAGE_BLOCK = {
-  gb: 50,
-  price: { monthly: 5, annual: 4 } satisfies ByBilling,
-};
-
 /**
  * Medido el 2026-10-14 en una agencia real: un documento pesa en promedio
  * unos 970 KB, así que 1 GB guarda unos 1.000.

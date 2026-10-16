@@ -1,15 +1,7 @@
 import { BillingToggle } from "@/components/precios/billing-toggle";
 import { CustomPlanCard } from "@/components/precios/custom-plan-card";
 import { PlanCard } from "@/components/precios/plan-card";
-import { SupportEmailLink } from "@/components/precios/support-email-link";
-import {
-  DOCUMENTS_PER_GB,
-  EXTRA_MAILBOX,
-  formatNumber,
-  formatUsd,
-  PRICED_PLANS,
-  STORAGE_BLOCK,
-} from "@/lib/pricing";
+import { PRICED_PLANS } from "@/lib/pricing";
 import { CLAUDE_PLANS_URL } from "@/lib/site";
 import { formatTrmDate, formatTrmValue, type Trm } from "@/lib/trm";
 
@@ -56,15 +48,6 @@ export function PlansSection({ trm }: { trm: Trm | null }) {
         </div>
 
         <div className="mt-8 max-w-3xl space-y-2 text-sm leading-relaxed text-muted-foreground">
-          <p>
-            En cualquier plan: correo vinculado extra,{" "}
-            {formatUsd(EXTRA_MAILBOX.monthly)} al mes; {STORAGE_BLOCK.gb} GB
-            más, unos {formatNumber(STORAGE_BLOCK.gb * DOCUMENTS_PER_GB)}{" "}
-            documentos, {formatUsd(STORAGE_BLOCK.price.monthly)} al mes. Pagando
-            el año, {formatUsd(EXTRA_MAILBOX.annual)} cada uno. Se piden a
-            soporte, en <SupportEmailLink subject="Ampliar el plan" />. El
-            agente no cuenta como usuario.
-          </p>
           <p>
             El plan de Claude recomendado es el que sugerimos para el trabajo
             que hace el agente en una agencia de ese tamaño; lo eliges y lo
