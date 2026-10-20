@@ -33,8 +33,7 @@ Hero → Beneficios → La escena → Qué resuelve → Qué incluye → Flujos 
 - Entradilla: «Si tener un agente de IA en tu agencia es un gran paso,
   Nexus es el siguiente. Conoce todo lo que Nexus les ofrece a tu equipo
   y a tu agente para operar toda tu agencia.»
-- Cierre, en la cursiva de marca: «Nexus no pone la IA; pone el sistema
-  que impide que la IA se equivoque.» (`02` §2)
+- Sin frase de cierre: la sección termina en la cuadrícula de beneficios.
 
 Siete beneficios, en este orden (también el de celular):
 

@@ -124,11 +124,6 @@ export function BenefitsSection() {
             </li>
           ))}
         </ul>
-
-        <p className="mt-14 max-w-3xl border-t border-border/60 pt-8 font-cormorant text-3xl italic leading-tight text-balance md:text-4xl">
-          Nexus no pone la IA; pone el sistema que impide que la IA se
-          equivoque.
-        </p>
       </div>
     </section>
   );
