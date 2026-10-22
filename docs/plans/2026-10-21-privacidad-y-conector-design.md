@@ -338,7 +338,10 @@ conexión.
 1. **Conservación tras cancelar: 30 o 90 días.** El Acuerdo de uso (v1,
    2026-10-20) dice treinta días y luego se eliminan. `02` §6 y la FAQ de
    `/precios` dicen «al menos 90 días» y que no se promete un borrado.
-   La política sigue al Acuerdo; `/precios` hay que alinearla.
+   La política sigue al Acuerdo, que es lo que aceptaron las agencias.
+   Volver a 90 días exige cambiar primero el Acuerdo y subir
+   `AGENCY_AGREEMENT_VERSION` en `nexus-app`: cada propietario lo acepta
+   otra vez. Si se queda en 30, `/precios` y `02` §6 se alinean.
 2. **La fecha de vigencia** de la política: la del día que se publique.
 3. **«Rige la versión española»** en la versión inglesa: propuesta, para la
    revisión legal.
@@ -350,8 +353,10 @@ conexión.
    suma el correo y el nombre de la agencia que recoge, y el formulario su
    casilla de autorización.
 6. **La versión de la guía:** «Escrita para Nexus 0.29.0»
-   (`CONNECTOR_GUIDE_APP_VERSION`, en `lib/legal.ts`) supone que la versión
-   que sigue a la 0.28.0 es la 0.29.0. Se confirma al publicarla.
+   (`CONNECTOR_GUIDE_APP_VERSION`, en `lib/legal.ts`). Confirmada por la
+   sesión de la app el 2026-10-21; el sitio no se publica antes que esa
+   versión. Falta que la sesión de la pantalla del agente confirme el texto
+   exacto de «Cortar la conexión».
 7. **«Este sitio»:** «Vercel recibe los datos técnicos de cada visita» es
    lo que hace cualquier servidor; Vercel no tiene registro de visitantes
    activado en este proyecto que haya que declarar aparte (confirmar).
