@@ -1,8 +1,8 @@
 # Política de privacidad y guía del conector · Diseño
 
 **Fecha:** 2026-10-21 · **Estado:** aprobado. El dueño aprobó el texto de
-la política y los 30 días de conservación el 2026-10-21; queda abierta la
-nota «rige la versión española» (pregunta 3). El texto de la política lo
+la política, los 30 días de conservación y la nota «rige la versión
+española» el 2026-10-21. El texto de la política lo
 aprueba el dueño (`00` §7), con revisión legal recomendada (Ley 1581 de
 2012).
 
@@ -333,7 +333,7 @@ conexión.
    `AGENCY_AGREEMENT_VERSION` en `nexus-app`: cada propietario lo acepta
    otra vez. Si se queda en 30, `/precios` y `02` §6 se alinean.
 2. **La fecha de vigencia** de la política: la del día que se publique.
-3. **«Rige la versión española»** en la versión inglesa: propuesta, para la
+3. **Cerrada (2026-10-21): rige la española, y la inglesa lo dice.** Antes:
    revisión legal.
 4. **Lo que no dice la política y quizás debería** (revisión legal):
    menores de edad, entrega a autoridades por orden legal, y la
