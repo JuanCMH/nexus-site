@@ -121,6 +121,21 @@ ve una persona, en **español** de Colombia, con acentuación correcta,
 incluido lo que no se ve (`aria-label`, `alt`, metadatos). El texto se
 escribe directamente en el código: no hay capa de traducción.
 
+**Excepción, decidida por el dueño el 2026-10-21:** la política de
+privacidad y la guía del conector tienen versión en inglés, porque las
+leen los revisores del directorio de conectores de Claude
+(`docs/plans/2026-10-21-privacidad-y-conector-design.md`). Es acotada:
+
+- Solo `/en/privacy` (de `/privacidad`) y `/en/agent` (de `/agente`). Otra
+  página en inglés es otra decisión del dueño.
+- Sin sistema de traducción: cada versión es su archivo, con el texto en el
+  código. Lo que comparten (responsable, fecha, versión) sale de
+  `lib/legal.ts`. Un cambio en la española se lleva a la inglesa en el
+  mismo commit; rige la española.
+- Cabecera y pie siguen en español; el contenido va con `lang="en"`. Cada
+  par se declara en los metadatos (`alternates.languages`, `og:locale`) y
+  en el sitemap.
+
 Cómo se escribe está en `01-marca.md` §6.
 
 ## 7. Decisiones abiertas
@@ -129,7 +144,7 @@ Son del dueño del producto. Nadie las resuelve por su cuenta; se preguntan.
 
 | Decisión | Estado | Qué bloquea |
 |---|---|---|
-| Texto de `/privacidad` y `/terminos` | Sin escribir; lo aprueba el dueño | Abrir las solicitudes de acceso: recoger correos exige la autorización de tratamiento de datos. El sitio se publica antes, con el formulario cerrado (`03` §8). |
+| Texto de `/privacidad` y `/terminos` | `/privacidad` escrita el 2026-10-21 y por aprobar, con revisión legal recomendada; `/terminos`, sin escribir. Lo aprueba el dueño | Abrir las solicitudes de acceso: recoger correos exige la autorización de tratamiento de datos. El sitio se publica antes, con el formulario cerrado (`03` §8). |
 | Qué más pide el formulario de acceso | Hoy correo y nombre de la agencia | Nada: se amplía después. |
 | Relato del nombre | Propuesto en `01-marca.md` §1, por confirmar | La sección «Sobre Nexus», si la hay. |
 | GSAP como segunda librería de animación | Fuera mientras `motion` baste (§4) | — |

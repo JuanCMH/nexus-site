@@ -8,12 +8,25 @@ import { SITE_NAME } from "@/lib/site";
  * Por lo mismo, la imagen de `app/opengraph-image.tsx` se nombra aquí: el
  * reemplazo la quitaría de las páginas hijas.
  */
-export function pageMetadata(path: string): Metadata {
+export function pageMetadata(
+  path: string,
+  /**
+   * Solo la política de privacidad y la guía del conector tienen traducción
+   * (docs/directives/00-reglas-generales.md §6): la página dice su idioma y
+   * nombra las dos versiones.
+   */
+  translation?: { locale: "es_CO" | "en_US"; es: string; en: string },
+): Metadata {
   return {
-    alternates: { canonical: path },
+    alternates: {
+      canonical: path,
+      ...(translation && {
+        languages: { "es-CO": translation.es, en: translation.en },
+      }),
+    },
     openGraph: {
       type: "website",
-      locale: "es_CO",
+      locale: translation?.locale ?? "es_CO",
       siteName: SITE_NAME,
       url: path,
       images: [

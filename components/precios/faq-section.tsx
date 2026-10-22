@@ -1,6 +1,6 @@
 import { RiArrowDownSLine } from "@remixicon/react";
 import type { ReactNode } from "react";
-import { SupportEmailLink } from "@/components/precios/support-email-link";
+import { SupportEmailLink } from "@/components/site/support-email-link";
 import { CLAUDE_PLANS_URL } from "@/lib/site";
 
 const linkClassName =

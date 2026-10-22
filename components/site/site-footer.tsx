@@ -31,6 +31,16 @@ export function SiteFooter() {
                 Solicitar acceso
               </Link>
             </li>
+            <li>
+              <Link href="/agente" className={linkClassName}>
+                Conectar Claude
+              </Link>
+            </li>
+            <li>
+              <Link href="/privacidad" className={linkClassName}>
+                Privacidad
+              </Link>
+            </li>
             {APP_URL ? (
               <li>
                 <a href={APP_URL} className={linkClassName}>

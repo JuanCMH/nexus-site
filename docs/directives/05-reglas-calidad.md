@@ -57,7 +57,8 @@ y en cada pull request.
 - Pruebas automáticas: la lógica pura de `lib/` entra con sus pruebas, en
   un `*.test.ts` junto al archivo. Hoy es elegir el instalador de una
   publicación (`lib/releases.test.ts`), elegir el plan de la calculadora
-  (`lib/pricing.test.ts`) y la TRM vigente (`lib/trm.test.ts`); mañana, el registro del manual y la
+  (`lib/pricing.test.ts`) y la TRM vigente (`lib/trm.test.ts`) y la fecha de la política
+  (`lib/legal.test.ts`); mañana, el registro del manual y la
   búsqueda. Corren con `bun test`, el ejecutor que ya trae Bun: se previó
   Vitest, y no entró porque habría sido una dependencia para lo mismo
   (`00` §4).

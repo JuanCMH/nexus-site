@@ -1,4 +1,4 @@
-import { SupportEmailLink } from "@/components/precios/support-email-link";
+import { SupportEmailLink } from "@/components/site/support-email-link";
 import { CUSTOM_PLAN, formatUsd, PRICED_PLANS } from "@/lib/pricing";
 import { formatCopEstimate, type Trm } from "@/lib/trm";
 

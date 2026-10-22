@@ -25,5 +25,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    // Las dos páginas con traducción (00 §6) declaran su par.
+    ...[
+      { es: "/agente", en: "/en/agent", priority: 0.7 },
+      { es: "/privacidad", en: "/en/privacy", priority: 0.3 },
+    ].flatMap(({ es, en, priority }) =>
+      [es, en].map((path) => ({
+        url: `${SITE_URL}${path}`,
+        changeFrequency: "monthly" as const,
+        priority,
+        alternates: {
+          languages: { "es-CO": `${SITE_URL}${es}`, en: `${SITE_URL}${en}` },
+        },
+      })),
+    ),
   ];
 }

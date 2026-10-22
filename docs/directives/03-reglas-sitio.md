@@ -34,6 +34,7 @@ content/                el manual, cuando exista (§3.2)
 lib/
   site.ts               direcciones y nombre del sitio; única fuente
   pricing.ts            los planes y sus precios; única fuente (02 §6)
+  legal.ts              responsable, versión de la política y de la guía del conector
   trm.ts                la TRM del día, para dar los precios en pesos
   utils.ts              `cn` (clsx + tailwind-merge)
 public/brand/           logo e icono como archivos
@@ -62,10 +63,11 @@ queda qué existe y para qué.
 | `/solicitar-acceso` | El formulario de la beta cerrada y su confirmación. | §8. |
 | `/descargar` | Bajar el instalador de la última versión. | §5. |
 | `/manual` y `/manual/<categoría>/<artículo>` | El manual para personas. | §3.2. |
-| `/agente` | Cómo se conecta Claude a Nexus y qué hace. | Puede empezar como sección de la landing. |
+| `/agente` y `/en/agent` | La guía del conector: cómo se conecta Claude a Nexus, qué hace el agente y cómo se desconecta. | La documentación pública que exige el directorio de Claude. Con traducción (`00` §6). |
 | `/seguridad` | Cómo se guardan los datos, la bóveda, permisos y bitácora, descrito con el mecanismo real. | Sin sellos ni adjetivos (`02` §7). |
 | `/precios` | Los planes, la implementación acompañada y las preguntas frecuentes. | Cifras de `lib/pricing.ts` (`02` §6). |
-| `/privacidad`, `/terminos` | Legal. | El texto lo aprueba el dueño; no se inventa. |
+| `/privacidad` y `/en/privacy` | La política de privacidad. | El texto lo aprueba el dueño; no se inventa. Con traducción (`00` §6). |
+| `/terminos` | Legal. | Sin escribir; lo aprueba el dueño. |
 
 ### 3.1 Cada página
 

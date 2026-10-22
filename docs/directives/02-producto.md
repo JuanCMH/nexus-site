@@ -235,7 +235,7 @@ que **hoy es falso**.
 |---|---|
 | **Agencia** | La cuenta de una agencia en Nexus: su equipo, sus datos y su agente. |
 | **Agente** | El Claude de la agencia, conectado a Nexus como un miembro más. Uno por agencia. |
-| **Conector** | La dirección por la que Claude entra a Nexus. Se autoriza con un código de conexión. |
+| **Conector** | La dirección por la que Claude entra a Nexus. Desde el directorio de Claude se autoriza escribiendo en Nexus el «Código de Claude»; con «Añadir a Claude», aprobando la «Solicitud de conexión» (`/agente`). |
 | **Por confirmar** | El estado de todo lo que el agente propone hasta que una persona lo confirma o lo descarta. |
 | **Correo vinculado** | Una cuenta de correo de la agencia que el agente puede leer. |
 | **Correo por enviar** | Un correo redactado que espera a que una persona lo envíe. |
