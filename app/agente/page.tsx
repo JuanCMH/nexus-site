@@ -122,8 +122,8 @@ export default function AgentPage() {
 
       <h2>Desconectar</h2>
       <p>
-        En Nexus, en <strong>Agente → Puesta en marcha</strong>, la lista de
-        conexiones enseña cada programa conectado. «Cortar la conexión» le quita
+        En Nexus, en <strong>Agente → Puesta en marcha</strong>, «Conexiones
+        activas» enseña cada programa conectado. «Cortar la conexión» le quita
         el acceso de inmediato. Para que el agente deje de entrar, la conexión
         se corta en Nexus.
       </p>

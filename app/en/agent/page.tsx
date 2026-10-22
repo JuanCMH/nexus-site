@@ -138,9 +138,10 @@ export default function AgentEnPage() {
       <h2>Disconnect</h2>
       <p>
         In Nexus, in <strong>Agente → Puesta en marcha</strong> (Agent → Setup),
-        the list of connections shows each connected program. «Cortar la
-        conexión» (Cut the connection) removes its access immediately. To stop
-        the agent from accessing Nexus, cut the connection in Nexus.
+        «Conexiones activas» (Active connections) shows each connected program.
+        «Cortar la conexión» (Cut the connection) removes its access
+        immediately. To stop the agent from accessing Nexus, cut the connection
+        in Nexus.
       </p>
 
       <h2>Your data</h2>

@@ -307,7 +307,7 @@ cumplimiento, entre otros.
 
 ### Desconectar
 
-En Nexus, en **Agente → Puesta en marcha**, la lista de conexiones enseña
+En Nexus, en **Agente → Puesta en marcha**, «Conexiones activas» enseña
 cada programa conectado. «Cortar la conexión» le quita el acceso de
 inmediato. Para que el agente deje de entrar, la conexión se corta en
 Nexus.
@@ -355,8 +355,8 @@ conexión.
 6. **La versión de la guía:** «Escrita para Nexus 0.29.0»
    (`CONNECTOR_GUIDE_APP_VERSION`, en `lib/legal.ts`). Confirmada por la
    sesión de la app el 2026-10-21; el sitio no se publica antes que esa
-   versión. Falta que la sesión de la pantalla del agente confirme el texto
-   exacto de «Cortar la conexión».
+   versión. Todos los nombres de pantalla y de botón de la guía los
+   confirmó la sesión de textos de la app (commit 3289816).
 7. **«Este sitio»:** «Vercel recibe los datos técnicos de cada visita» es
    lo que hace cualquier servidor; Vercel no tiene registro de visitantes
    activado en este proyecto que haya que declarar aparte (confirmar).
