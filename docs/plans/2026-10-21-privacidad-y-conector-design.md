@@ -1,8 +1,8 @@
 # Política de privacidad y guía del conector · Diseño
 
-**Fecha:** 2026-10-21 · **Estado:** propuesta, ya construida en la rama
-`privacidad-y-conector` para revisarla en pantalla; no entra a `main`
-hasta que el dueño apruebe el texto. El texto de la política lo
+**Fecha:** 2026-10-21 · **Estado:** aprobado. El dueño aprobó el texto de
+la política y los 30 días de conservación el 2026-10-21; queda abierta la
+nota «rige la versión española» (pregunta 3). El texto de la política lo
 aprueba el dueño (`00` §7), con revisión legal recomendada (Ley 1581 de
 2012).
 
@@ -325,7 +325,7 @@ conexión.
 
 ## Preguntas abiertas
 
-1. **Conservación tras cancelar: 30 o 90 días.** El Acuerdo de uso (v1,
+1. **Cerrada (2026-10-21): 30 días, como el Acuerdo.** Antes: El Acuerdo de uso (v1,
    2026-10-20) dice treinta días y luego se eliminan. `02` §6 y la FAQ de
    `/precios` dicen «al menos 90 días» y que no se promete un borrado.
    La política sigue al Acuerdo, que es lo que aceptaron las agencias.

@@ -68,7 +68,7 @@ const QUESTIONS: readonly { question: string; answer: ReactNode }[] = [
   {
     question: "¿Qué pasa con mis datos si cancelo?",
     answer:
-      "Se conservan al menos 90 días. Además, el propietario de la agencia puede exportarlos cuando quiera desde «Uso y plan»: un Excel con clientes, pólizas, tareas, documentos, aseguradoras y ramos.",
+      "Se conservan 30 días después de que termina el periodo pagado, y luego se eliminan. Hasta entonces, el propietario de la agencia puede exportarlos desde «Uso y plan»: un Excel con clientes, pólizas, tareas, documentos, aseguradoras y ramos.",
   },
   {
     question: "¿Puedo pagar hoy?",

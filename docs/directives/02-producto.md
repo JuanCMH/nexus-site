@@ -169,7 +169,7 @@ cupos», «gratis para siempre»): describe lo que trae cada plan (dueño,
   archivos, hasta ajustar el plan. Subir de plan se aplica de inmediato y se
   cobra la diferencia; bajar, en la renovación. El mensual se cancela cuando
   se quiera; el anual no se devuelve, salvo en los primeros 14 días. Al
-  cancelar, los datos se conservan al menos 90 días.
+  cancelar, los datos se conservan 30 días (abajo).
 - **Uso y plan** (comprobado en `nexus-app` 0.24.0, en `main` y sin
   publicar, el 2026-10-15): Configuración → Agencia → «Uso y plan», para el
   propietario y los administradores (permiso «Ver el plan y su uso»).
@@ -182,8 +182,11 @@ cupos», «gratis para siempre»): describe lo que trae cada plan (dueño,
   hoja por registro (clientes y pólizas con sus campos, tareas, documentos,
   aseguradoras y ramos) que se descarga durante 7 días. Los archivos no van
   en el Excel.
-- **Datos de una agencia cancelada:** se conservan al menos 90 días. El
-  borrado a los 90 días no está automatizado; no se promete un borrado.
+- **Datos de una agencia cancelada:** la cancelación surte efecto al final
+  del periodo pagado; desde ahí se conservan 30 días para exportarlos y
+  luego se eliminan. Lo dice el Acuerdo de uso (versión 1), y el dueño lo
+  confirmó el 2026-10-21; la política de privacidad dice lo mismo.
+  Cambiarlo exige antes una versión nueva del Acuerdo en `nexus-app`.
 - **Estados de cuenta:** uno por corte, en PDF, en dólares y en pesos a la
   TRM oficial del día. Se dicen «estado de cuenta», no factura. En la beta
   no se emiten.

@@ -144,7 +144,7 @@ Son del dueño del producto. Nadie las resuelve por su cuenta; se preguntan.
 
 | Decisión | Estado | Qué bloquea |
 |---|---|---|
-| Texto de `/privacidad` y `/terminos` | `/privacidad` escrita el 2026-10-21 y por aprobar, con revisión legal recomendada; `/terminos`, sin escribir. Lo aprueba el dueño | Abrir las solicitudes de acceso: recoger correos exige la autorización de tratamiento de datos. El sitio se publica antes, con el formulario cerrado (`03` §8). |
+| Texto de `/privacidad` y `/terminos` | `/privacidad` aprobada por el dueño el 2026-10-21 (revisión legal recomendada); `/terminos`, sin escribir y la aprueba el dueño | Abrir las solicitudes de acceso: recoger correos exige la autorización de tratamiento de datos. El sitio se publica antes, con el formulario cerrado (`03` §8). |
 | Qué más pide el formulario de acceso | Hoy correo y nombre de la agencia | Nada: se amplía después. |
 | Relato del nombre | Propuesto en `01-marca.md` §1, por confirmar | La sección «Sobre Nexus», si la hay. |
 | GSAP como segunda librería de animación | Fuera mientras `motion` baste (§4) | — |
