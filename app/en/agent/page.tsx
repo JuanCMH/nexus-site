@@ -75,7 +75,7 @@ export default function AgentEnPage() {
           Typing it approves the connection.
         </li>
         <li>
-          The authorization page continues on its own and returns to Claude.
+          The authorization page continues automatically and returns to Claude.
         </li>
       </ol>
       <p>
@@ -94,8 +94,10 @@ export default function AgentEnPage() {
           <strong>Agente → Puesta en marcha</strong> (Agent → Setup).
         </li>
         <li>
-          Click «Añadir a Claude» (Add to Claude). Claude adds that agency’s
-          connector and opens its authorization page, which shows a short code.
+          Click «Añadir a Claude» (Add to Claude). Claude opens the dialog to
+          add that agency’s connector, with its name and address already filled
+          in. Confirm it and connect it: the Nexus authorization page opens and
+          shows a short code.
         </li>
         <li>
           A «Solicitud de conexión» (Connection request) with a code appears in
@@ -140,8 +142,8 @@ export default function AgentEnPage() {
         In Nexus, in <strong>Agente → Puesta en marcha</strong> (Agent → Setup),
         «Conexiones activas» (Active connections) shows each connected program.
         «Cortar la conexión» (Cut the connection) removes its access
-        immediately. To stop the agent from accessing Nexus, cut the connection
-        in Nexus.
+        immediately. Removing the connector in Claude does not cut the
+        connection in Nexus: cut it there too.
       </p>
 
       <h2>Your data</h2>

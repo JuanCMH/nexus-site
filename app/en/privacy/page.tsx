@@ -96,9 +96,10 @@ export default function PrivacyEnPage() {
       <ul>
         <li>
           <strong>Account:</strong> name, email, password and, if added, a
-          profile photo. Only a hash of the password is stored, never the
-          password itself. If the person turns on two-step verification, its
-          secret and the hashes of the recovery codes are stored.
+          profile photo. The password is not stored: only its hash is, a value
+          computed from it from which the password cannot be obtained. If the
+          person turns on two-step verification, its secret and the hashes of
+          the recovery codes are stored.
         </li>
         <li>
           <strong>Within each agency:</strong> role, additional permissions and,
@@ -106,8 +107,9 @@ export default function PrivacyEnPage() {
         </li>
         <li>
           <strong>Security:</strong> the computers and browsers approved to open
-          the vault (their name and when they were used) and their sessions;
-          password recovery and email verification codes, which expire.
+          the access vault, where the agency keeps its passwords (their name and
+          when they were used) and their sessions; password recovery and email
+          verification codes, which expire.
         </li>
         <li>
           <strong>Activity:</strong> the agency’s activity log (who created,
@@ -144,10 +146,10 @@ export default function PrivacyEnPage() {
           templates, references, flows and criteria.
         </li>
         <li>
-          <strong>Its linked mailboxes:</strong> Nexus reads the mailboxes the
-          agency links, on the mail servers the agency uses, and sends an email
-          only when a person decides to. Each mailbox password is stored
-          encrypted.
+          <strong>Its linked mailboxes:</strong> Nexus reads the email accounts
+          the agency links, on the mail servers the agency uses, and sends an
+          email only when a person decides to. Each linked email account’s
+          password is stored encrypted.
         </li>
         <li>
           <strong>Its vault:</strong> passwords are encrypted on the computer of
@@ -187,8 +189,8 @@ export default function PrivacyEnPage() {
         </li>
         <li>
           To keep the connection, Nexus stores a hash of the access and refresh
-          tokens, the name of the connected program, who approved it and when it
-          was used.
+          credentials, not the credentials, the name of the connected program,
+          who approved it and when it was used.
         </li>
         <li>
           Files the agent reads or uploads travel through links that expire
@@ -197,7 +199,7 @@ export default function PrivacyEnPage() {
         <li>
           If the agency saves a trigger to notify its Claude routine, Nexus
           sends it notifications that carry only identifiers and what happened,
-          never client data. The trigger token is stored encrypted.
+          never client data. The trigger key is stored encrypted.
         </li>
       </ul>
       <p>
@@ -231,17 +233,18 @@ export default function PrivacyEnPage() {
       <h2>How it is protected</h2>
       <p>
         Communications are encrypted and each person signs in with their own
-        user and permissions. Passwords are stored as hashes, mailbox passwords
-        encrypted, and the vault is encrypted on the computer before it leaves.
-        If a security incident affects an agency’s data, MAIN informs its owner
-        within 72 hours of becoming aware of it.
+        user and permissions. Passwords are stored as hashes, linked email
+        account passwords encrypted, and the vault is encrypted on the computer
+        before it leaves. If a security incident affects an agency’s data, MAIN
+        informs the agency’s owner within 72 hours of becoming aware of it.
       </p>
 
       <h2>How long it is kept</h2>
       <ul>
         <li>
-          While the agency uses Nexus. People delete their records from the app;
-          what is deleted in Nexus is also removed from the documents folder.
+          While the agency uses Nexus. Whoever has permission deletes records
+          from the app; what is deleted in Nexus is also removed from the
+          documents folder.
         </li>
         <li>
           During a suspension or after termination, thirty calendar days to
@@ -274,8 +277,8 @@ export default function PrivacyEnPage() {
           <strong>If you use Nexus:</strong> write to{" "}
           <SupportEmailLink subject="Privacy" /> from your account’s email.
           Inquiries are answered within ten business days and claims within
-          fifteen, as the law requires. You can change your name and photo
-          yourself in the app.
+          fifteen, as the law requires. You can change your name and photo in
+          the app, in «Tu perfil» (Your profile).
         </li>
         <li>
           <strong>If you are a client of an agency:</strong> the agency decides

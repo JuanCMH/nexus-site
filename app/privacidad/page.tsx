@@ -63,8 +63,8 @@ export default function PrivacyPage() {
       <h2>Quién es el responsable</h2>
       <p>
         Nexus es de {CONTROLLER.name} («MAIN»), NIT {CONTROLLER.nit}, con
-        domicilio en la {CONTROLLER.address}. Para todo lo de esta política, el
-        contacto es <SupportEmailLink subject="Privacidad" />.
+        domicilio en la {CONTROLLER.address}. El contacto para cualquier asunto
+        de esta política es <SupportEmailLink subject="Privacidad" />.
       </p>
       <p>
         Esta política se rige por la ley colombiana, en particular por la Ley
@@ -96,8 +96,9 @@ export default function PrivacyPage() {
       <ul>
         <li>
           <strong>Cuenta:</strong> nombre, correo, contraseña y, si la pone,
-          foto de perfil. De la contraseña se guarda solo su huella, nunca la
-          contraseña. Si la persona activa la verificación en dos pasos, se
+          foto de perfil. La contraseña no se guarda: se guarda solo su huella,
+          un valor que se calcula a partir de ella y del que no se puede obtener
+          la contraseña. Si la persona activa la verificación en dos pasos, se
           guardan su secreto y las huellas de los códigos de recuperación.
         </li>
         <li>
@@ -106,9 +107,9 @@ export default function PrivacyPage() {
         </li>
         <li>
           <strong>Seguridad:</strong> los computadores y navegadores aprobados
-          para abrir la bóveda (su nombre y cuándo se usaron) y sus sesiones;
-          los códigos de recuperación de contraseña y de verificación del
-          correo, que caducan.
+          para abrir la bóveda de accesos, donde la agencia guarda sus claves
+          (su nombre y cuándo se usaron) y sus sesiones; los códigos de
+          recuperación de contraseña y de verificación del correo, que caducan.
         </li>
         <li>
           <strong>Actividad:</strong> la bitácora de la agencia (quién creó,
@@ -145,10 +146,10 @@ export default function PrivacyPage() {
           enviar, modelos de correo, referencias, flujos y criterios.
         </li>
         <li>
-          <strong>Sus correos vinculados:</strong> Nexus lee los buzones que la
+          <strong>Sus correos vinculados:</strong> Nexus lee los correos que la
           agencia vincula, en los servidores de correo que ella usa, y envía un
-          correo solo cuando una persona lo decide. La clave de cada buzón se
-          guarda cifrada.
+          correo solo cuando una persona lo decide. La clave de cada correo
+          vinculado se guarda cifrada.
         </li>
         <li>
           <strong>Su bóveda:</strong> las claves se cifran en el computador de
@@ -189,9 +190,9 @@ export default function PrivacyPage() {
           La conexión puede ver y hacer lo mismo que la persona que la aprobó.
         </li>
         <li>
-          Para mantener la conexión, Nexus guarda la huella del acceso y de su
-          renovación, el nombre del programa conectado, quién la aprobó y cuándo
-          se usó.
+          Para mantener la conexión, Nexus guarda la huella de las credenciales
+          de acceso y de renovación, no las credenciales, el nombre del programa
+          conectado, quién la aprobó y cuándo se usó.
         </li>
         <li>
           Los archivos que el agente lee o sube viajan por enlaces que caducan a
@@ -200,7 +201,7 @@ export default function PrivacyPage() {
         <li>
           Si la agencia guarda un disparador para avisar a su rutina de Claude,
           Nexus le envía avisos que llevan solo identificadores y lo que pasó,
-          nunca datos de clientes. El token del disparador se guarda cifrado.
+          nunca datos de clientes. La clave del disparador se guarda cifrada.
         </li>
       </ul>
       <p>
@@ -236,18 +237,18 @@ export default function PrivacyPage() {
       <p>
         Las comunicaciones van cifradas y cada persona entra con su usuario y
         sus permisos. Las contraseñas se guardan como huella, las claves de los
-        buzones cifradas, y la bóveda se cifra en el computador antes de salir.
-        Si ocurre un incidente de seguridad que afecte los datos de una agencia,
-        MAIN lo informa a su propietario dentro de las 72 horas siguientes a
-        conocerlo.
+        correos vinculados, cifradas, y la bóveda se cifra en el computador
+        antes de salir. Si ocurre un incidente de seguridad que afecte los datos
+        de una agencia, MAIN lo informa al propietario de la agencia dentro de
+        las 72 horas siguientes a conocerlo.
       </p>
 
       <h2>Cuánto se conservan</h2>
       <ul>
         <li>
-          Mientras la agencia use Nexus. Las personas borran sus registros desde
-          la aplicación; lo que se borra en Nexus sale también de la carpeta de
-          documentos.
+          Mientras la agencia use Nexus. Quien tiene permiso borra los registros
+          desde la aplicación; lo que se borra en Nexus sale también de la
+          carpeta de documentos.
         </li>
         <li>
           Durante una suspensión o tras la terminación, treinta días calendario
@@ -282,8 +283,8 @@ export default function PrivacyPage() {
           <strong>Si usas Nexus:</strong> escribe a{" "}
           <SupportEmailLink subject="Privacidad" /> desde el correo de tu
           cuenta. Las consultas se responden en un máximo de diez días hábiles y
-          los reclamos en quince, como fija la ley. Tu nombre y tu foto los
-          cambias tú mismo en la aplicación.
+          los reclamos en quince, como fija la ley. Tu nombre y tu foto se
+          cambian desde la aplicación, en «Tu perfil».
         </li>
         <li>
           <strong>Si eres cliente de una agencia:</strong> tus datos los decide

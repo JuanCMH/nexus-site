@@ -90,7 +90,7 @@ cuánto los conserva y cómo pedir que se consulten, corrijan o borren.
 
 Nexus es de MAIN Módulos, Aplicaciones e Innovación S.A.S. («MAIN»), NIT
 901.510.461-9, con domicilio en la Carrera 7 B n.º 123-46, Bogotá D.C.,
-Colombia. Para todo lo de esta política, el contacto es `SUPPORT_EMAIL`.
+Colombia. El contacto para cualquier asunto de esta política es `SUPPORT_EMAIL`.
 
 Esta política se rige por la ley colombiana, en particular por la Ley 1581
 de 2012 de protección de datos personales.
@@ -112,13 +112,12 @@ Nexus trata dos clases de datos, con papeles distintos:
 ### Qué datos de las personas que usan Nexus
 
 - **Cuenta:** nombre, correo, contraseña y, si la pone, foto de perfil.
-  De la contraseña se guarda solo su huella, nunca la contraseña. Si la
+  La contraseña no se guarda: se guarda solo su huella, un valor que se calcula a partir de ella y del que no se puede obtener la contraseña. Si la
   persona activa la verificación en dos pasos, se guardan su secreto y las
   huellas de los códigos de recuperación.
 - **En cada agencia:** el rol, los permisos adicionales y, si la agencia
   los registra, el cargo y el teléfono de trabajo.
-- **Seguridad:** los computadores y navegadores aprobados para abrir la
-  bóveda (su nombre y cuándo se usaron) y sus sesiones; los códigos de
+- **Seguridad:** los computadores y navegadores aprobados para abrir la bóveda de accesos, donde la agencia guarda sus claves (su nombre y cuándo se usaron) y sus sesiones; los códigos de
   recuperación de contraseña y de verificación del correo, que caducan.
 - **Actividad:** la bitácora de la agencia (quién creó, cambió o eliminó
   qué, y cuándo) y la aceptación del Acuerdo de uso (quién, cuándo y qué
@@ -141,9 +140,9 @@ Nexus trata dos clases de datos, con papeles distintos:
 - **Su trabajo:** documentos y sus archivos, tareas y su historial,
   cotizaciones de cumplimiento, correos redactados y por enviar, modelos de
   correo, referencias, flujos y criterios.
-- **Sus correos vinculados:** Nexus lee los buzones que la agencia vincula,
+- **Sus correos vinculados:** Nexus lee los correos que la agencia vincula,
   en los servidores de correo que ella usa, y envía un correo solo cuando
-  una persona lo decide. La clave de cada buzón se guarda cifrada.
+  una persona lo decide. La clave de cada correo vinculado se guarda cifrada.
 - **Su bóveda:** las claves se cifran en el computador de quien las guarda
   antes de enviarse. Nexus guarda solo el texto cifrado y no puede leerlo
   ni recuperarlo.
@@ -169,14 +168,13 @@ propia cuenta de Claude**, de Anthropic, por el conector de Nexus.
   cuenta y las condiciones que la agencia tiene con Anthropic. La agencia
   elige qué conectar y puede cortar la conexión en Nexus cuando quiera.
 - La conexión puede ver y hacer lo mismo que la persona que la aprobó.
-- Para mantener la conexión, Nexus guarda la huella del acceso y de su
-  renovación, el nombre del programa conectado, quién la aprobó y cuándo se
+- Para mantener la conexión, Nexus guarda la huella de las credenciales de acceso y de renovación, no las credenciales, el nombre del programa conectado, quién la aprobó y cuándo se
   usó.
 - Los archivos que el agente lee o sube viajan por enlaces que caducan a
   los treinta minutos.
 - Si la agencia guarda un disparador para avisar a su rutina de Claude,
   Nexus le envía avisos que llevan solo identificadores y lo que pasó,
-  nunca datos de clientes. El token del disparador se guarda cifrado.
+  nunca datos de clientes. La clave del disparador se guarda cifrada.
 
 ### Con quién se comparten
 
@@ -205,15 +203,12 @@ carpeta de documentos de la agencia, que Nexus mantiene como copia.
 ### Cómo se protegen
 
 Las comunicaciones van cifradas y cada persona entra con su usuario y sus
-permisos. Las contraseñas se guardan como huella, las claves de los buzones
-cifradas, y la bóveda se cifra en el computador antes de salir. Si ocurre
-un incidente de seguridad que afecte los datos de una agencia, MAIN lo
-informa a su propietario dentro de las 72 horas siguientes a conocerlo.
+permisos. Las contraseñas se guardan como huella, las claves de los correos vinculados, cifradas, y la bóveda se cifra en el computador antes de salir. Si ocurre
+un incidente de seguridad que afecte los datos de una agencia, MAIN lo informa al propietario de la agencia dentro de las 72 horas siguientes a conocerlo.
 
 ### Cuánto se conservan
 
-- Mientras la agencia use Nexus. Las personas borran sus registros desde la
-  aplicación; lo que se borra en Nexus sale también de la carpeta de
+- Mientras la agencia use Nexus. Quien tiene permiso borra los registros desde la aplicación; lo que se borra en Nexus sale también de la carpeta de
   documentos.
 - Durante una suspensión o tras la terminación, treinta días calendario
   para exportarlos. Después se eliminan.
@@ -236,8 +231,7 @@ Industria y Comercio.
 
 - **Si usas Nexus:** escribe a `SUPPORT_EMAIL` desde el correo de tu
   cuenta. Las consultas se responden en un máximo de diez días hábiles y
-  los reclamos en quince, como fija la ley. Tu nombre y tu foto los cambias
-  tú mismo en la aplicación.
+  los reclamos en quince, como fija la ley. Tu nombre y tu foto se cambian desde la aplicación, en «Tu perfil».
 - **Si eres cliente de una agencia:** tus datos los decide la agencia.
   Dirígete a ella.
 
@@ -268,11 +262,10 @@ la apruebe alguien con los permisos que el agente necesita.
 ### Conectar desde el directorio de Claude
 
 1. En Claude, abre el directorio de conectores, busca Nexus y conéctalo.
-2. Claude abre la página de autorización de Nexus, que enseña un código de
-   ocho caracteres. Vale diez minutos.
+2. Claude abre la página de autorización de Nexus, que muestra un código de ocho caracteres. Es válido diez minutos.
 3. En Nexus, ve a **Agente → Puesta en marcha → Código de Claude**, escribe
    el código y haz clic en «Conectar». Escribirlo es aprobar la conexión.
-4. La página de autorización sigue sola y vuelve a Claude.
+4. La página de autorización sigue automáticamente y vuelve a Claude.
 
 La conexión queda unida a la agencia de quien escribió el código.
 
@@ -283,8 +276,7 @@ trabajas con dos agencias en Nexus, la segunda se conecta con su propio
 conector:
 
 1. En Nexus, entra a esa agencia y ve a **Agente → Puesta en marcha**.
-2. Haz clic en «Añadir a Claude». Claude añade el conector de esa agencia y
-   abre su página de autorización, que enseña un código corto.
+2. Haz clic en «Añadir a Claude». Claude abre el diálogo para añadir el conector de esa agencia, con su nombre y su dirección ya escritos. Confírmalo y conéctalo: se abre la página de autorización de Nexus, que muestra un código corto.
 3. En Nexus aparece una «Solicitud de conexión» con un código. Si coincide
    con el de la página de Claude, haz clic en «Aprobar».
 
@@ -307,10 +299,8 @@ cumplimiento, entre otros.
 
 ### Desconectar
 
-En Nexus, en **Agente → Puesta en marcha**, «Conexiones activas» enseña
-cada programa conectado. «Cortar la conexión» le quita el acceso de
-inmediato. Para que el agente deje de entrar, la conexión se corta en
-Nexus.
+En Nexus, en **Agente → Puesta en marcha**, «Conexiones activas» muestra cada programa conectado. «Cortar la conexión» le quita el acceso de
+inmediato. Quitar el conector en Claude no corta la conexión en Nexus: córtala allí también.
 
 ### Tus datos
 

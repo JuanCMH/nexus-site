@@ -59,15 +59,17 @@ export default function AgentPage() {
           En Claude, abre el directorio de conectores, busca Nexus y conéctalo.
         </li>
         <li>
-          Claude abre la página de autorización de Nexus, que enseña un código
-          de ocho caracteres. Vale diez minutos.
+          Claude abre la página de autorización de Nexus, que muestra un código
+          de ocho caracteres. Es válido diez minutos.
         </li>
         <li>
           En Nexus, ve a{" "}
           <strong>Agente → Puesta en marcha → Código de Claude</strong>, escribe
           el código y haz clic en «Conectar». Escribirlo es aprobar la conexión.
         </li>
-        <li>La página de autorización sigue sola y vuelve a Claude.</li>
+        <li>
+          La página de autorización sigue automáticamente y vuelve a Claude.
+        </li>
       </ol>
       <p>La conexión queda unida a la agencia de quien escribió el código.</p>
 
@@ -83,8 +85,10 @@ export default function AgentPage() {
           <strong>Agente → Puesta en marcha</strong>.
         </li>
         <li>
-          Haz clic en «Añadir a Claude». Claude añade el conector de esa agencia
-          y abre su página de autorización, que enseña un código corto.
+          Haz clic en «Añadir a Claude». Claude abre el diálogo para añadir el
+          conector de esa agencia, con su nombre y su dirección ya escritos.
+          Confírmalo y conéctalo: se abre la página de autorización de Nexus,
+          que muestra un código corto.
         </li>
         <li>
           En Nexus aparece una «Solicitud de conexión» con un código. Si
@@ -123,9 +127,9 @@ export default function AgentPage() {
       <h2>Desconectar</h2>
       <p>
         En Nexus, en <strong>Agente → Puesta en marcha</strong>, «Conexiones
-        activas» enseña cada programa conectado. «Cortar la conexión» le quita
-        el acceso de inmediato. Para que el agente deje de entrar, la conexión
-        se corta en Nexus.
+        activas» muestra cada programa conectado. «Cortar la conexión» le quita
+        el acceso de inmediato. Quitar el conector en Claude no corta la
+        conexión en Nexus: córtala allí también.
       </p>
 
       <h2>Tus datos</h2>
