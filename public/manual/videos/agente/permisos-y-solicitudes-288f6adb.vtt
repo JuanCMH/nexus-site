@@ -1,0 +1,42 @@
+WEBVTT
+
+00:00:03.318 --> 00:00:07.449
+1. Cuando una solicitud espera por ti, se abre sola «El agente pide permiso»
+En cualquier pantalla de la agencia, una vez por solicitud
+
+00:00:07.449 --> 00:00:09.453
+La solicitud dice qué pide, por qué y de dónde salió
+
+00:00:09.453 --> 00:00:13.963
+2. Lee los cambios
+Cada uno con su casilla: desmarca lo que no quieras aplicar
+
+00:00:13.963 --> 00:00:21.247
+3. Decide
+«Aprobar 1 cambio» lo aplica con tus permisos. «Corregir…» se lo devuelve al agente. «Descartar» no aplica nada
+
+00:00:21.247 --> 00:00:25.060
+Al aprobar, «Que el agente haga lo mismo sin preguntar» le deja un permiso por un tiempo
+Durante 2 horas, el resto del día, mientras la tarea esté abierta o 30 días para un flujo
+
+00:00:25.060 --> 00:00:28.825
+4. «Más tarde» la cierra
+La solicitud sigue esperando en Agente › Por confirmar y en «Mi día»
+
+00:00:28.825 --> 00:00:32.986
+5. En Agente, abre «Permisos»
+
+00:00:32.986 --> 00:00:36.709
+6. «Permisos vigentes»
+Lo que el agente aplica sin preguntar y quién lo dio. «Revocar» lo apaga en el acto
+
+00:00:36.709 --> 00:00:43.143
+7. «Qué pregunta siempre»
+Qué hace el agente en cada área. Quien administra la cambia con «Editar»
+
+00:00:43.143 --> 00:00:49.043
+8. «Historial de solicitudes»
+Lo que pidió, cómo quedó y quién lo decidió. Lo aplicado se deshace durante siete días
+
+00:00:49.043 --> 00:00:51.647
+La solicitud que quedó para más tarde está ahí, en «Espera»

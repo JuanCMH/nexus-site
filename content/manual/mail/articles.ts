@@ -1,0 +1,152 @@
+import type { ManualArticleMeta } from "../types";
+
+/** Los artículos de «correos», en su orden de lectura (03 §3.2). */
+export const MAIL_ARTICLES: ManualArticleMeta[] = [
+  {
+    slug: "revisar-y-enviar",
+    category: "correos",
+    title: "Revisar y enviar un correo por enviar",
+    description:
+      "Lee el correo que redactó el agente, corrígelo y envíalo o descártalo desde «Correos → Por enviar», en «Míos» o «Del equipo»",
+    keywords: [
+      "por enviar",
+      "enviar correo",
+      "descartar",
+      "prueba",
+      "agente redacta",
+      "no se envió",
+      "reintentar",
+      "permiso de enviar",
+      "míos",
+      "del equipo",
+      "responsable",
+      "motivo de descarte",
+    ],
+    appVersion: "0.68.3",
+  },
+  {
+    slug: "escribir-un-correo",
+    category: "correos",
+    title: "Escribir un correo",
+    description:
+      "Escribe un correo con «Nuevo correo» o desde la ficha de un cliente, una póliza o una tarea, con formato y adjuntos",
+    keywords: [
+      "nuevo correo",
+      "redactar",
+      "formato",
+      "negrita",
+      "adjuntos",
+      "insertar dato",
+      "copia oculta",
+      "vista previa",
+      "correo principal",
+      "reenviar",
+    ],
+    appVersion: "0.68.3",
+  },
+  {
+    slug: "conversacion-de-un-correo",
+    category: "correos",
+    title: "La conversación de un correo",
+    description:
+      "Lee todos los correos de una conversación desde la ficha de un registro, contéstala o pídele la respuesta al agente",
+    keywords: [
+      "ver la conversación",
+      "hilo",
+      "responder",
+      "responder a todos",
+      "reenviar",
+      "pedir respuesta al agente",
+      "adjuntos del correo",
+      "correo nuevo",
+    ],
+    appVersion: "0.68.3",
+  },
+  {
+    slug: "modelos-de-correo",
+    category: "correos",
+    title: "Modelos de correo",
+    description:
+      "Crea los correos tipo de la agencia, con datos del cliente o la póliza que Nexus completa al escribir desde su ficha",
+    keywords: [
+      "plantilla de correo",
+      "correo tipo",
+      "aviso de renovación",
+      "datos entre llaves",
+      "cuándo usarlo",
+      "proponer modelo",
+    ],
+    appVersion: "0.68.3",
+  },
+  {
+    slug: "vincular-un-correo",
+    category: "correos",
+    title: "Vincular un correo",
+    description:
+      "Vincula un correo de la agencia por IMAP, registra su clave y decide quién lo ve y si se puede enviar desde él",
+    keywords: [
+      "correo vinculado",
+      "imap",
+      "smtp",
+      "gmail",
+      "microsoft 365",
+      "contraseña de aplicación",
+      "clave del correo",
+      "personas con acceso",
+      "permitir envío",
+      "desvincular",
+      "correo principal",
+    ],
+    appVersion: "0.68.3",
+  },
+  {
+    slug: "reglas-de-correo",
+    category: "correos",
+    title: "Reglas de correo",
+    description:
+      "Decide qué correos no le dan trabajo al agente: no crear tareas por ellos o ignorarlos",
+    keywords: [
+      "ignorar remitente",
+      "no crear tareas",
+      "boletines",
+      "publicidad",
+      "dominio",
+      "filtro de correo",
+      "llevar las reglas de correo",
+    ],
+    appVersion: "0.68.3",
+  },
+  {
+    slug: "presentacion-y-firma",
+    category: "correos",
+    title: "Presentación y firma de los correos",
+    description:
+      "Decide cómo se ven los correos de la agencia —acento, letra, encabezado, logo y pie— y la firma de cada correo vinculado",
+    keywords: [
+      "firma",
+      "logo",
+      "encabezado",
+      "pie del correo",
+      "aviso legal",
+      "tipo de letra",
+      "color de acento",
+    ],
+    appVersion: "0.68.3",
+  },
+  {
+    slug: "enviados-y-descartados",
+    category: "correos",
+    title: "Enviados y descartados",
+    description:
+      "Consulta los correos que salieron, como salieron, y los que se descartaron sin enviarse",
+    keywords: [
+      "enviados",
+      "descartados",
+      "historial de correos",
+      "copia en enviados",
+      "correos del cliente",
+      "motivo",
+    ],
+    appVersion: "0.68.3",
+  },
+];

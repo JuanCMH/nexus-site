@@ -1,0 +1,31 @@
+WEBVTT
+
+00:00:04.305 --> 00:00:07.122
+1. En Cumplimiento, haz clic en «Nueva cotización»
+
+00:00:07.122 --> 00:00:15.361
+2. Elige el tipo y, si aplica, el cliente
+Su nombre y su identificación pasan a «Tomador» y «NIT o cédula»
+
+00:00:15.361 --> 00:00:22.388
+3. Completa el contrato
+El inicio propone la fecha de hoy y el fin, seis meses después
+
+00:00:22.388 --> 00:00:26.692
+4. Haz clic en «Crear cotización»
+
+00:00:26.692 --> 00:00:30.094
+Nace en borrador, con su número, y se abre su ficha
+Trae el primer amparo de la agencia y los gastos de expedición de sus reglas
+
+00:00:30.094 --> 00:00:39.987
+5. Revisa los amparos y el resultado
+«Resultado» se recalcula con cada cambio; «Cómo se calculó» enseña la cuenta
+
+00:00:39.987 --> 00:00:44.866
+6. Haz clic en «Exportar» y elige «PDF»
+El archivo sale de lo guardado: con cambios sin guardar, «Exportar» queda desactivado
+
+00:00:48.651 --> 00:00:51.875
+El PDF queda guardado en Documentos, vinculado al cliente
+Se llama con el número de la cotización y el nombre del tomador

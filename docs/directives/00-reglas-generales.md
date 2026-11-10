@@ -148,7 +148,6 @@ Son del dueño del producto. Nadie las resuelve por su cuenta; se preguntan.
 | Qué más pide el formulario de acceso | Hoy correo y nombre de la agencia | Nada: se amplía después. |
 | Relato del nombre | Propuesto en `01-marca.md` §1, por confirmar | La sección «Sobre Nexus», si la hay. |
 | GSAP como segunda librería de animación | Fuera mientras `motion` baste (§4) | — |
-| Formato del manual (TSX o MDX) | Se decide al construirlo (`03-reglas-sitio.md` §3.2) | — |
 
 Cuando una se cierra, se borra de esta tabla y la regla entra en su
 documento.

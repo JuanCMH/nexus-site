@@ -1,0 +1,30 @@
+WEBVTT
+
+00:00:04.307 --> 00:00:09.066
+1. En Clientes, haz clic en «Nuevo cliente»
+
+00:00:09.066 --> 00:00:28.202
+2. Completa «Identificación»
+Los datos obligatorios llevan un asterisco
+
+00:00:28.202 --> 00:00:32.316
+3. Revisa «Cómo queda»
+El cliente como se verá: iniciales, nombre, identificación y tipo de persona
+
+00:00:32.316 --> 00:00:45.153
+4. Pasa a «Contacto» con el botón del pie
+
+00:00:45.153 --> 00:00:48.338
+5. Deja la «Relación» en «Cliente»
+«Prospecto» es para quien pidió una cotización y aún no compra
+
+00:00:48.338 --> 00:00:52.464
+6. Haz clic en «Crear cliente»
+
+00:00:52.464 --> 00:00:55.666
+Aparece «Cliente creado» y se abre su ficha
+El cliente se crea sin responsable
+
+00:00:55.666 --> 00:00:58.678
+Desde la ficha se le asigna responsable
+y se le añaden pólizas, documentos y tareas

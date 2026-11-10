@@ -1,0 +1,34 @@
+WEBVTT
+
+00:00:04.304 --> 00:00:08.565
+1. En Correos, abre «Reglas»
+Cada regla dice su condición, su motivo y lo que hace
+
+00:00:08.565 --> 00:00:11.382
+2. Haz clic en «Nueva regla»
+
+00:00:11.382 --> 00:00:16.790
+3. Escribe la condición
+Un remitente o un dominio, un texto del asunto, o los dos
+
+00:00:16.790 --> 00:00:21.562
+4. Elige el «Correo vinculado»
+«Todos», o solo uno
+
+00:00:21.562 --> 00:00:27.925
+5. Elige «Qué hace»
+«No crear tareas»: el agente ve el correo y no abre tareas por él
+
+00:00:27.925 --> 00:00:34.957
+6. Escribe el «Motivo»
+Es obligatorio: dice por qué la agencia no atiende esos correos
+
+00:00:34.957 --> 00:00:37.832
+7. Haz clic en «Añadir regla»
+
+00:00:39.640 --> 00:00:42.353
+La regla vale desde ese momento
+Aparece en la lista con su condición, su correo vinculado, su motivo y lo que hace
+
+00:00:42.353 --> 00:00:45.155
+Un clic en la fila la corrige; «Quitar» la retira

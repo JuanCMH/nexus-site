@@ -1,0 +1,28 @@
+WEBVTT
+
+00:00:04.304 --> 00:00:07.506
+Configuración → Plantillas → «Pólizas»
+A la izquierda, las secciones; en el centro, sus campos
+
+00:00:07.506 --> 00:00:11.533
+1. Elige la sección
+Aquí, «Riesgo asegurado»
+
+00:00:11.533 --> 00:00:18.042
+2. Haz clic en «Añadir campo» y elige su tipo
+Aquí, «Texto corto»
+
+00:00:18.042 --> 00:00:32.589
+3. En «General», escribe su «Etiqueta» y su «Ayuda»
+También el ancho, si es obligatorio y si es un dato reservado
+
+00:00:32.589 --> 00:00:43.937
+4. En «Agente», di cómo debe obtener el campo
+La «Indicación para el agente»: la persona no la ve en el formulario
+
+00:00:43.937 --> 00:00:48.491
+5. Haz clic en «Guardar»
+Mientras no guardes, el editor dice cuántos cambios hay sin guardar
+
+00:00:50.499 --> 00:00:56.240
+6. Comprueba el formulario en «Vista previa»

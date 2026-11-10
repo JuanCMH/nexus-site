@@ -30,7 +30,7 @@ components/
   site/                 lo que se repite entre páginas: cabecera, pie, tema
   app-replica/          pantallas de Nexus reproducidas con fidelidad (04 §7)
   <página>/             las piezas de una sola página (home/, solicitar-acceso/)
-content/                el manual, cuando exista (§3.2)
+content/manual/         el manual: registro, categorías, capturas y un .tsx por artículo (§3.2)
 lib/
   site.ts               direcciones y nombre del sitio; única fuente
   pricing.ts            los planes y sus precios; única fuente (02 §6)
@@ -84,21 +84,56 @@ queda qué existe y para qué.
 El manual del sitio es **para personas**. El del agente (los flujos que lee
 Claude) vive en `nexus-app` y no se copia aquí.
 
-Requisitos, cuando se construya:
+Se construyó el 2026-10-20 (`docs/plans/2026-10-20-manual-design.md`),
+siguiendo el manual de Harmony.
 
-- **Contenido como código**, versionado en `content/`. El formato (TSX o
-  MDX) se decide entonces (`00` §7); MDX exige anotar la dependencia.
-- Un **registro único** de artículos (título, categoría, ruta, resumen): de
-  él salen el índice, la navegación, el sitemap y la búsqueda. Un artículo
-  que no está en el registro no existe.
-- Categorías que siguen el menú de la app: primeros pasos, tareas,
-  clientes, pólizas, cotizaciones de cumplimiento, documentos, accesos,
-  agente, configuración.
-- Piezas de artículo: pasos numerados, nota, advertencia, tabla, captura.
+- **Contenido como código**, en TSX (decidido el 2026-10-20: sin
+  dependencia nueva, y los enlaces y las capturas se comprueban al
+  compilar). Cada artículo es `content/manual/<categoría>/<artículo>.tsx`
+  y exporta `sections` (el índice «En esta página») y `Article`. Las
+  piezas viven en `components/manual/`.
+- Un **registro único** de artículos (`content/manual/articles.ts`:
+  título, categoría, ruta, resumen, palabras clave, versión): de él salen
+  el índice, la navegación, el sitemap y la búsqueda. Un artículo que no
+  está en el registro no existe; su cuerpo se enlaza en
+  `content/manual/bodies.ts`, y la prueba del registro falla si falta.
+- Rutas en español: `/manual/primeros-pasos/crear-tu-cuenta`. Una
+  categoría sin artículos no se enseña ni genera ruta.
+- Entre artículos se enlaza con `ArticleLink` (`categoría/slug`): un
+  destino que no está en el registro rompe el build.
+- Categorías que siguen el menú de la app, en su orden: primeros pasos,
+  inicio, tareas, correos, chats, agente, clientes, pólizas, cotizaciones
+  de cumplimiento, documentos, directrices, contactos, accesos y
+  configuración. Cada una lleva su registro y sus cuerpos en su carpeta
+  (`content/manual/<carpeta>/articles.ts` y `bodies.ts`); el registro de
+  arriba los junta.
+- Piezas de artículo: pasos numerados, nota, advertencia, tabla, captura y
+  vídeo.
 - Búsqueda en el cliente sobre el registro; sin servicio externo.
 - Cada artículo dice **para qué versión se escribió**. Uno que describe una
   pantalla que cambió se corrige o se retira; no se deja «casi cierto».
-- Las capturas son de la app real (`01` §7).
+- Las capturas son de la app real (`01` §7): el par claro y oscuro a doble
+  densidad en `public/manual/<clave>-<huella>.png` (y `-dark.png`),
+  registradas en `content/manual/screenshots.ts`, que genera el arnés y no
+  se edita a mano. El arnés abre la app web de `nexus-app` en local
+  (`bun run dev:web`) con Playwright, contra un backend de Convex local y
+  aislado (no el deployment de desarrollo que comparten los worktrees),
+  con la agencia de demostración Altavista Seguros (`convex/demoSeed.ts`)
+  sembrada. Hoy vive fuera del repo porque Playwright no es dependencia
+  del sitio. Si se repite a menudo, se decide con el dueño si entra.
+- **Vídeos** (aprobados por el dueño el 2026-11-10, con el piloto «Crear
+  una tarea recurrente»): uno por tarea, de 40 a 90 s, grabado en la app
+  real con la misma agencia de demostración, sin audio, con portada de
+  marca, un rótulo por paso y cursor visible. Viven en
+  `public/manual/videos/<categoría>/<clave>-<huella>.mp4`, con su cartel
+  `.jpg` y sus subtítulos `.vtt` (los mismos rótulos), registrados en
+  `content/manual/videos.ts`, que genera el estudio y no se edita a mano.
+  `Video` (`components/manual/video.tsx`) usa los controles nativos, no
+  precarga nada y enseña los pasos como capítulos, la duración, la fecha
+  de grabación y la versión de la app. Mismo origen: no abre la política
+  de contenido. El estudio vive fuera del repo, como el arnés. Un vídeo
+  que enseña una pantalla que cambió se regraba o se retira, como un
+  artículo.
 
 Se escribe solo lo que existe: ningún artículo describe una función
 planeada.

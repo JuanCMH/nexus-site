@@ -9,7 +9,7 @@ import { APP_URL } from "@/lib/site";
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/75 backdrop-blur-xl">
-      <div className="mx-auto flex h-14 w-full max-w-6xl items-center gap-6 px-6">
+      <div className="mx-auto flex h-14 w-full max-w-6xl items-center gap-4 px-6 xl:gap-6">
         <Link
           href="/"
           aria-label="Nexus, inicio"
@@ -18,7 +18,7 @@ export function SiteHeader() {
           <NexusWordmark className="h-4 w-auto" />
         </Link>
         <nav aria-label="Principal" className="hidden lg:block">
-          <ul className="flex items-center gap-6">
+          <ul className="flex items-center gap-4 whitespace-nowrap xl:gap-6">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
                 <Link

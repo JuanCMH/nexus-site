@@ -1,0 +1,33 @@
+WEBVTT
+
+00:00:04.304 --> 00:00:08.633
+1. En Documentos, abre «Carpetas de origen»
+Está en el grupo «Ajustes» del menú del módulo
+
+00:00:08.633 --> 00:00:11.837
+Cada carpeta dice su estado, dónde está, cómo está ordenada y cuánto se ha traído
+
+00:00:11.837 --> 00:00:15.556
+2. Haz clic en «Añadir carpeta»
+
+00:00:15.556 --> 00:00:20.362
+3. Escribe su «Nombre»
+Un nombre para reconocerla
+
+00:00:20.362 --> 00:00:25.839
+4. En «Dónde está», deja «En la nube» y pega el enlace
+Google Drive, OneDrive, SharePoint o Dropbox
+
+00:00:25.839 --> 00:00:31.421
+5. Describe «Cómo está ordenada»
+Opcional: lo lee el agente para buscar
+
+00:00:31.421 --> 00:00:34.296
+6. Haz clic en «Registrar carpeta»
+
+00:00:36.302 --> 00:00:42.114
+La carpeta queda «En uso»
+El agente la recorre con su propio conector y anota lo que trae
+
+00:00:42.114 --> 00:00:48.325
+En «Más acciones»: ver lo que se trajo, editar, retirar o quitar de Nexus

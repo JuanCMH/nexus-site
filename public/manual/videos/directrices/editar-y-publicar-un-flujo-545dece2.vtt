@@ -1,0 +1,35 @@
+WEBVTT
+
+00:00:03.262 --> 00:00:07.920
+1. En Directrices → Flujos, abre el flujo
+
+00:00:07.920 --> 00:00:13.485
+2. Haz clic en «Editar»
+Lo que cambias es un borrador
+
+00:00:13.485 --> 00:00:26.316
+3. En «Pasos», haz clic en «Añadir paso» y escríbelo
+El título es opcional; para moverlo, se arrastra
+
+00:00:26.316 --> 00:00:32.428
+4. Comprueba «Así lo lee el agente»
+Se actualiza mientras escribes
+
+00:00:32.428 --> 00:00:34.047
+«Datos» y «Límites»: el nombre, el para qué, las referencias y dónde se detiene
+
+00:00:34.047 --> 00:00:36.940
+5. Haz clic en «Guardar borrador»
+Los cambios quedan guardados sin publicar
+
+00:00:39.145 --> 00:00:43.309
+6. Para que el agente lo siga, haz clic en «Publicar»
+«Qué cambia» es opcional y se lee en el historial de versiones
+
+00:00:43.309 --> 00:00:49.517
+Al confirmar con «Publicar», es lo que sigue el agente
+La versión anterior queda en el historial; aquí no se publica
+
+00:00:49.517 --> 00:00:58.099
+7. Si el borrador no te convence, sal con «Cancelar» y, en el aviso, haz clic en «Descartar»
+La versión vigente no cambia

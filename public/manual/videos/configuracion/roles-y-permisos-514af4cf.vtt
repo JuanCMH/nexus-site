@@ -1,0 +1,37 @@
+WEBVTT
+
+00:00:04.304 --> 00:00:07.507
+Configuración → Equipo → «Roles»
+Los cuatro roles fijos de Nexus y los que arma la agencia
+
+00:00:07.507 --> 00:00:10.366
+1. Haz clic en «Nuevo rol»
+
+00:00:10.366 --> 00:00:19.318
+2. Escribe su «Nombre» y una «Descripción»
+Para qué es el rol
+
+00:00:19.318 --> 00:00:23.236
+3. Elige un módulo
+A la izquierda, en «Operación» y «Configuración»; cada uno dice cuántos permisos da
+
+00:00:23.236 --> 00:00:27.307
+4. Marca los permisos
+Ordenados en «Ver», «Acciones» y «Administrar»
+
+00:00:27.307 --> 00:00:32.100
+«Necesita»: Nexus marca también el permiso del que depende
+
+00:00:32.100 --> 00:00:36.224
+«Delicado»: tiene un riesgo y solo lo concede un administrador o el propietario
+
+00:00:36.224 --> 00:00:40.912
+5. Revisa «Todo lo concedido»
+Lo que el rol da, módulo por módulo
+
+00:00:40.912 --> 00:00:43.777
+6. Haz clic en «Crear rol»
+
+00:00:45.988 --> 00:00:50.000
+El rol queda en la lista, con sus permisos y cuántas personas lo tienen
+A quién se le da se decide en «Miembros»
