@@ -1,10 +1,12 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
 /**
  * Una página para leer de corrido: la política de privacidad y la guía del
  * conector, cada una con su traducción al inglés
- * (docs/plans/2026-10-21-privacidad-y-conector-design.md). El cuerpo se
+ * (docs/plans/2026-10-21-privacidad-y-conector-design.md), y el Acuerdo de
+ * uso, solo en español (docs/plans/2026-11-10-terminos-design.md). El cuerpo se
  * escribe con etiquetas simples (`h2`, `p`, `ul`, `ol`, `table`) y esta
  * pieza les da la escala de 04 §4.
  */
@@ -22,8 +24,8 @@ export function DocumentPage({
   lead: string;
   /** La versión y la fecha, o la versión de la app para la que se escribió. */
   meta: string;
-  /** La misma página en el otro idioma. */
-  translation: { href: string; label: string; hrefLang: "es" | "en" };
+  /** La misma página en el otro idioma, si la tiene (00 §6). */
+  translation?: { href: string; label: string; hrefLang: "es" | "en" };
   children: ReactNode;
 }) {
   return (
@@ -32,15 +34,22 @@ export function DocumentPage({
       className="mx-auto w-full max-w-2xl px-6 py-16 md:py-24"
     >
       <header>
-        <Link
-          href={translation.href}
-          hrefLang={translation.hrefLang}
-          lang={translation.hrefLang}
-          className="rounded-sm text-sm text-nexus-sapphire-text underline-offset-4 outline-none hover:underline focus-visible:ring-[3px] focus-visible:ring-ring/50"
+        {translation ? (
+          <Link
+            href={translation.href}
+            hrefLang={translation.hrefLang}
+            lang={translation.hrefLang}
+            className="rounded-sm text-sm text-nexus-sapphire-text underline-offset-4 outline-none hover:underline focus-visible:ring-[3px] focus-visible:ring-ring/50"
+          >
+            {translation.label}
+          </Link>
+        ) : null}
+        <h1
+          className={cn(
+            "text-3xl font-medium tracking-tight text-balance md:text-4xl",
+            translation && "mt-6",
+          )}
         >
-          {translation.label}
-        </Link>
-        <h1 className="mt-6 text-3xl font-medium tracking-tight text-balance md:text-4xl">
           {title}
         </h1>
         <p className="mt-4 text-lg leading-relaxed text-muted-foreground md:text-xl">

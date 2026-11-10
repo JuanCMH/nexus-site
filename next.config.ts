@@ -56,6 +56,12 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // La app enlaza `n3xus.cloud/ayuda` (el botón «Ayuda» y el mensaje de la
+  // invitación): la ayuda es el manual. Temporal (307) para que `/ayuda`
+  // pueda ser otra cosa sin quedar fijada en las cachés.
+  async redirects() {
+    return [{ source: "/ayuda", destination: "/manual", permanent: false }];
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

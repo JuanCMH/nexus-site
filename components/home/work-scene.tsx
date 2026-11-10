@@ -39,7 +39,7 @@ const STEPS: readonly {
   {
     title: "Tú la revisas y la confirmas",
     detail:
-      "Alguien de tu equipo la revisa y la confirma. Hasta entonces no queda firme.",
+      "Con la supervisión de entrada, «Revisar todo», alguien de tu equipo la revisa y la confirma; hasta entonces no queda firme. La agencia puede dejar entrar confirmado lo que Nexus verificó.",
     stage: "selected",
   },
   {

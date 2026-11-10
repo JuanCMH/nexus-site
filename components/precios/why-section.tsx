@@ -17,7 +17,7 @@ const GROUPS = [
     title: "Tu agente, con tu Claude",
     items: [
       "El agente trabaja con la suscripción de Claude de tu agencia, que se paga aparte a Anthropic.",
-      "Lee los correos vinculados y los documentos, y propone. Tu equipo confirma.",
+      "Lee los correos vinculados y los documentos, y propone. Nexus lo verifica y tu equipo revisa según la supervisión que elige la agencia.",
     ],
   },
   {

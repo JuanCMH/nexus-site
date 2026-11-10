@@ -29,15 +29,20 @@ aún no existe sigue en §7.
 
 La generación anterior de Nexus traía una IA por dentro. Esta no.
 
-- **La agencia conecta su propio Claude.** Con su suscripción, en su cuenta.
-  Nexus no vende IA ni cobra por uso de IA.
+- **La agencia conecta su propio asistente.** Claude es el que el sitio
+  nombra y recomienda; el conector también sirve a ChatGPT y a otros
+  asistentes compatibles con MCP (decidido el 2026-11-10, §3.5). Con su
+  suscripción, en su cuenta. Nexus no vende IA ni cobra por uso de IA.
 - **El agente es un usuario más**, con sus propios permisos, que entra por
   un conector. Puede consultar lo que hay, registrar y actualizar clientes y
   pólizas, guardar documentos, crear tareas y repartirlas, y redactar
   correos.
 - **Nexus pone las barandas**: la estructura de los datos, la validación,
-  los permisos, el estado «Por confirmar» y la bitácora. Lo que el agente
-  propone espera a que una persona lo confirme.
+  los permisos, el estado «Por confirmar» y la bitácora. Nexus verifica
+  los clientes y las pólizas que registra el agente y, según la
+  supervisión que eligen el propietario o un administrador, una persona
+  confirma todo o solo lo que no pasó la verificación; lo demás que
+  propone espera siempre en «Por confirmar» (§3.5).
 - **Funciona con todo apagado.** El conector vive en la nube: el agente
   puede trabajar de madrugada, en tareas programadas, sin un computador
   encendido.
@@ -105,7 +110,9 @@ propuesta, abrir la bóveda, borrar registros. Eso es de personas. Lo que
 ### 3.5 Lo que el agente aplica y quién lo supervisa
 
 Comprobado en `nexus-app` 0.51.0 (`src/shared/agent/approvals.ts`,
-`src/shared/verification/supervision.ts`) el 2026-10-29.
+`src/shared/verification/supervision.ts`) el 2026-10-29, y de nuevo en la
+0.68.3 (`dfe601e`: además `convex/supervision.ts`, `agentConnections.ts` y
+la guía del conector) el 2026-11-10.
 
 - **El asistente es de la agencia, y no solo Claude**: el conector sirve a
   Claude, a ChatGPT y a cualquier cliente MCP. La conexión de la agencia la
@@ -118,17 +125,33 @@ Comprobado en `nexus-app` 0.51.0 (`src/shared/agent/approvals.ts`,
   presentación, publicar un flujo, referencias, plazos y renovación,
   organización de documentos, criterios y reparto, reglas de cumplimiento),
   y cada uno se deshace durante siete días. Eliminar, invitar, los datos de
-  una persona y los accesos preguntan siempre; la agencia puede pedir que
-  pregunte en cualquier área. Lo demás que necesita permiso lo pide en una
+  una persona, los accesos, cerrar una tarea sin prueba y ligar una póliza
+  a su principal preguntan siempre; los roles preguntan, salvo un permiso
+  por un tiempo; el propietario o un administrador puede marcar cualquier
+  área para que pregunte («Qué pregunta siempre»). Lo demás que necesita permiso lo pide en una
   solicitud que una persona aprueba o devuelve.
-- **Supervisión**, que elige el propietario: «Revisar todo» (la de
+- **Supervisión**, que eligen el propietario o un administrador en
+  Agente → Supervisión: «Revisar todo» (la de
   entrada), «Revisar excepciones» o «Revisar solo lo bloqueado». Nexus
   verifica cada cliente y póliza del agente; con los dos últimos niveles,
-  lo verificado entra confirmado sin pasar por una persona.
+  lo verificado entra confirmado sin pasar por una persona. Lo demás que
+  propone (aseguradoras, ramos, criterios…) espera siempre en «Por
+  confirmar».
 
 Por eso «lo que propone el agente espera a una persona» es cierto **con la
-supervisión de entrada**; con otra, no siempre. Cómo lo dice la landing es
-decisión del dueño (§7).
+supervisión de entrada**; con otra, no siempre. **Cómo se dice** (decidido
+el 2026-11-10, comprobado en la 0.68.3, `dfe601e`): «el agente propone,
+Nexus lo verifica y tu equipo decide qué revisa». Donde el sitio cuenta el
+recorrido de una póliza con «tú la confirmas», aclara que es la supervisión
+de entrada, «Revisar todo». Lo que sigue siendo siempre de personas, y se
+puede afirmar sin condición: enviar un correo, abrir la bóveda y confirmar
+la propia propuesta del agente. Eliminar e invitar preguntan siempre.
+
+**Cualquier asistente** (decidido el 2026-11-10): Claude es el asistente
+que el sitio nombra y recomienda (los planes de §6, la guía «Conectar
+Claude con Nexus»); se dice, sin promesas de calidad por asistente, que el
+conector también sirve a ChatGPT y a otros asistentes compatibles con MCP.
+`/agente` describe los pasos que da la pantalla para cada uno.
 
 ### 3.3 Control y rastro
 
@@ -293,11 +316,13 @@ que **hoy es falso**.
 | «Cotizador», «compara aseguradoras» | Solo cotizaciones de cumplimiento. |
 | «Te avisamos por correo», «recordatorios automáticos» | Nexus no envía avisos: crea tareas. Los correos los redacta el agente y los envía una persona. |
 | «Disponible para Mac», «app para iPhone/Android», «en la tienda de aplicaciones» | Ver §4: en el celular es la web instalada. |
-| «Comisiones», «cartera y cobranza», «siniestros», «WhatsApp», «portal de clientes», «sincronización con las aseguradoras» | No existen. Configuración → Conexiones (0.51.0) conecta los portales de Sura y AXA Colpatria **solo para consultar**: se describe así, sin prometer sincronización. «Toda tu agencia en un solo lugar» se sostiene con los módulos de §3, sin dar a entender ninguno de estos. |
+| «Gestión de comisiones», «liquidación de comisiones», «cartera y cobranza», «siniestros», «WhatsApp», «portal de clientes», «sincronización con las aseguradoras» | No existen. **De comisiones sí existe** (decidido el 2026-11-10, comprobado en la 0.68.3), y se describe así, como un dato y un cálculo informativo: la «Comisión por defecto (%)» de cada ramo, el «% de comisión» de cada póliza y la «Comisión estimada» del tablero (prima neta por el %), que ve quien tiene el permiso de datos reservados. Nexus no liquida, no concilia con las aseguradoras ni registra pagos de comisiones. Configuración → Conexiones (0.51.0) conecta los portales de Sura y AXA Colpatria **solo para consultar**: se describe así, sin prometer sincronización. «Toda tu agencia en un solo lugar» se sostiene con los módulos de §3, sin dar a entender ninguno de estos. |
 | «Flujos automáticos», «automatizaciones» | Un flujo es un texto que sigue el agente. Nexus no lo dispara ni tiene motor de ejecución. |
 | «Usado por N agencias», testimonios, logos de clientes | No hay nada de eso que sea cierto y publicable. No se inventa prueba social. |
 | «Seguridad de nivel bancario», sellos, certificaciones | No hay certificación alguna. Se describe el mecanismo real (§3, Accesos). |
-| «El agente trabaja solo» | El agente propone; una persona confirma y envía. |
+| «El agente trabaja solo», «sin revisar nada» | El agente propone y Nexus verifica los clientes y las pólizas; cuánto revisa una persona lo elige la agencia (§3.5). Enviar correos, abrir la bóveda y confirmar su propia propuesta son siempre de personas. |
+| «Solo funciona con Claude», «hecho para ChatGPT» | Claude es el recomendado; el conector sirve a cualquier cliente MCP con OAuth. Sin promesas de calidad por asistente. |
+| «Nexus está en el directorio de Claude» | En la 0.68.3 aún no (`CLAUDE_DIRECTORY_URL` vacía). La guía describe ese camino sin decir que ya está publicado. |
 | «Prueba gratis», «precio de fundador» | No están decididos (2026-10-14). |
 | «Ilimitado», «sin cupos», «gratis para siempre» como promesa | Los planes pueden ajustarse durante la beta (§6). |
 | «El plan más popular» | Hay una agencia usando Nexus; se dice «Recomendado». |
@@ -310,8 +335,8 @@ que **hoy es falso**.
 | Término | Qué es |
 |---|---|
 | **Agencia** | La cuenta de una agencia en Nexus: su equipo, sus datos y su agente. |
-| **Agente** | El Claude de la agencia, conectado a Nexus como un miembro más. Uno por agencia. |
-| **Conector** | La dirección por la que Claude entra a Nexus. Desde el directorio de Claude se autoriza escribiendo en Nexus el «Código de Claude»; con «Añadir a Claude», aprobando la «Solicitud de conexión» (`/agente`). |
+| **Agente** | El asistente de la agencia (Claude, ChatGPT u otro cliente MCP), conectado a Nexus como un miembro más, con sus propios permisos. Una conexión por agencia; la aprueban el propietario o un administrador. Cada persona puede conectar además el suyo en «Mi asistente», con los permisos de su rol. |
+| **Conector** | La dirección por la que el asistente entra a Nexus, con OAuth. Con «Añadir a Claude» (o pegando la dirección en ChatGPT u otro cliente MCP) se aprueba la «Solicitud de conexión» en Agente → Configuración; desde el directorio de Claude, se escribe en Nexus el código de ocho caracteres. El personal, «Nexus - Agente personal», se aprueba en «Mi asistente» (`/agente`). |
 | **Por confirmar** | El estado de todo lo que el agente propone hasta que una persona lo confirma o lo descarta. |
 | **Correo vinculado** | Una cuenta de correo de la agencia que el agente puede leer. |
 | **Correo por enviar** | Un correo redactado que espera a que una persona lo envíe. |

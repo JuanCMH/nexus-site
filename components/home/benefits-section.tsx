@@ -24,7 +24,7 @@ const BENEFITS: readonly {
   {
     title: "Lee los correos de toda la agencia, no solo el tuyo",
     detail:
-      "Vincula los correos de la agencia y el de cada persona. El agente los lee, también de madrugada y sin un computador encendido, y en la mañana sus propuestas te esperan «Por confirmar».",
+      "Vincula los correos de la agencia y el de cada persona. El agente los lee, también de madrugada y sin un computador encendido, y en la mañana lo que encontró ya está en Nexus, con lo que necesita una persona esperándote «Por confirmar».",
     Vignette: MailboxesVignette,
     wide: true,
   },
@@ -47,9 +47,9 @@ const BENEFITS: readonly {
     Vignette: RenewalVignette,
   },
   {
-    title: "Nada queda firme sin una persona",
+    title: "Tú decides qué revisa una persona",
     detail:
-      "El agente propone y dice de dónde sacó cada dato. Tu equipo confirma, envía los correos y guarda las claves.",
+      "El agente propone y dice de dónde sacó cada dato. Nexus lo verifica y, según la supervisión que elijas, tu equipo confirma todo o solo lo que no pasó la verificación. Enviar los correos y abrir la bóveda sigue siendo de tu equipo.",
     Vignette: ConfirmVignette,
   },
   {

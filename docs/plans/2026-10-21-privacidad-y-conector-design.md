@@ -350,3 +350,83 @@ conexión.
 7. **«Este sitio»:** «Vercel recibe los datos técnicos de cada visita» es
    lo que hace cualquier servidor; Vercel no tiene registro de visitantes
    activado en este proyecto que haya que declarar aparte (confirmar).
+
+## Versión 2 (2026-11-10)
+
+**Estado:** aplicada por decisión del dueño del 2026-11-10; el texto final
+lo aprueba el dueño (`00` §7). `PRIVACY_POLICY` pasa a `version: 2`,
+`effectiveDate: "2026-11-10"`.
+
+**Por qué.** Desde la 0.68.3 el conector no es solo de Claude: sirve a
+Claude, a ChatGPT y a cualquier cliente MCP con OAuth
+(`convex/agentOauth.ts`, `src/shared/agent/providers.ts`), y la activación
+del agente puede ser una rutina de Claude, un agente de ChatGPT o un
+webhook firmado a una dirección de la agencia
+(`src/shared/agent/wake-triggers.ts`). La versión 1 decía que el agente es
+«Claude, con la cuenta de la agencia» y que solo Anthropic recibe avisos:
+quedó incompleta.
+
+**Qué cambió** (en `/privacidad` y `/en/privacy`; el resto de la política
+es idéntico):
+
+- El título de la sección: «El agente: Claude, con la cuenta de la
+  agencia» → «El agente: el asistente de la agencia, con su propia
+  cuenta».
+- La entrada: la agencia conecta el asistente que elija, con su propia
+  cuenta: Claude, de Anthropic, u otro compatible, como ChatGPT, de OpenAI.
+- Lo que lee el agente llega al proveedor de ese asistente y se trata según
+  la cuenta y las condiciones de la agencia con él (antes: «llega a Claude
+  … con Anthropic»).
+- El disparador avisa al asistente: una rutina de Claude, un agente de
+  ChatGPT o una dirección propia. Los avisos siguen llevando solo
+  identificadores y lo que pasó (`src/shared/agent/wake.ts`).
+- La tabla de proveedores: Anthropic recibe los avisos a la rutina de
+  Claude; se añade OpenAI, que recibe los avisos al agente de ChatGPT, con
+  los mismos datos.
+- La frase bajo la tabla: lo que lee el agente va al asistente que conecta
+  la agencia, con su cuenta.
+
+**Lo que no se tocó y queda para el dueño:**
+
+- «La conexión puede ver y hacer lo mismo que la persona que la aprobó.»
+  En la 0.68.3 la conexión del agente la aprueban el propietario o un
+  administrador y trabaja con los permisos del agente; cuando trabaja para
+  alguien, con los de esa persona; el asistente de una persona («Mi
+  asistente»), con los de esa persona (`convex/agentConnections.ts`,
+  `requireAgencyApprover`). La frase sigue siendo cierta solo en parte.
+- El asistente personal: lo que lee llega al proveedor de la cuenta de esa
+  persona. La política no lo nombra.
+- La página no tiene historial de versiones; no se añadió una nota de
+  cambios.
+
+## La guía, puesta al día a la 0.68.3 (2026-11-10)
+
+**Estado:** aplicada por decisión del dueño del 2026-11-10.
+`CONNECTOR_GUIDE_APP_VERSION` pasa a `"0.68.3"`. Comprobada en
+`nexus-app` `dfe601e` (0.68.3).
+
+La guía sigue siendo «Conectar Claude con Nexus»: Claude es el asistente
+recomendado, y una sección breve dice que también funciona con ChatGPT y
+otros asistentes compatibles con MCP, con los pasos que la 0.68.3 da en
+pantalla (`connector-guide.tsx`).
+
+| Antes (0.29.0) | Ahora (0.68.3) | Dónde se comprobó |
+|---|---|---|
+| Agente → Puesta en marcha | Agente → Configuración (la franja «Puesta en marcha» está dentro) | `agent-sections.ts` |
+| Agente → Puesta en marcha → Código de Claude, botón «Conectar» | «¿El asistente muestra un código de ocho caracteres?» y «Conectar», en Agente → Configuración | `connection-code-form.tsx` |
+| «Añadir a Claude» para la segunda agencia | «Añadir a Claude» es la vía principal: «Conector de esta agencia», «Nexus - Agente de la agencia», con la agencia entre paréntesis si se pertenece a varias; «Enlace para Owner» en Team o Enterprise | `connector-guide.tsx`, `shared/agent/connection.ts` |
+| «Solicitud de conexión» y «Aprobar» | Igual, más «Rechazar» y «Aprobar y reemplazar» | `connection-requests.tsx` |
+| La aprueba quien tenga «Conectar el agente y definir su horario»; la conexión puede lo que esa persona | La aprueban el propietario o un administrador; trabaja con los permisos del agente | `agentConnections.ts` |
+| — | ChatGPT («Copiar dirección», «Abrir ChatGPT», «Add custom MCP server», OAuth) y «Otro cliente MCP» | `connector-guide.tsx` |
+| — | «Activación del agente»: rutina de Claude, agente de ChatGPT (Business o Enterprise) o webhook; «Horario de atención» | `attention-routine-guide.tsx`, `agent-wake-card.tsx` |
+| — | «Mi asistente», «Nexus - Agente personal», «Tus conexiones», «Pedir ayuda al agente» | `my-assistant.tsx` |
+| «Lee y propone»: todo espera en «Por confirmar» | Nexus verifica clientes y pólizas y la supervisión decide qué confirma una persona; ocho áreas se aplican por su cuenta y se deshacen siete días; lo demás pregunta | `supervision.ts`, `approvals.ts`, `agent-permissions.tsx` |
+| No borra registros | Eliminar pregunta siempre | `approvals.ts` (`ASK_KINDS`, `always`) |
+| «Conexiones activas» → «Cortar la conexión» | «Cortar la conexión» en el bloque de la conexión; «Tus conexiones» en Mi asistente; «Asistente de cada persona» | `agent-cloud-connection.tsx`, `personal-connections-card.tsx` |
+
+**Pendiente:** en la 0.68.3 `CLAUDE_DIRECTORY_URL` está vacía: Nexus aún no
+está publicado en el directorio de Claude. La guía describe la conexión
+desde el directorio sin decir que ya está publicado; el camino del código
+de ocho caracteres existe en la app. Los roles «preguntan, salvo un permiso
+por un tiempo»: la guía lo dice así en vez de «preguntan siempre», como
+dice la pantalla («Pregunta, o admite un permiso por un tiempo»).

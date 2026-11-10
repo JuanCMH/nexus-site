@@ -34,7 +34,8 @@ content/manual/         el manual: registro, categorías, capturas y un .tsx por
 lib/
   site.ts               direcciones y nombre del sitio; única fuente
   pricing.ts            los planes y sus precios; única fuente (02 §6)
-  legal.ts              responsable, versión de la política y de la guía del conector
+  legal.ts              responsable, versión de la política, del Acuerdo de uso y de la guía del conector
+  agency-agreement.ts   el texto del Acuerdo de uso, copia fiel del de nexus-app
   trm.ts                la TRM del día, para dar los precios en pesos
   utils.ts              `cn` (clsx + tailwind-merge)
 public/brand/           logo e icono como archivos
@@ -62,12 +63,13 @@ queda qué existe y para qué.
 | `/` | La landing: qué es Nexus, para quién, cómo trabaja con el agente, y los llamados a la acción. | Dos llamados: **«Solicitar acceso»** (principal) e **«Iniciar sesión»** (a `APP_URL`, en la cabecera, en el hero y en el cierre), para quien ya tiene una agencia. |
 | `/solicitar-acceso` | El formulario de la beta cerrada y su confirmación. | §8. |
 | `/descargar` | Bajar el instalador de la última versión. | §5. |
+| `/ayuda` | Redirige a `/manual` (307). | La enlaza la app: el botón «Ayuda» y el mensaje de la invitación (`nexus-app/src/shared/help.ts`). Decidido el 2026-11-10; la redirección vive en `next.config.ts`. |
 | `/manual` y `/manual/<categoría>/<artículo>` | El manual para personas. | §3.2. |
 | `/agente` y `/en/agent` | La guía del conector: cómo se conecta Claude a Nexus, qué hace el agente y cómo se desconecta. | La documentación pública que exige el directorio de Claude. Con traducción (`00` §6). |
 | `/seguridad` | Cómo se guardan los datos, la bóveda, permisos y bitácora, descrito con el mecanismo real. | Sin sellos ni adjetivos (`02` §7). |
 | `/precios` | Los planes, la implementación acompañada y las preguntas frecuentes. | Cifras de `lib/pricing.ts` (`02` §6). |
 | `/privacidad` y `/en/privacy` | La política de privacidad. | El texto lo aprueba el dueño; no se inventa. Con traducción (`00` §6). |
-| `/terminos` | Legal. | Sin escribir; lo aprueba el dueño. |
+| `/terminos` | El Acuerdo de uso de Nexus, el que acepta el propietario de cada agencia. | Copia fiel de `nexus-app/src/shared/legal/agency-agreement.ts` (decidido el 2026-11-10); versión y fecha en `AGENCY_AGREEMENT` (`lib/legal.ts`). Un cambio allá se copia aquí en el mismo commit. Sin traducción. |
 
 ### 3.1 Cada página
 
@@ -253,6 +255,7 @@ reglas; a 2026-10-11 aún no existe):
 
 **En el sitio:**
 
+- Pide correo y nombre de la agencia, y nada más (decidido el 2026-11-10).
 - El formulario es nativo, sin librería, y enseña cuatro estados: enviando,
   recibida, error y demasiados intentos.
 - Sin `API_URL` **no finge**: el botón queda desactivado y un aviso dice

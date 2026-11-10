@@ -39,5 +39,5 @@ Resumen operativo:
 - Textos visibles y rutas en español; identificadores y archivos en inglés,
   kebab-case, sin barrels. Iconos solo de `@remixicon/react`.
 - `push`, despliegues y dominio los ejecuta el dueño.
-- Decisiones abiertas (precios, textos legales, relato del nombre): `00`
-  §7. Se preguntan, no se resuelven solas.
+- Decisiones abiertas: `00` §7 (a 2026-11-10, ninguna). Una nueva se
+  pregunta, no se resuelve sola.

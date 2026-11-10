@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArticleLink } from "@/components/manual/article-link";
 import { ArticleSection } from "@/components/manual/article-section";
 import { Callout } from "@/components/manual/callout";
@@ -5,6 +6,9 @@ import { ManualTable } from "@/components/manual/manual-table";
 import { Screenshot } from "@/components/manual/screenshot";
 import { Step, Steps } from "@/components/manual/steps";
 import type { ManualArticleSection } from "../types";
+
+const linkClassName =
+  "rounded-sm text-nexus-sapphire-text underline-offset-4 outline-none hover:underline focus-visible:ring-[3px] focus-visible:ring-ring/50";
 
 export const sections: ManualArticleSection[] = [
   { id: "tus-agencias", title: "Tus agencias" },
@@ -149,6 +153,13 @@ export function Article() {
           agencia» o cerrar la sesión.
         </p>
         <p>Al resto del equipo el acuerdo no le pide nada.</p>
+        <p>
+          La versión vigente también se lee en este sitio:{" "}
+          <Link href="/terminos" className={linkClassName}>
+            Acuerdo de uso de Nexus
+          </Link>
+          .
+        </p>
         <p>
           Lo siguiente es{" "}
           <ArticleLink to="primeros-pasos/conocer-la-pantalla" />.

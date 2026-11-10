@@ -10,7 +10,7 @@ const SOLVES: readonly { today: string; withNexus: string }[] = [
   {
     today: "Cada póliza se digita a mano desde un PDF",
     withNexus:
-      "Tu agente lee los correos vinculados y las carátulas, y propone la póliza y su cliente. Tú revisas y confirmas. Puede hacerlo de madrugada, sin un computador encendido.",
+      "Tu agente lee los correos vinculados y las carátulas, y propone la póliza y su cliente. Nexus la verifica y tú la confirmas, o entra confirmada si tu agencia así lo eligió. Puede hacerlo de madrugada, sin un computador encendido.",
   },
   {
     today: "La cartera vive en un Excel que cada quien llena a su manera",

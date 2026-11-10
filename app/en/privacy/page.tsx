@@ -36,7 +36,12 @@ const PROVIDERS = [
   ],
   [
     "Anthropic",
-    "Receives notifications to the agency’s routine",
+    "Receives notifications to the agency’s Claude routine",
+    "Only identifiers and what happened",
+  ],
+  [
+    "OpenAI",
+    "Receives notifications to the agency’s ChatGPT agent",
     "Only identifiers and what happened",
   ],
   ["GitHub", "Distributes desktop app updates", "No agency data"],
@@ -87,7 +92,8 @@ export default function PrivacyEnPage() {
           <strong>Data an agency records about its clients.</strong> The agency
           is the controller: it obtains its clients’ authorization and handles
           their requests. MAIN is the processor and handles that data only to
-          provide the service, as set out in the Terms of Use each agency
+          provide the service, as set out in the{" "}
+          <Link href="/terminos">Terms of Use</Link> (in Spanish) each agency
           accepts.
         </li>
       </ul>
@@ -170,22 +176,27 @@ export default function PrivacyEnPage() {
         fix an error. Nexus uses no third-party analytics or advertising.
       </p>
 
-      <h2>The agent: Claude, under the agency’s account</h2>
+      <h2>The agent: the agency’s assistant, under its own account</h2>
       <p>
-        Nexus does not include artificial intelligence. Each agency can connect{" "}
-        <strong>its own Claude account</strong>, from Anthropic, through the
-        Nexus connector.
+        Nexus does not include artificial intelligence. Through the Nexus
+        connector, each agency can connect{" "}
+        <strong>the assistant it chooses, under its own account</strong>:
+        Claude, from Anthropic, or another compatible one, such as ChatGPT, from
+        OpenAI.
       </p>
       <ul>
         <li>
           What the agent reads through the connector (clients, policies, emails,
-          documents) reaches Claude by the agency’s decision and is handled
-          under the account and terms the agency has with Anthropic. The agency
-          chooses what to connect and can cut the connection in Nexus at any
-          time.
+          documents) reaches that assistant’s provider by the agency’s decision
+          and is handled under the account and terms the agency has with that
+          provider. The agency chooses what to connect and can cut the
+          connection in Nexus at any time.
         </li>
         <li>
-          The connection can see and do the same as the person who approved it.
+          The agency’s connection sees and does what the agent’s permissions
+          allow. If a person connects their own assistant («Mi asistente»), that
+          connection sees and does what that person’s role allows, and what it
+          reads reaches the provider of the account they connected it with.
         </li>
         <li>
           To keep the connection, Nexus stores a hash of the access and refresh
@@ -197,9 +208,10 @@ export default function PrivacyEnPage() {
           after thirty minutes.
         </li>
         <li>
-          If the agency saves a trigger to notify its Claude routine, Nexus
-          sends it notifications that carry only identifiers and what happened,
-          never client data. The trigger key is stored encrypted.
+          If the agency saves a trigger to notify its assistant (a Claude
+          routine, a ChatGPT agent or an address of its own), Nexus sends it
+          notifications that carry only identifiers and what happened, never
+          client data. The trigger key is stored encrypted.
         </li>
       </ul>
       <p>
@@ -217,8 +229,8 @@ export default function PrivacyEnPage() {
         rows={PROVIDERS}
       />
       <p>
-        What the agent reads through the connector goes to the agency’s Claude
-        account, as explained above.
+        What the agent reads through the connector goes to the assistant the
+        agency connects, under its account, as explained above.
       </p>
 
       <h2>Where it is stored</h2>

@@ -37,7 +37,12 @@ const PROVIDERS = [
   ],
   [
     "Anthropic",
-    "Recibe los avisos a la rutina de la agencia",
+    "Recibe los avisos a la rutina de Claude de la agencia",
+    "Solo identificadores y lo que pasó",
+  ],
+  [
+    "OpenAI",
+    "Recibe los avisos al agente de ChatGPT de la agencia",
     "Solo identificadores y lo que pasó",
   ],
   [
@@ -87,8 +92,8 @@ export default function PrivacyPage() {
           <strong>Los que una agencia registra sobre sus clientes.</strong> La
           agencia es la responsable: obtiene la autorización de sus clientes y
           atiende sus reclamos. MAIN es el encargado y los trata solo para
-          prestar el servicio, como establece el Acuerdo de uso que acepta cada
-          agencia.
+          prestar el servicio, como establece el{" "}
+          <Link href="/terminos">Acuerdo de uso</Link> que acepta cada agencia.
         </li>
       </ul>
 
@@ -172,22 +177,26 @@ export default function PrivacyPage() {
         publicidad.
       </p>
 
-      <h2>El agente: Claude, con la cuenta de la agencia</h2>
+      <h2>El agente: el asistente de la agencia, con su propia cuenta</h2>
       <p>
-        Nexus no trae inteligencia artificial. Cada agencia puede conectar{" "}
-        <strong>su propia cuenta de Claude</strong>, de Anthropic, por el
-        conector de Nexus.
+        Nexus no trae inteligencia artificial. Cada agencia puede conectar por
+        el conector de Nexus{" "}
+        <strong>el asistente que elija, con su propia cuenta</strong>: Claude,
+        de Anthropic, u otro compatible, como ChatGPT, de OpenAI.
       </p>
       <ul>
         <li>
           Lo que el agente lee por el conector (clientes, pólizas, correos,
-          documentos) llega a Claude por decisión de la agencia y se trata según
-          la cuenta y las condiciones que la agencia tiene con Anthropic. La
-          agencia elige qué conectar y puede cortar la conexión en Nexus cuando
-          quiera.
+          documentos) llega al proveedor de ese asistente por decisión de la
+          agencia y se trata según la cuenta y las condiciones que la agencia
+          tiene con él. La agencia elige qué conectar y puede cortar la conexión
+          en Nexus cuando quiera.
         </li>
         <li>
-          La conexión puede ver y hacer lo mismo que la persona que la aprobó.
+          La conexión de la agencia ve y hace lo que permiten los permisos del
+          agente. Si una persona conecta su propio asistente («Mi asistente»),
+          esa conexión ve y hace lo que permite el rol de esa persona, y lo que
+          lee llega al proveedor de la cuenta con que la conectó.
         </li>
         <li>
           Para mantener la conexión, Nexus guarda la huella de las credenciales
@@ -199,9 +208,10 @@ export default function PrivacyPage() {
           los treinta minutos.
         </li>
         <li>
-          Si la agencia guarda un disparador para avisar a su rutina de Claude,
-          Nexus le envía avisos que llevan solo identificadores y lo que pasó,
-          nunca datos de clientes. La clave del disparador se guarda cifrada.
+          Si la agencia guarda un disparador para avisar a su asistente (una
+          rutina de Claude, un agente de ChatGPT o una dirección propia), Nexus
+          le envía avisos que llevan solo identificadores y lo que pasó, nunca
+          datos de clientes. La clave del disparador se guarda cifrada.
         </li>
       </ul>
       <p>
@@ -220,8 +230,8 @@ export default function PrivacyPage() {
         rows={PROVIDERS}
       />
       <p>
-        Lo que el agente lee por el conector va a la cuenta de Claude de la
-        agencia, como se explica arriba.
+        Lo que el agente lee por el conector va al asistente que conecta la
+        agencia, con su cuenta, como se explica arriba.
       </p>
 
       <h2>Dónde se guardan</h2>

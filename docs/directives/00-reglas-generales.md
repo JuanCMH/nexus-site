@@ -142,12 +142,25 @@ Cómo se escribe está en `01-marca.md` §6.
 
 Son del dueño del producto. Nadie las resuelve por su cuenta; se preguntan.
 
+A 2026-11-10 no queda ninguna abierta. Las últimas se cerraron así:
+
+- `/privacidad`, aprobada el 2026-10-21 (versión 2 el 2026-11-10: el
+  agente puede ser otro asistente compatible); `/terminos` es el Acuerdo de
+  uso de `nexus-app`, reproducido fiel (`03` §3). Se recomienda una
+  revisión legal de las dos.
+- El formulario de acceso pide correo y nombre de la agencia, y no se
+  amplía (`03` §8).
+- El relato del nombre está confirmado (`01` §1).
+- GSAP sigue fuera mientras `motion` baste (§4).
+- Del manual y la landing (2026-11-10): cómo se dice la supervisión del
+  agente (`02` §3.5), cualquier asistente (`02` §3.5), las comisiones
+  (`02` §7), la guía `/agente` a la 0.68.3 y `/ayuda`, que redirige a
+  `/manual` (`03` §3).
+
+Una decisión nueva entra en esta tabla:
+
 | Decisión | Estado | Qué bloquea |
 |---|---|---|
-| Texto de `/privacidad` y `/terminos` | `/privacidad` aprobada por el dueño el 2026-10-21 (revisión legal recomendada); `/terminos`, sin escribir y la aprueba el dueño | Abrir las solicitudes de acceso: recoger correos exige la autorización de tratamiento de datos. El sitio se publica antes, con el formulario cerrado (`03` §8). |
-| Qué más pide el formulario de acceso | Hoy correo y nombre de la agencia | Nada: se amplía después. |
-| Relato del nombre | Propuesto en `01-marca.md` §1, por confirmar | La sección «Sobre Nexus», si la hay. |
-| GSAP como segunda librería de animación | Fuera mientras `motion` baste (§4) | — |
 
 Cuando una se cierra, se borra de esta tabla y la regla entra en su
 documento.

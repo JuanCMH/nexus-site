@@ -64,7 +64,7 @@ export const CLAUDE_PLANS_URL = "https://claude.com/pricing";
 export const SITE_NAME = "Nexus";
 
 export const SITE_DESCRIPTION =
-  "Clientes, pólizas, renovaciones y documentos de tu agencia de seguros en un solo registro. Conecta tu Claude: el agente propone y tu equipo confirma.";
+  "Clientes, pólizas, renovaciones y documentos de tu agencia de seguros en un solo registro. Conecta tu Claude: el agente propone, Nexus lo verifica y tu equipo decide qué revisa.";
 
 /**
  * Soporte, a quien se pide cambiar, ampliar o cancelar un plan, los extras,

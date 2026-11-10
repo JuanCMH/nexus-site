@@ -18,11 +18,11 @@ va en mayúsculas, porque es un dibujo (§3).
 producto: une al cliente con sus pólizas, cada póliza con sus documentos y
 cada pendiente con quien lo lleva, en un solo registro.
 
-> **Por confirmar con el dueño.** Este relato del nombre es una propuesta
-> escrita el 2026-10-11. La generación anterior decía que el nombre venía
-> «del escudo de Zeus»; eso es la *égida* (Aegis), no Nexus, y no se repite.
-> Mientras no se confirme, el relato no se publica como historia de la marca;
-> la etimología sí es un hecho.
+Este es el relato del nombre: propuesto el 2026-10-11 y confirmado por el
+dueño el 2026-11-10. Se puede publicar como historia de la marca, con estas
+palabras o más cortas, sin añadirle hechos (fechas, fundadores, anécdotas)
+que no estén aquí. La generación anterior decía que el nombre venía «del
+escudo de Zeus»; eso es la *égida* (Aegis), no Nexus, y no se repite.
 
 Cuando hace falta distinguir superficies, se dice **«Nexus para escritorio»**
 y **«Nexus en la web»**. Es el mismo producto con los mismos datos.

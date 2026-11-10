@@ -90,7 +90,8 @@ Inicio, Correos, Chats, Directrices y Contactos.
 
 ## Decisiones abiertas
 
-Del dueño, encontradas al escribir el manual contra la 0.51.0:
+Cerradas el 2026-11-10 (ver «Decisiones (cerradas el 2026-11-10)», más
+abajo). Del dueño, encontradas al escribir el manual contra la 0.51.0:
 
 - **El agente aplica por su cuenta** y la supervisión puede dejar entrar lo
   verificado sin una persona (`02` §3.5). La landing dice «el agente
@@ -193,14 +194,21 @@ solo crea el agente (`agente/memoria`, `agente/ejecucion-incompleta`,
 `agente/encargo-cerrar-tareas`, `tareas/recurrente-propuesta`). Esos
 artículos se leen completos sin ellas.
 
-### Decisiones abiertas nuevas
+### Decisiones (cerradas el 2026-11-10)
 
-- **Comisiones:** el tablero enseña «Comisión estimada» («Por año, según
-  el % de cada póliza») a quien tiene el permiso de datos reservados. El
-  manual lo describe en una línea; `02` §7 sigue diciendo que el sitio no
-  afirma «comisiones».
-- Siguen abiertas las de la entrega anterior (el agente que aplica por su
-  cuenta, «cualquier asistente», la guía `/agente`, `/ayuda`).
+El dueño pidió aplicar las recomendaciones y no dejar nada abierto:
+
+- **Comisiones:** se describen como dato y cálculo informativo (% de cada
+  ramo y póliza, «Comisión estimada» del tablero); no hay módulo ni
+  liquidación (`02` §7).
+- **El agente que aplica por su cuenta:** «el agente propone, Nexus lo
+  verifica y tu equipo decide qué revisa» (`02` §3.5); la landing y
+  `/precios` lo dicen así.
+- **Cualquier asistente:** Claude sigue siendo el asistente que el sitio
+  nombra y recomienda; `/agente` y la privacidad (versión 2) dicen que
+  también funciona con ChatGPT y otros asistentes compatibles con MCP.
+- **La guía `/agente`** y `/en/agent`, al día con la 0.68.3.
+- **`/ayuda`** redirige a `/manual` (`next.config.ts`).
 
 ### Para llevar a `nexus-app`
 

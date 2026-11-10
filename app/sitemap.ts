@@ -46,6 +46,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.6,
     })),
+    {
+      url: `${SITE_URL}/terminos`,
+      changeFrequency: "monthly",
+      priority: 0.3,
+    },
     // Las dos páginas con traducción (00 §6) declaran su par.
     ...[
       { es: "/agente", en: "/en/agent", priority: 0.7 },

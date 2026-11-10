@@ -41,6 +41,11 @@ export function SiteFooter() {
                 Privacidad
               </Link>
             </li>
+            <li>
+              <Link href="/terminos" className={linkClassName}>
+                Acuerdo de uso
+              </Link>
+            </li>
             {APP_URL ? (
               <li>
                 <a href={APP_URL} className={linkClassName}>
