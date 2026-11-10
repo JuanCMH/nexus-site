@@ -152,7 +152,7 @@ restableció con `support:reset` contra ese backend local. El arnés sigue
 fuera del repo; ahora regenera `screenshots.ts` desde `public/manual`.
 
 **Vídeos:** el dueño aprobó el piloto «Crear una tarea recurrente» el
-2026-11-10 y pidió la serie entera. Hay 30, uno por tarea, de 41 a 73 s
+2026-11-10 y pidió la serie entera. Hay 31, uno por tarea, de 41 a 73 s
 (24 MB en total), en el artículo y la sección que enseñan esa tarea. La
 regla está en `03` §3.2. Se grabaron con un estudio adaptado del de Harmony
 (fuera del repo): cada paso rotulado es un capítulo del reproductor y un
@@ -173,11 +173,16 @@ versión: lo que no se puede deshacer se enseña hasta la confirmación.
 | Documentos | Adjuntar y vincular · Carpetas de origen |
 | Directrices | Criterios · Editar y publicar un flujo · Reparto |
 | Contactos | Contactos y empresas |
+| Accesos | Guardar un acceso |
 | Configuración | Invitar a una persona · Roles y permisos · Plantilla de pólizas |
 
-Accesos no tiene vídeo: la bóveda de la propietaria de demostración pide
-una clave maestra que no se conoce. Hace falta crear una bóveda de
-demostración para grabarlo.
+El de Accesos se grabó con una bóveda de demostración creada para él
+(2026-11-10): en el backend local se vaciaron las tablas de la bóveda (la
+clave anterior no se conocía), la propietaria creó una nueva y se guardaron
+seis accesos ficticios. Como el navegador guarda su identificación con una
+llave que no se exporta, la bóveda vive en un perfil de Chrome persistente
+del estudio, no en la sesión guardada; la clave y la de recuperación están
+en el arnés, fuera del repo.
 
 **Capturas pendientes** (9), que siguen como comentario `CAPTURA` en su
 artículo porque en local no se pueden producir: las que necesitan un buzón

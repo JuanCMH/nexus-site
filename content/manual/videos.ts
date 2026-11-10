@@ -35,6 +35,59 @@ export type ManualVideo = {
 };
 
 export const MANUAL_VIDEOS = {
+  "accesos/guardar-un-acceso": {
+    title: "Guardar un acceso",
+    description:
+      "El usuario y la contraseña se cifran en tu computador antes de guardarse",
+    duration: 73,
+    width: 1280,
+    height: 800,
+    recorded: "2026-11-10",
+    appVersion: "0.68.3",
+    version: "cc945e71",
+    chapters: [
+      {
+        title: "En el menú, abre «Accesos»",
+        detail: "La bóveda de la agencia: portales, correos y otras cuentas",
+        start: 4.3,
+      },
+      {
+        title: "Escribe tu clave de la bóveda y haz clic en «Abrir la bóveda»",
+        detail:
+          "Es distinta de la contraseña de Nexus y se comprueba en tu computador",
+        start: 8.3,
+      },
+      { title: "Haz clic en «Añadir acceso»", start: 15.4 },
+      {
+        title: "Escribe el nombre y elige el tipo",
+        detail:
+          "El tipo decide la sección: «Correos», «Portales» u «Otras cuentas»",
+        start: 19.1,
+      },
+      {
+        title: "Completa el usuario y la contraseña",
+        detail: "«Generar» propone una contraseña al azar; el ojo la muestra",
+        start: 26.7,
+      },
+      {
+        title: "En «Opciones avanzadas», elige la aseguradora",
+        detail: "El acceso sale también en la ficha de esa aseguradora",
+        start: 35.9,
+      },
+      { title: "Haz clic en «Guardar acceso»", start: 44.2 },
+      {
+        title: "Para usarlo, copia el usuario o la contraseña",
+        detail: "Lo copiado se borra del portapapeles a los 30 segundos",
+        start: 52.5,
+      },
+      {
+        title: "Al levantarte del puesto, haz clic en «Bloquear»",
+        detail:
+          "La bóveda también se cierra sola tras diez minutos sin usar Nexus",
+        start: 61.9,
+      },
+    ],
+  },
   "agente/permisos-y-solicitudes": {
     title: "Una solicitud del agente",
     description:

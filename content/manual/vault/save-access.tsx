@@ -3,6 +3,7 @@ import { ArticleSection } from "@/components/manual/article-section";
 import { Callout } from "@/components/manual/callout";
 import { ManualTable } from "@/components/manual/manual-table";
 import { Step, Steps } from "@/components/manual/steps";
+import { Video } from "@/components/manual/video";
 import type { ManualArticleSection } from "../types";
 
 export const sections: ManualArticleSection[] = [
@@ -33,6 +34,7 @@ export function Article() {
       </ArticleSection>
 
       <ArticleSection id="anadir-un-acceso" title="Añadir un acceso">
+        <Video id="accesos/guardar-un-acceso" />
         <Steps>
           <Step title="Haz clic en «Añadir acceso»">
             <p>
